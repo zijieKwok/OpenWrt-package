@@ -969,7 +969,7 @@ function dispatch(request)
 			if sid then
 				util.ubus("session", "destroy", { ubus_rpc_session = sid })
 				luci.http.header("Set-Cookie", "sysauth_%s=%s; expires=%s; path=%s" %{
-					http.getenv("HTTPS") == "on" and "https" or "http", '', 'Thu, 01 Jan 1970 01:00:00 GMT', build_url()
+					http.getenv("HTTPS") == "on" and "https" or "http", 'sid', 'Thu, 01 Jan 1970 01:00:00 GMT', build_url()
 				})
 			end
 			luci.http.redirect(build_url())
