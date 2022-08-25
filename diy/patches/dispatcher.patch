@@ -23,23 +23,24 @@
  			local user = http.getenv("HTTP_AUTH_USER")
  			local pass = http.getenv("HTTP_AUTH_PASS")
  
-@@ -929,8 +936,13 @@ function dispatch(request)
+@@ -929,9 +936,14 @@ function dispatch(request)
  				return tpl.render("sysauth", scope)
  			end
  
--			http.header("Set-Cookie", 'sysauth=%s; path=%s; SameSite=Strict; HttpOnly%s' %{
--				sid, build_url(), http.getenv("HTTPS") == "on" and "; secure" or ""
+-			http.header("Set-Cookie", 'sysauth_%s=%s; path=%s; SameSite=Strict; HttpOnly%s' %{
 +			local cookie_p = uci:get("wizard", "default", "cookie_p")
 +			local timeout = 'Thu, 01 Jan 3000 01:00:00 GMT'
 +			if cookie_p == '0' then
 +				timeout = ''
 +			end
-+			http.header("Set-Cookie", 'sysauth=%s; expires=%s; path=%s; SameSite=Strict; HttpOnly%s' %{
++			http.header("Set-Cookie", 'sysauth_%s=%s; expires=%s; path=%s; SameSite=Strict; HttpOnly%s' %{
+ 				http.getenv("HTTPS") == "on" and "https" or "http",
+-				sid, build_url(), http.getenv("HTTPS") == "on" and "; secure" or ""
 +				sid, timeout, build_url(), http.getenv("HTTPS") == "on" and "; secure" or ""
  			})
  
  			http.redirect(build_url(unpack(ctx.requestpath)))
-@@ -952,8 +964,14 @@ function dispatch(request)
+@@ -953,8 +965,14 @@ function dispatch(request)
  	if #lookup_ctx.acls > 0 then
  		local perm = check_acl_depends(lookup_ctx.acls, ctx.authacl and ctx.authacl["access-group"])
  		if perm == nil then
@@ -48,8 +49,8 @@
 +			local sid = context.authsession
 +			if sid then
 +				util.ubus("session", "destroy", { ubus_rpc_session = sid })
-+				luci.http.header("Set-Cookie", "sysauth=%s; expires=%s; path=%s" %{
-+					'', 'Thu, 01 Jan 1970 01:00:00 GMT', build_url()
++				luci.http.header("Set-Cookie", "sysauth_%s=%s; expires=%s; path=%s" %{
++					http.getenv("HTTPS") == "on" and "https" or "http", '', 'Thu, 01 Jan 1970 01:00:00 GMT', build_url()
 +				})
 +			end
 +			luci.http.redirect(build_url())
