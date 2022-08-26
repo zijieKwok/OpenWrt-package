@@ -8,14 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=miniupnpd
-PKG_VERSION:=2.3.0
-PKG_RELEASE:=4
+PKG_VERSION:=20220825
+PKG_RELEASE:=5
 
-PKG_SOURCE_PROTO:=git
-PKG_SOURCE_URL:=https://github.com/miniupnp/miniupnp.git
-PKG_SOURCE_DATE:=2022-03-20
-PKG_SOURCE_VERSION:=fda61180e07abd222623e54b9239557bbffbc21d
-PKG_MIRROR_HASH:=skip
+PKG_SOURCE_URL:=https://codeload.github.com/x-wrt/miniupnp/tar.gz/$(PKG_VERSION)?
+PKG_HASH:=skip
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(BUILD_VARIANT)/$(PKG_NAME)-$(PKG_VERSION)/miniupnpd
 
 PKG_MAINTAINER:=
@@ -118,10 +116,6 @@ endef
 
 define Package/miniupnpd-nftables/install
 	$(call Package/miniupnpd/install/Default,$1)
-	$(INSTALL_DIR) $(1)/usr/share/miniupnpd
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/etc/miniupnpd/miniupnpd_functions.sh $(1)/usr/share/miniupnpd/miniupnpd_functions.sh
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/etc/miniupnpd/nft_init.sh $(1)/usr/share/miniupnpd/nft_init.sh
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/etc/miniupnpd/nft_removeall.sh $(1)/usr/share/miniupnpd/nft_removeall.sh
 endef
 
 $(eval $(call BuildPackage,miniupnpd-iptables))
