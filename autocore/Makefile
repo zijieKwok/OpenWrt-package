@@ -6,7 +6,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=autocore
-PKG_RELEASE:=51
+PKG_RELEASE:=52
 
 PKG_CONFIG_DEPENDS:= \
 	CONFIG_TARGET_bcm27xx \
@@ -38,7 +38,6 @@ endef
 define Package/autocore/install/Default
 	$(INSTALL_DIR) $(1)/etc
 	$(CP) ./files/generic/10_system.js $(1)/etc/rpcd_10_system.js
-	$(CP) ./files/generic/luci $(1)/etc/rpcd_luci
 
 	$(INSTALL_DIR) $(1)/etc/uci-defaults
 	$(INSTALL_BIN) ./files/generic/090-cover-index_files $(1)/etc/uci-defaults/
