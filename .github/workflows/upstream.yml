@@ -325,7 +325,6 @@ jobs:
         sed -i "s/default n/default y/" dockerd/Config.in
         sed -i "/+uhttpd/d" ariang/Makefile
         cp -f autocore/files/generic/10_system.js luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
-        cp -f autocore/files/generic/luci luci-base/root/usr/libexec/rpcd/luci
         sed -i -e '$a /etc/bench.log' \
         -e '/\/etc\/profile/d' \
         -e '/\/etc\/shinit/d' \
