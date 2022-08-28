@@ -170,6 +170,7 @@ jobs:
         git_clone https://github.com/Zxilly/UA2F
         git_clone https://github.com/koshev-msk/luci-app-mmconfig
         git_clone https://github.com/koshev-msk/xmm-modem
+        git_clone https://github.com/jhonathanc/ps3netsrv-openwrt && mv -n ps3netsrv-openwrt/* ./;rm -rf ps3netsrv-openwrt
         ) &
         (
         svn export https://github.com/Ysurac/openmptcprouter-feeds/trunk/luci-app-iperf
@@ -257,7 +258,7 @@ jobs:
              -H "Authorization: Bearer ${{ secrets.REPO_TOKEN }}" \
              -X POST -d '{ "query": "query {repository(owner: \"'"$1"'\", name: \"'"$2"'\"){latestRelease{tagName tagCommit{oid}}refs(refPrefix:\"refs/tags/\",last:1,orderBy:{field:TAG_COMMIT_DATE,direction:ASC}){edges{node{name target{oid}}}}defaultBranchRef{target{...on Commit {oid}}}}}"}' https://api.github.com/graphql)
         }
-        for pkg in $(ls !(luci-*|natflow|ps3netsrv|rblibtorrent|shadowsocksr-libev|containerd|netmaker|n2n_v2|naiveproxy|miniupnpd-nft|netdata|mosdns|r8168|coremark|mbedtls|rtl8821cu|rtl8188eu|rtl8812au-ac|rtl88x2bu|quickjspp|libcups)/Makefile); do
+        for pkg in $(ls !(luci-*|rblibtorrent|shadowsocksr-libev|containerd|netmaker|n2n_v2|naiveproxy|miniupnpd-nft|netdata|mosdns|r8168|coremark|mbedtls|rtl8821cu|rtl8188eu|rtl8812au-ac|rtl88x2bu|quickjspp|libcups)/Makefile); do
           repo="$(grep PKG_SOURCE_URL $pkg | grep github | cut -f 4-5 -d '/' | sed -e 's/.git//' | grep -E '[0-9a-zA-Z_-]+$')" || true
           if [ "$repo" ]; then
             owner="$(echo $repo | cut -f 1 -d '/')"
