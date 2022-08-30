@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=rtl8189es
-PKG_RELEASE:=2
+PKG_RELEASE:=3
 
 PKG_SOURCE_URL:=https://github.com/jwrdegoede/rtl8189ES_linux.git
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_DATE:=2022-03-28
-PKG_SOURCE_VERSION:=49843f222753747033de894d2dd717513c31e0a4
+PKG_SOURCE_VERSION:=c93cfd712a3acd2ecdeda19a66d269c20f8803f1
 PKG_MIRROR_HASH:=skip
 
 PKG_MAINTAINER:=Hauke Mehrtens <hauke@hauke-m.de>
