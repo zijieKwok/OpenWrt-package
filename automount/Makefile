@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=automount
 PKG_FLAGS:=nonshared
-PKG_RELEASE:=23
+PKG_RELEASE:=25
 
 PKG_CONFIG_DEPENDS:= \
 	CONFIG_LINUX_5_4 \
@@ -28,6 +28,7 @@ define Package/automount
     +kmod-usb-storage-extras \
     +!TARGET_ramips:kmod-usb-storage-uas \
     +kmod-fs-ext4 \
+    +!LINUX_5_4:kmod-fs-exfat \
     +LINUX_5_4:kmod-fs-exfat0 \
     +kmod-fs-vfat
     +!LINUX_5_15:ntfs-3g
