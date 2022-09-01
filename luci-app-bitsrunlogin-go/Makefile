@@ -8,8 +8,6 @@ LUCI_TITLE:=LuCI app for BitSrunLoginGo (Bit Srun auto login tool)
 LUCI_DEPENDS:=+bitsrunlogin-go
 LUCI_PKGARCH:=all
 
-PKG_NAME:=luci-app-bitsrunlogin-go
-
 include $(TOPDIR)/feeds/luci/luci.mk
 
 # call BuildPackage - OpenWrt buildroot signature
