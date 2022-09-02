@@ -80,7 +80,6 @@ return baseclass.extend({
 
 		var fields = [
 			_('Hostname'),         boardinfo.hostname,
-			_('Model'),            boardinfo.model + cpubench.cpubench,
 			_('Target Platform'),  (L.isObject(boardinfo.release) ? boardinfo.release.target : ''),
 			_('Firmware Version'), (L.isObject(boardinfo.release) ? boardinfo.release.description + ' / ' : '') + (luciversion || ''),
 			_('Kernel Version'),   boardinfo.kernel,
@@ -97,9 +96,18 @@ return baseclass.extend({
 			fields.splice(6, 0, _('Temperature'));
 			fields.splice(7, 0, tempinfo.tempinfo);
 		}
-		if (cpuinfo.cpuinfo) {
+		if (boardinfo.model == "Default string Default string") {
+			if (cpuinfo.cpuinfo) {
+			fields.splice(2, 0, _('Architecture'));
+			fields.splice(3, 0, cpuinfo.cpuinfo + cpubench.cpubench);
+			}
+		} else {
+			fields.splice(2, 0, _('Model'));
+			fields.splice(3, 0, boardinfo.model + cpubench.cpubench);
+			if (cpuinfo.cpuinfo) {
 			fields.splice(4, 0, _('Architecture'));
 			fields.splice(5, 0, cpuinfo.cpuinfo);
+			}
 		}
 
 		var table = E('table', { 'class': 'table' });
