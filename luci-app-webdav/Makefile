@@ -1,16 +1,15 @@
-#
-# Copyright (C) 2008-2014 The LuCI Team <luci@lists.subsignal.org>
+# Copyright (C) 2021 Openwrt.org
 #
 # This is free software, licensed under the Apache License, Version 2.0 .
 #
 
 include $(TOPDIR)/rules.mk
 
-LUCI_TITLE:=LuCI for FRPC
-LUCI_DEPENDS:=+wget +frpc
+LUCI_TITLE:=LuCI support for Webdav
+LUCI_DEPENDS:=+webdav-hacdias
 LUCI_PKGARCH:=all
 
-PKG_NAME:=luci-app-frpc
+PKG_NAME:=luci-app-webdav
 
 include $(TOPDIR)/feeds/luci/luci.mk
 
