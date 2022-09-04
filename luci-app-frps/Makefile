@@ -17,7 +17,7 @@ LUCI_DEPENDS:=+wget +frps
 LUCI_PKGARCH:=all       
 
 define Package/$(PKG_NAME)/conffiles 
-/etc/config/frps 
+/etc/config/frps
 endef
 
 include $(TOPDIR)/feeds/luci/luci.mk
