@@ -10,7 +10,7 @@ LUCI_TITLE:=LuCI for FRPC
 LUCI_DEPENDS:=+wget +frpc
 LUCI_PKGARCH:=all
 
-PKG_NAME:=luci-app-frpc
+PKG_NAME:=luci-app-frpc 
  
 include $(TOPDIR)/feeds/luci/luci.mk     
 
