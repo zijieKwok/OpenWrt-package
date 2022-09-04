@@ -16,7 +16,7 @@ LUCI_TITLE:=LuCI support for Frps
 LUCI_DEPENDS:=+wget +frps
 LUCI_PKGARCH:=all
 
-define Package/$(PKG_NAME)/conffiles 
+define Package/$(PKG_NAME)/conffiles
 /etc/config/frps
 endef
 
