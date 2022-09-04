@@ -11,6 +11,7 @@ LUCI_DEPENDS:=+wget +frpc
 LUCI_PKGARCH:=all
 
 PKG_NAME:=luci-app-frpc
+PKG_SRC_VERSION:=git-99.247.35406-6671db8
 
 include $(TOPDIR)/feeds/luci/luci.mk
 
