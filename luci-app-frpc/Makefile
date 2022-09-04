@@ -13,5 +13,5 @@ LUCI_PKGARCH:=all
 PKG_NAME:=luci-app-frpc
 
 include $(TOPDIR)/feeds/luci/luci.mk
- 
+
 # call BuildPackage - OpenWrt buildroot signature
