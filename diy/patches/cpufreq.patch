@@ -9,3 +9,14 @@
  		else
  			# RK3328
  			uci_write_config 0 schedutil 816000 1512000
+
+---
+ .../root/usr/share/{rpcd => }/luci/menu.d/luci-app-cpufreq.json   | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ rename luci-app-cpufreq/root/usr/share/{rpcd => }/luci/menu.d/luci-app-cpufreq.json (100%)
+
+diff --git a/luci-app-cpufreq/root/usr/share/rpcd/luci/menu.d/luci-app-cpufreq.json b/luci-app-cpufreq/root/usr/share/luci/menu.d/luci-app-cpufreq.json
+similarity index 100%
+rename from luci-app-cpufreq/root/usr/share/rpcd/luci/menu.d/luci-app-cpufreq.json
+rename to luci-app-cpufreq/root/usr/share/luci/menu.d/luci-app-cpufreq.json
+
