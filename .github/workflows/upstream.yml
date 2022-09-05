@@ -178,7 +178,6 @@ jobs:
         svn export https://github.com/coolsnowwolf/luci/trunk/libs/luci-lib-fs
         svn export https://github.com/openwrt/packages/branches/openwrt-21.02/net/netatalk
         svn export https://github.com/x-wrt/packages/trunk/net/miniupnpd miniupnpd-nft
-        svn export https://github.com/Lienol/openwrt/trunk/package/network/fullconenat
         svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/luci-app-irqbalance
         ) &
         (
@@ -209,7 +208,7 @@ jobs:
         git_sparse_clone develop "https://github.com/Ysurac/openmptcprouter-feeds" "openmptcp" luci-app-snmpd \
         luci-app-packet-capture luci-app-mail msmtp
         git_sparse_clone master "https://github.com/immortalwrt/immortalwrt" "immortal" package/kernel/rtl88x2bu \
-        package/kernel/r8168 package/emortal/autocore  package/emortal/automount \
+        package/kernel/r8168 package/emortal/autocore  package/emortal/automount package/network/utils/fullconenat \
         package/network/utils/nftables package/libs/libnftnl package/firmware/wireless-regdb
         ) &
 
