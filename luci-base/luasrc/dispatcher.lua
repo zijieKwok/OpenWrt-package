@@ -465,7 +465,7 @@ function httpdispatch(request, prefix)
 	context.request = r
 
 	local pathinfo = ""
-	if sys.call("test -s /tmp/resolv.conf.d/resolv.conf.auto") == 0 then
+	if sys.call("test -s /tmp/resolv.conf.d/resolv.conf.auto") == 0 or sys.call("test ! -f /etc/init.d/wizard") == 0 then
 		pathinfo = http.urldecode(request:getenv("PATH_INFO") or "", true)	
 	else
 		pathinfo = http.urldecode(request:getenv("PATH_INFO") or "admin/system/initsetup", true)
