@@ -126,4 +126,3 @@ define Package/miniupnpd-nftables/install
 endef
 
 $(eval $(call BuildPackage,miniupnpd-iptables))
-$(eval $(call BuildPackage,miniupnpd-nftables))
