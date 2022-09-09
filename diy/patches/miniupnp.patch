@@ -125,3 +125,11 @@
  
  local function parseInput()
  	local parse = json.new()
+
+--- a/miniupnpd-nft/Makefile
++++ b/miniupnpd-nft/Makefile
+@@ -126,4 +126,3 @@ define Package/miniupnpd-nftables/install
+ endef
+ 
+ $(eval $(call BuildPackage,miniupnpd-iptables))
+-$(eval $(call BuildPackage,miniupnpd-nftables))
