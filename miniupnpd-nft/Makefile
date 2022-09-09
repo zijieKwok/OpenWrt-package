@@ -15,7 +15,7 @@ PKG_HASH:=skip
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(BUILD_VARIANT)/$(PKG_NAME)-$(PKG_VERSION)/miniupnpd
 
-PKG_RELEASE:=8
+PKG_RELEASE:=9
 
 PKG_MAINTAINER:=
 PKG_LICENSE:=BSD-3-Clause
@@ -126,3 +126,4 @@ define Package/miniupnpd-nftables/install
 endef
 
 $(eval $(call BuildPackage,miniupnpd-iptables))
+$(eval $(call BuildPackage,miniupnpd-nftables))
