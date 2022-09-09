@@ -44,6 +44,7 @@ jobs:
     - name: Syn upstream
       run: |
         shopt -s extglob
+        set +e
         git rm -r --cache * >/dev/null 2>&1 &
         rm -rf `find ./* -maxdepth 0 -type d ! -name "diy"` >/dev/null 2>&1
         function git_clone() (
@@ -102,7 +103,6 @@ jobs:
         git_clone https://github.com/sirpdboy/luci-app-autotimeset
         git_clone https://github.com/jerrykuku/luci-app-jd-dailybonus
         git_clone https://github.com/NateLol/luci-app-oled
-        git_clone https://github.com/lloyd18/luci-app-npc
         ) &
         (
         git_clone https://github.com/destan19/OpenAppFilter && mvdir OpenAppFilter
