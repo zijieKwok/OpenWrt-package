@@ -100,6 +100,9 @@ jobs:
         git_clone https://github.com/peter-tank/luci-app-dnscrypt-proxy2
         git_clone https://github.com/sirpdboy/luci-app-advanced
         git_clone https://github.com/sirpdboy/luci-app-autotimeset
+        git_clone https://github.com/jerrykuku/luci-app-jd-dailybonus
+        git_clone https://github.com/NateLol/luci-app-oled
+        git_clone https://github.com/lloyd18/luci-app-npc
         ) &
         (
         git_clone https://github.com/destan19/OpenAppFilter && mvdir OpenAppFilter
@@ -167,12 +170,6 @@ jobs:
         git_clone https://github.com/koshev-msk/xmm-modem
         git_clone https://github.com/jhonathanc/ps3netsrv-openwrt && mv -n ps3netsrv-openwrt/* ./;rm -rf ps3netsrv-openwrt
         git_clone https://github.com/koshev-msk/modemfeed && mv -n modemfeed/*/*/* ./ && rm -rf modemfeed
-        ) &
-        (
-        git_clone https://github.com/wolandmaster/luci-app-rtorrent
-        git_clone https://github.com/jerrykuku/luci-app-jd-dailybonus
-        git_clone https://github.com/NateLol/luci-app-oled
-        git_clone https://github.com/lloyd18/luci-app-npc
         ) &
         (
         svn export https://github.com/Ysurac/openmptcprouter-feeds/trunk/luci-app-iperf
