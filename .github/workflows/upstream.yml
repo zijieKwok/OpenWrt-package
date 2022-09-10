@@ -171,10 +171,6 @@ jobs:
         git_clone https://github.com/koshev-msk/modemfeed && mv -n modemfeed/*/*/* ./ && rm -rf modemfeed
         ) &
         (
-        git_clone https://github.com/sensec/luci-app-udp2raw
-        git_clone https://github.com/sensec/openwrt-udp2raw
-        ) &
-        (
         svn export https://github.com/Ysurac/openmptcprouter-feeds/trunk/luci-app-iperf
         svn export https://github.com/vernesong/OpenClash/trunk/luci-app-openclash
         svn export https://github.com/coolsnowwolf/luci/trunk/libs/luci-lib-fs
@@ -199,7 +195,7 @@ jobs:
         net/sub-web net/dnsproxy net/haproxy net/v2raya net/cdnspeedtest \
         net/subconverter net/ngrokc net/oscam net/njitclient net/scutclient net/gost net/gowebdav \
         admin/bpytop libs/jpcre2 libs/wxbase libs/rapidjson libs/libcron libs/quickjspp libs/toml11 \
-        utils/cpulimit utils/filebrowser
+        utils/cpulimit utils/filebrowser net/udp2raw
         git_sparse_clone master "https://github.com/xiaoqingfengATGH/feeds-xiaoqingfeng" "xiaoqingfeng" homeredirect luci-app-homeredirect
         ) &
         (
