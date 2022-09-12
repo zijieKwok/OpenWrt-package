@@ -15,7 +15,7 @@ PKG_HASH:=skip
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(BUILD_VARIANT)/$(PKG_NAME)-$(PKG_VERSION)/miniupnpd
 
-PKG_RELEASE:=10
+PKG_RELEASE:=11
 
 PKG_MAINTAINER:=
 PKG_LICENSE:=BSD-3-Clause
@@ -38,7 +38,6 @@ define Package/miniupnpd/Default
 	+libcap \
 	+libmnl \
 	+libuuid
-  PROVIDES:=miniupnpd
   TITLE:=Lightweight UPnP IGD, NAT-PMP & PCP daemon
   SUBMENU:=Firewall
   URL:=https://miniupnp.tuxfamily.org/
@@ -61,6 +60,7 @@ define Package/miniupnpd-nftables
   DEPENDS+= \
 	+libnftnl
   TITLE+= (nftables)
+  PROVIDES:=miniupnpd
   VARIANT:=nftables
   DEFAULT_VARIANT:=1
   CONFLICTS:=miniupnpd-iptables
