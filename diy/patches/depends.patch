@@ -79,7 +79,7 @@
  	+nftables-json \
 -	+ucode +ucode-mod-fs +ucode-mod-ubus +ucode-mod-uci
 +	+ucode +ucode-mod-fs +ucode-mod-ubus +ucode-mod-uci \
-+	+kmod-nft-fullcone +iptables-nft +ip6tables-nft +arptables-nft +ebtables-nft +xtables-nft +nftables-json +miniupnpd-nftables
++	+kmod-nft-fullcone +iptables-nft +ip6tables-nft +arptables-nft +ebtables-nft +xtables-nft +nftables-json
    EXTRA_DEPENDS:=ucode (>= 2022-03-22)
    PROVIDES:=uci-firewall
  endef
@@ -163,17 +163,6 @@
  	@(PACKAGE_libustream-mbedtls||PACKAGE_libustream-openssl||PACKAGE_libustream-wolfssl)
  LUCI_PKGARCH:=all
  
-
---- a/miniupnpd-nft/Makefile
-+++ b/miniupnpd-nft/Makefile
-@@ -39,7 +39,6 @@ define Package/miniupnpd/Default
- 	+libcap \
- 	+libmnl \
- 	+libuuid
--  PROVIDES:=miniupnpd
-   TITLE:=Lightweight UPnP IGD, NAT-PMP & PCP daemon
-   SUBMENU:=Firewall
-   URL:=https://miniupnp.tuxfamily.org/
 
 --- a/k3screenctrl/Makefile
 +++ b/k3screenctrl/Makefile
