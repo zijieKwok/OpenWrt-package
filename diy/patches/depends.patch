@@ -71,8 +71,8 @@
  
  define Package/firewall/description
 
---- a/miniupnpd/Makefile
-+++ b/miniupnpd/Makefile
+--- a/miniupnpd-nft/Makefile
++++ b/miniupnpd-nft/Makefile
 @@ -39,7 +39,6 @@ define Package/miniupnpd/Default
  	+libcap-ng \
  	+libmnl \
