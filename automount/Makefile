@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=automount
 PKG_FLAGS:=nonshared
-PKG_RELEASE:=25
+PKG_RELEASE:=26
 
 PKG_CONFIG_DEPENDS:= \
 	CONFIG_LINUX_5_4 \
@@ -30,8 +30,8 @@ define Package/automount
     +kmod-fs-ext4 \
     +!LINUX_5_4:kmod-fs-exfat \
     +LINUX_5_4:kmod-fs-exfat0 \
-    +kmod-fs-vfat
-    +!LINUX_5_15:ntfs-3g
+    +kmod-fs-vfat \
+    +!LINUX_5_15:ntfs-3g \
     +LINUX_5_15:ntfs3-mount
   PKGARCH:=all
 endef
