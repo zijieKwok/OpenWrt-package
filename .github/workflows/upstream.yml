@@ -101,6 +101,7 @@ jobs:
         git_clone https://github.com/peter-tank/luci-app-dnscrypt-proxy2
         git_clone https://github.com/jerrykuku/luci-app-jd-dailybonus
         git_clone https://github.com/NateLol/luci-app-oled
+        git_clone https://github.com/honwen/luci-app-aliddns
         ) &
         (
         git_clone https://github.com/destan19/OpenAppFilter && mvdir OpenAppFilter
@@ -158,7 +159,6 @@ jobs:
         git_clone https://github.com/tty228/luci-app-serverchan
         git_clone https://github.com/4IceG/luci-app-sms-tool smstool && mvdir smstool
         git_clone https://github.com/4IceG/luci-app-modemband modemb  && mv -n modemb/* ./;rm -rf modemb
-        #git_clone https://github.com/helmiau/helmiwrt-packages && rm -rf helmiwrt-packages/{luci-app-v2raya,preview} && mvdir helmiwrt-packages
         git_clone https://github.com/ZeaKyX/speedtest-web
         git_clone https://github.com/ZeaKyX/luci-app-speedtest-web
         git_clone https://github.com/Zxilly/UA2F
