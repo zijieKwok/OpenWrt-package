@@ -194,6 +194,8 @@ jobs:
         admin/bpytop libs/jpcre2 libs/wxbase libs/rapidjson libs/libcron libs/quickjspp libs/toml11 \
         utils/cpulimit utils/filebrowser net/udp2raw
         git_sparse_clone master "https://github.com/xiaoqingfengATGH/feeds-xiaoqingfeng" "xiaoqingfeng" homeredirect luci-app-homeredirect
+        git_sparse_clone main "https://github.com/sirpdboy/sirpdboy-package" "sirpdboy" luci-app-advanced luci-app-autotimeset \
+        luci-app-control-speedlimit luci-app-dnsto luci-app-netspeedtest luci-app-pptpserver luci-app-rebootschedule
         ) &
         (
         git_sparse_clone master "https://github.com/coolsnowwolf/packages" "leanpkg" net/miniupnpd net/mwan3 multimedia/UnblockNeteaseMusic-Go \
@@ -205,8 +207,6 @@ jobs:
         git_sparse_clone master "https://github.com/immortalwrt/immortalwrt" "immortal" package/kernel/rtl88x2bu \
         package/kernel/r8168 package/emortal/autocore  package/emortal/automount package/network/utils/fullconenat \
         package/network/utils/nftables package/libs/libnftnl package/firmware/wireless-regdb
-        git_sparse_clone master "https://github.com/sirpdboy/sirpdboy-package" "sirpdboy" luci-app-advanced luci-app-autotimeset \
-        luci-app-control-speedlimit luci-app-dnsto luci-app-netspeedtest luci-app-pptpserver luci-app-rebootschedule
         ) &
 
         svn export --force https://github.com/coolsnowwolf/luci/trunk/applications luciapp
