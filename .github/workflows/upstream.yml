@@ -102,6 +102,7 @@ jobs:
         git_clone https://github.com/jerrykuku/luci-app-jd-dailybonus
         git_clone https://github.com/NateLol/luci-app-oled
         git_clone https://github.com/honwen/luci-app-aliddns
+        git_clone https://github.com/sirpdboy/luci-app-advanced
         ) &
         (
         git_clone https://github.com/destan19/OpenAppFilter && mvdir OpenAppFilter
