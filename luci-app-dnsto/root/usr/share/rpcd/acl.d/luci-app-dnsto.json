@@ -1,0 +1,11 @@
+{
+	"luci-app-dnsto": {
+		"description": "Grant UCI access for luci-app-dnsto",
+		"read": {
+			"uci": [ "ddnsto" ]
+		},
+		"write": {
+			"uci": [ "ddnsto" ]
+		}
+	}
+}
