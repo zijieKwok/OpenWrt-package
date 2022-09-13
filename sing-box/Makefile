@@ -7,7 +7,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=sing-box
 PKG_VERSION:=1.0.3
-PKG_RELEASE:=6
+PKG_RELEASE:=7
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/SagerNet/sing-box/tar.gz/v$(PKG_VERSION)?
@@ -38,7 +38,7 @@ define Package/sing-box
 endef
 
 GO_PKG_TARGET_VARS:=$(filter-out CGO_ENABLED=%,$(GO_PKG_TARGET_VARS)) CGO_ENABLED=0
-GO_PKG_TAGS:=with_quic,with_wireguard,with_acme
+GO_PKG_TAGS:=with_quic,with_grpc,with_wireguard
 
 define Package/$(PKG_NAME)/conffiles
 /etc/sing-box/config.json
