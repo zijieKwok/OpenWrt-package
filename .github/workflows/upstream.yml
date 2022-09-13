@@ -178,6 +178,7 @@ jobs:
         svn export https://github.com/openwrt/packages/branches/openwrt-21.02/net/netatalk
         svn export https://github.com/x-wrt/packages/trunk/net/miniupnpd miniupnpd-nft
         svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/luci-app-irqbalance
+        svn export svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-control-speedlimit
         ) &
         (
         git_sparse_clone openwrt-22.03 "https://github.com/openwrt/packages" "oppackages" \
