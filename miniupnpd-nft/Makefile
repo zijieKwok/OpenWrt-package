@@ -15,7 +15,7 @@ PKG_HASH:=skip
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(BUILD_VARIANT)/$(PKG_NAME)-$(PKG_VERSION)/miniupnpd
 
-PKG_RELEASE:=11
+PKG_RELEASE:=12
 
 PKG_MAINTAINER:=
 PKG_LICENSE:=BSD-3-Clause
@@ -118,12 +118,6 @@ endef
 
 define Package/miniupnpd-nftables/install
 	$(call Package/miniupnpd/install/Default,$1)
-	$(INSTALL_DIR) $(1)/etc/uci-defaults
-	$(INSTALL_DIR) $(1)/usr/share/miniupnpd
-	$(INSTALL_BIN) ./files/miniupnpd.defaults.nftables $(1)/etc/uci-defaults/99-miniupnpd
-	$(INSTALL_DATA) ./files/firewall4.include $(1)/usr/share/miniupnpd/firewall.include
-	$(INSTALL_DIR) $(1)/usr/share/nftables.d
-	$(CP) ./files/nftables.d/* $(1)/usr/share/nftables.d/
 endef
 
 $(eval $(call BuildPackage,miniupnpd-iptables))
