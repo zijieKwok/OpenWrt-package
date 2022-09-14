@@ -170,10 +170,10 @@ jobs:
         git_clone https://github.com/NateLol/luci-app-oled
         git_clone https://github.com/4IceG/luci-app-3ginfo op3ginfo  && mv -n op3ginfo/{3ginfo,luci-app-3ginfo} ./;rm -rf op3ginfo
         git_clone https://github.com/sundaqiang/openwrt-packages && mv -n openwrt-packages/luci-* ./; rm -rf openwrt-packages
-        )&
+        git_clone https://github.com/vernesong/OpenClash && mv -n OpenClash/luci-app-openclash ./; rm -rf OpenClash
+        ) &
         (
         svn export https://github.com/Ysurac/openmptcprouter-feeds/trunk/luci-app-iperf
-        svn export https://github.com/vernesong/OpenClash/trunk/luci-app-openclash
         svn export https://github.com/coolsnowwolf/luci/trunk/libs/luci-lib-fs
         svn export https://github.com/openwrt/packages/branches/openwrt-21.02/net/netatalk
         ) &
