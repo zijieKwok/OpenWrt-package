@@ -1,5 +1,5 @@
---- a/net/miniupnpd/Makefile
-+++ b/net/miniupnpd/Makefile
+--- a/miniupnpd/Makefile
++++ b/miniupnpd/Makefile
 @@ -15,7 +15,8 @@ PKG_RELEASE:=3
  # so switch mirror repo to http://miniupnp.tuxfamily.org
  # PKG_SOURCE_URL:=http://miniupnp.free.fr/files
