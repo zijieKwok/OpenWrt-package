@@ -209,7 +209,7 @@ jobs:
         package/network/utils/nftables package/libs/libnftnl package/firmware/wireless-regdb
         ) &
 
-        git_sparse_clone master "https://github.com/coolsnowwolf/luci" "leluci" applications luci-lib-fs
+        git_sparse_clone master "https://github.com/coolsnowwolf/luci" "leluci" applications libs/luci-lib-fs
         mv -f applications luciapp
         rm -rf luciapp/{luci-app-qbittorrent,luci-app-cpufreq}
         git_sparse_clone master "https://github.com/immortalwrt/luci" "immluci" applications protocols/luci-proto-minieap
