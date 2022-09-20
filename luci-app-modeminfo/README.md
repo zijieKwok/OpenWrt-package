@@ -40,10 +40,10 @@ Supported devices:
 |modeminfo-serial-xmm |Fibocom L850/L860 modems support |
 </details>
 
-Сompiled old versions https://inf.labz.ru/repo/
-
 <details>
    <summary>Screenshots</summary>
+
+   ![](https://raw.githubusercontent.com/koshev-msk/modemfeed/master/luci/applications/luci-app-modeminfo/screenshots/modeminfo-overview.png)
 
    ![](https://raw.githubusercontent.com/koshev-msk/modemfeed/master/luci/applications/luci-app-modeminfo/screenshots/modeminfo-network.png)
 	
