@@ -175,7 +175,7 @@ jobs:
         svn export https://github.com/Ysurac/openmptcprouter-feeds/trunk/luci-app-iperf
         svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/luci-app-irqbalance
         svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-control-speedlimit
-        svn export https://github.com/x-wrt/packages/trunk/net/miniupnpd
+        svn export https://github.com/x-wrt/packages/trunk/net/miniupnpd miniupnpd-nft
         ) &
         (
         git_sparse_clone openwrt-22.03 "https://github.com/openwrt/packages" "oppackages" \
