@@ -31,6 +31,7 @@ define Package/miniupnpd
   TITLE:=Lightweight UPnP IGD, NAT-PMP & PCP daemon
   SUBMENU:=Firewall
   URL:=http://miniupnp.free.fr/
+  VARIANT:=iptables
 endef
 
 define Package/miniupnpd/config
