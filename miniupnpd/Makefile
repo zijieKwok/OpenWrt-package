@@ -9,14 +9,13 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=miniupnpd
 PKG_VERSION:=3.0.20170421
-PKG_RELEASE:=21
+PKG_RELEASE:=22
 
 # Content-Encoding conflict, can refer to this [issue](https://github.com/miniupnp/miniupnp/issues/605)
 # so switch mirror repo to http://miniupnp.tuxfamily.org
 # PKG_SOURCE_URL:=http://miniupnp.free.fr/files
 PKG_SOURCE_URL:=http://miniupnp.tuxfamily.org/files
-PKG_SOURCE:=$(PKG_NAME)-2.0.20180503.tar.gz
-PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-2.0.20180503
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_HASH:=skip
 
 PKG_MAINTAINER:=Markus Stenberg <fingon@iki.fi>
@@ -31,7 +30,6 @@ define Package/miniupnpd
   TITLE:=Lightweight UPnP IGD, NAT-PMP & PCP daemon
   SUBMENU:=Firewall
   URL:=http://miniupnp.free.fr/
-  VARIANT:=iptables
 endef
 
 define Package/miniupnpd/config

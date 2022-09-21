@@ -8,15 +8,14 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=miniupnpd
+PKG_VERSION:=20220908
 
-PKG_SOURCE_PROTO:=git
-PKG_SOURCE_URL:=https://github.com/miniupnp/miniupnp.git
-PKG_SOURCE_DATE:=2022-08-31
-PKG_SOURCE_VERSION:=68c8ec508a421f4f4af67a63e3eb6f497d2531e1
-PKG_MIRROR_HASH:=skip
+PKG_SOURCE_URL:=https://codeload.github.com/x-wrt/miniupnp/tar.gz/$(PKG_VERSION)?
+PKG_HASH:=skip
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(BUILD_VARIANT)/$(PKG_NAME)-$(PKG_VERSION)/miniupnpd
 
-PKG_RELEASE:=15
+PKG_RELEASE:=16
 
 PKG_MAINTAINER:=
 PKG_LICENSE:=BSD-3-Clause
@@ -36,9 +35,10 @@ define Package/miniupnpd/Default
   SECTION:=net
   CATEGORY:=Network
   DEPENDS:= \
-	+libcap-ng \
+	+libcap \
 	+libmnl \
 	+libuuid
+  PROVIDES:=miniupnpd
   TITLE:=Lightweight UPnP IGD, NAT-PMP & PCP daemon
   SUBMENU:=Firewall
   URL:=https://miniupnp.tuxfamily.org/
@@ -61,7 +61,6 @@ define Package/miniupnpd-nftables
   DEPENDS+= \
 	+libnftnl
   TITLE+= (nftables)
-  PROVIDES:=miniupnpd
   VARIANT:=nftables
   DEFAULT_VARIANT:=1
   CONFLICTS:=miniupnpd-iptables
@@ -103,6 +102,10 @@ define Package/miniupnpd/install/Default
 	$(INSTALL_BIN) ./files/miniupnpd.init $(1)/etc/init.d/miniupnpd
 	$(INSTALL_CONF) ./files/upnpd.config $(1)/etc/config/upnpd
 	$(INSTALL_DATA) ./files/miniupnpd.hotplug $(1)/etc/hotplug.d/iface/50-miniupnpd
+	$(INSTALL_DIR) $(1)/usr/share/miniupnpd
+	$(INSTALL_DATA) ./files/core.sh $(1)/usr/share/miniupnpd/core.sh
+	$(INSTALL_DIR) $(1)/etc/uci-defaults
+	$(INSTALL_BIN) ./files/miniupnpd.defaults.nftables $(1)/etc/uci-defaults/99-miniupnpd-nft
 endef
 
 define Package/miniupnpd-iptables/install
@@ -115,12 +118,6 @@ endef
 
 define Package/miniupnpd-nftables/install
 	$(call Package/miniupnpd/install/Default,$1)
-	$(INSTALL_DIR) $(1)/etc/uci-defaults
-	$(INSTALL_DIR) $(1)/usr/share/miniupnpd
-	$(INSTALL_BIN) ./files/miniupnpd.defaults.nftables $(1)/etc/uci-defaults/99-miniupnpd
-	$(INSTALL_DATA) ./files/firewall4.include $(1)/usr/share/miniupnpd/firewall.include
-	$(INSTALL_DIR) $(1)/usr/share/nftables.d
-	$(CP) ./files/nftables.d/* $(1)/usr/share/nftables.d/
 endef
 
 $(eval $(call BuildPackage,miniupnpd-iptables))
