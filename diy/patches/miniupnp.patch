@@ -10,3 +10,11 @@
  PKG_HASH:=9677aeccadf73b4bf8bb9d832c32b5da8266b4d58eed888f3fd43d7656405643
  
  PKG_MAINTAINER:=Markus Stenberg <fingon@iki.fi>
+@@ -31,6 +31,7 @@ define Package/miniupnpd
+   TITLE:=Lightweight UPnP IGD, NAT-PMP & PCP daemon
+   SUBMENU:=Firewall
+   URL:=http://miniupnp.free.fr/
++  VARIANT:=iptables
+ endef
+ 
+ define Package/miniupnpd/config
