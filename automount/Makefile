@@ -61,4 +61,3 @@ define Package/ntfs3-mount/install
 endef
 
 $(eval $(call BuildPackage,automount))
-$(eval $(call BuildPackage,ntfs3-mount))
