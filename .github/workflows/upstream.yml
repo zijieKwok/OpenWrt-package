@@ -26,7 +26,6 @@ on:
 
 jobs:
   merge:
-    if: github.event.repository.owner.id == github.event.sender.id
     runs-on: Ubuntu-20.04
 
     steps:
@@ -40,6 +39,7 @@ jobs:
         git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git config --global user.name "github-actions[bot]"
         sudo timedatectl set-timezone "Asia/Shanghai"
+        echo "sender.id: ${{ github.event.sender.id }} owner.id: ${{ github.event.repository.owner.id }}"
 
     - name: Syn upstream
       run: |
