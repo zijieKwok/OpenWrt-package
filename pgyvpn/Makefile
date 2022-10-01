@@ -30,7 +30,7 @@ endif
 
 PKG_NAME:=pgyvpn
 PKG_VERSION:=3.0.9
-PKG_RELEASE:=1
+PKG_RELEASE:=3
 
 PKG_SOURCE:=pgyvpnsvr
 PKG_SOURCE_URL:=https://mirrors.oray.com/orayos/packages/$(PKG_NAME)/$(PKG_ARCH_PGYYPN)/$(PKG_VERSION)/bin
