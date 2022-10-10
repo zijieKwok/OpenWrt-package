@@ -33,7 +33,10 @@ LUCI_TITLE:=LuCI support for PassWall
 LUCI_PKGARCH:=all
 LUCI_DEPENDS:=+coreutils +coreutils-base64 +coreutils-nohup +curl \
 	+dns2socks +dns2tcp +ip-full +libuci-lua +lua +luci-compat +luci-lib-jsonc \
-	+microsocks +resolveip +tcping +unzip +ipset +ipt2socks +iptables-mod-iprange +iptables-mod-socket +iptables-mod-tproxy +iptables-mod-conntrack-extra +kmod-ipt-nat
+	+microsocks +resolveip +tcping +unzip +ipset +ipt2socks +iptables-mod-iprange \
+	+iptables-mod-socket +iptables-mod-tproxy +iptables-mod-conntrack-extra +kmod-ipt-nat \
+	+shadowsocks-libev-ss-local +shadowsocks-libev-ss-redir +shadowsocks-libev-ss-server \
+	+shadowsocksr-libev-ssr-local +shadowsocksr-libev-ssr-redir +simple-obfs +trojan-plus +xray-core
 
 define Package/$(PKG_NAME)/config
 	if PACKAGE_$(PKG_NAME)
