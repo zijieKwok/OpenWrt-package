@@ -309,7 +309,8 @@ jobs:
         bash diy/convert_translation.sh -a >/dev/null 2>&1 || true
         
         #sed -i 's?"http://" + window.location.hostname?window.location.protocol + "//" + window.location.hostname?g' `find luci-app*/luasrc/view/ -maxdepth 2 -name "*.htm"`
-        rm -f miniupnpd/patches/106-spam-syslog*
+        mv -f miniupnpd miniupnpd-iptables
+        rm -f miniupnpd-iptables/patches/106-spam-syslog*
         sed -i "/minisign:minisign/d" luci-app-dnscrypt-proxy2/Makefile
         sed -i 's/+libstdcpp/+libstdcpp +zlib/' ngrokc/Makefile
         sed -i 's/+dockerd/+dockerd +cgroupfs-mount/' luci-app-docker*/Makefile
@@ -325,7 +326,6 @@ jobs:
         sed -i "s/PKG_VERSION:=2/PKG_VERSION:=3/" mwan3/Makefile
         sed -i "s/default n/default y/" dockerd/Config.in
         sed -i "/+uhttpd/d" ariang/Makefile
-        sed -i "s/PKG_VERSION:=2.0/PKG_VERSION:=3.0/" miniupnpd/Makefile
         cp -f autocore/files/generic/10_system.js luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
         sed -i -e '$a /etc/bench.log' \
         -e '/\/etc\/profile/d' \
