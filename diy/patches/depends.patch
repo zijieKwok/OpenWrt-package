@@ -258,3 +258,13 @@
  PKG_MAINTAINER:=Oray <developer@oray.com>
  
  include $(INCLUDE_DIR)/package.mk
+
+--- a/luci-app-upnp/Makefile
++++ b/luci-app-upnp/Makefile
+@@ -7,7 +7,6 @@
+ include $(TOPDIR)/rules.mk
+ 
+ LUCI_TITLE:=Universal Plug & Play configuration module
+-LUCI_DEPENDS:=+miniupnpd
+ 
+ include $(TOPDIR)/feeds/luci/luci.mk
