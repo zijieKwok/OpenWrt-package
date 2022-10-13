@@ -8,7 +8,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=miniupnpd-iptables
-PKG_VERSION:=3.0.20180503
+PKG_VERSION:=3022-08-31
 PKG_RELEASE:=25
 
 # Content-Encoding conflict, can refer to this [issue](https://github.com/miniupnp/miniupnp/issues/605)
