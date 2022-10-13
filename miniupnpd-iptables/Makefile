@@ -7,9 +7,9 @@
 
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=miniupnpd
-PKG_VERSION:=3.0.20170421
-PKG_RELEASE:=25
+PKG_NAME:=miniupnpd-iptables
+PKG_VERSION:=3.0.20180503
+PKG_RELEASE:=1
 
 # Content-Encoding conflict, can refer to this [issue](https://github.com/miniupnp/miniupnp/issues/605)
 # so switch mirror repo to http://miniupnp.tuxfamily.org
@@ -24,27 +24,30 @@ PKG_LICENSE:=BSD-3-Clause
 
 include $(INCLUDE_DIR)/package.mk
 
-define Package/miniupnpd
+define Package/$(PKG_NAME)
   SECTION:=net
   CATEGORY:=Network
   DEPENDS:=+iptables +libip4tc +libuuid
+  PROVIDES:=miniupnpd
   TITLE:=Lightweight UPnP IGD, NAT-PMP & PCP daemon
   SUBMENU:=Firewall
   URL:=http://miniupnp.free.fr/
+  VARIANT:=iptables
+  CONFLICTS:=miniupnpd-nftables
 endef
 
-define Package/miniupnpd/config
+define Package/$(PKG_NAME)/config
 config MINIUPNPD_IGDv2
 	bool
 	default n
 	prompt "Enable IGDv2"
 endef
 
-define Package/miniupnpd/conffiles
+define Package/$(PKG_NAME)/conffiles
 /etc/config/upnpd
 endef
 
-define Package/miniupnpd/postinst
+define Package/$(PKG_NAME)/postinst
 #!/bin/sh
 
 if [ -z "$$IPKG_INSTROOT" ]; then
@@ -71,7 +74,7 @@ MAKE_FLAGS += \
 	miniupnpd
 
 
-define Package/miniupnpd/install
+define Package/$(PKG_NAME)/install
 	$(INSTALL_DIR) $(1)/usr/sbin $(1)/etc/init.d $(1)/etc/config $(1)/etc/uci-defaults $(1)/etc/hotplug.d/iface $(1)/usr/share/miniupnpd
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/miniupnpd $(1)/usr/sbin/miniupnpd
 	$(INSTALL_BIN) ./files/miniupnpd.init $(1)/etc/init.d/miniupnpd
@@ -81,4 +84,4 @@ define Package/miniupnpd/install
 	$(INSTALL_DATA) ./files/firewall.include $(1)/usr/share/miniupnpd/firewall.include
 endef
 
-$(eval $(call BuildPackage,miniupnpd))
+$(eval $(call BuildPackage,$(PKG_NAME)))
