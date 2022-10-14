@@ -171,7 +171,7 @@ jobs:
         git_clone https://github.com/sundaqiang/openwrt-packages && mv -n openwrt-packages/luci-* ./; rm -rf openwrt-packages
         git_clone https://github.com/vernesong/OpenClash && mv -n OpenClash/luci-app-openclash ./; rm -rf OpenClash
         git_clone https://github.com/pymumu/luci-app-smartdns
-        git_clone https://github.com/lazywalker/mmdvm-openwrt && mv -n mmdvm-openwrt/* ./; rm -rf mmdvm-openwrt
+        # git_clone https://github.com/lazywalker/mmdvm-openwrt && mv -n mmdvm-openwrt/* ./; mv -f  rm -rf mmdvm-openwrt
         ) &
         (
         svn export https://github.com/Ysurac/openmptcprouter-feeds/trunk/luci-app-iperf
