@@ -39,7 +39,7 @@ endef
 define Package/$(PKG_NAME)/config
 config MINIUPNPD_IGDv2
 	bool
-	default y
+	default n
 	prompt "Enable IGDv2"
 endef
 
