@@ -33,7 +33,6 @@ define Package/$(PKG_NAME)
   SUBMENU:=Firewall
   URL:=http://miniupnp.free.fr/
   VARIANT:=iptables
-  CONFLICTS:=miniupnpd-nftables
 endef
 
 define Package/$(PKG_NAME)/config
