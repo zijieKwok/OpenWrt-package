@@ -326,7 +326,6 @@ jobs:
         sed -i 's/ +uhttpd-mod-ubus//' luci-app-packet-capture/Makefile
         sed -i '/boot()/,+2d' ddns-scripts/files/etc/init.d/ddns
         sed -i "/DISTRIB_DESCRIPTION/c\DISTRIB_DESCRIPTION=\"%D %C by Kiddin'\"" base-files/files/etc/openwrt_release
-        sed -i 's?admin/status/channel_analysis??' luci-mod-status/root/usr/share/luci/menu.d/luci-mod-status.json
         sed -i "s/PKG_VERSION:=2/PKG_VERSION:=3/" mwan3/Makefile
         sed -i "s/default n/default y/" dockerd/Config.in
         sed -i "/+uhttpd/d" ariang/Makefile
