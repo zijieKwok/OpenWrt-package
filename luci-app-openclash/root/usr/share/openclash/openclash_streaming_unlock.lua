@@ -111,8 +111,6 @@ function unlock_auto_select()
 			key_group = uci:get("openclash", "config", "stream_auto_select_group_key_discovery_plus") or "discovery"
 		elseif type == "Bilibili" then
 			key_group = uci:get("openclash", "config", "stream_auto_select_group_key_bilibili") or "bilibili"
-		elseif type == "Google" then
-			key_group = uci:get("openclash", "config", "stream_auto_select_group_key_google_not_cn") or "google|谷歌"
 		end
 		if not key_group then key_group = type end
 	else
@@ -212,10 +210,10 @@ function unlock_auto_select()
 						value.all = nodes_filter(value.all, info)
 						if select_logic == "random" then
 							--sort by random
-							value.all = table_rand(value.all, proxy_default)
+							value.all = table_rand(value.all)
 						else
 							--sort by urltest
-							value.all = table_sort_by_urltest(value.all, proxy_default)
+							value.all = table_sort_by_urltest(value.all)
 						end
 					end
 					if #(value.all) == 0 then
@@ -509,7 +507,7 @@ function datamatch(data, regex)
 	if result == "true" then return true else return false end
 end
 
-function table_rand(t, d)
+function table_rand(t)
 	if t == nil then
 		return
 	end
@@ -518,19 +516,16 @@ function table_rand(t, d)
 	while #t ~= 0 do
 		local n = math.random(0, #t)
 		if t[n] ~= nil then
-			if d ~= nil and table_include(groups, d) and d == t[n] then
-				table.insert(tab, 1, t[n])
-			else
-				table.insert(tab, t[n])
-			end
+			table.insert(tab, t[n])
 			table.remove(t, n)
 		end
 	end
 	return tab
 end
 
-function table_sort_by_urltest(t, d)
+function table_sort_by_urltest(t)
 	local info, get_delay, group_delay
+	local count = 1
 	local tab = {}
 	local result = {}
 
@@ -582,11 +577,7 @@ function table_sort_by_urltest(t, d)
 	end)
 
 	for _, value in pairs(tab) do
-		if d ~= nil and table_include(groups, d) and d == value[1] then
-			table.insert(result, 1, value[1])
-		else
-			table.insert(result, value[1])
-		end
+		table.insert(result, value[1])
 	end
 
 	return result
@@ -675,8 +666,6 @@ function nodes_filter(t, info)
 		regex = uci:get("openclash", "config", "stream_auto_select_node_key_discovery_plus") or ""
 	elseif type == "Bilibili" then
 		regex = uci:get("openclash", "config", "stream_auto_select_node_key_bilibili") or ""
-	elseif type == "Google" then
-		regex = uci:get("openclash", "config", "stream_auto_select_node_key_google_not_cn") or ""
 	end
 
 	if class_type(t) == "table" then
@@ -736,8 +725,6 @@ function proxy_unlock_test()
 		region = discovery_plus_unlock_test()
 	elseif type == "Bilibili" then
 		region = bilibili_unlock_test()
-	elseif type == "Google" then
-		region = google_not_cn_test()
 	end
 	return region
 end
@@ -769,8 +756,6 @@ function auto_get_policy_group(passwd, ip, port)
 		luci.sys.call('curl -sL -m 5 --limit-rate 1k -o /dev/null https://www.discoveryplus.com/ &')
 	elseif type == "Bilibili" then
 		luci.sys.call('curl -sL -m 5 --limit-rate 1k -o /dev/null https://www.bilibili.com/ &')
-	elseif type == "Google" then
-		luci.sys.call('curl -sL -m 5 --limit-rate 1k -o /dev/null https://timeline.google.com &')
 	end
 	os.execute("sleep 1")
 	con = luci.sys.exec(string.format('curl -sL -m 5 --retry 2 -H "Content-Type: application/json" -H "Authorization: Bearer %s" -XGET http://%s:%s/connections', passwd, ip, port))
@@ -836,11 +821,6 @@ function auto_get_policy_group(passwd, ip, port)
 				end
 			elseif type == "Bilibili" then
 				if string.match(con.connections[i].metadata.host, "www%.bilibili%.com") then
-					auto_get_group = con.connections[i].chains[#(con.connections[i].chains)]
-					break
-				end
-			elseif type == "Google" then
-				if string.match(con.connections[i].metadata.host, "timeline%.google%.com") then
 					auto_get_group = con.connections[i].chains[#(con.connections[i].chains)]
 					break
 				end
@@ -1408,23 +1388,6 @@ function bilibili_unlock_test()
 				end
 			end
 		end
-	end
-end
-
-function google_not_cn_test()
-	status = 0
-	local url = "https://timeline.google.com"
-	local region
-	local httpcode = luci.sys.exec(string.format("curl -sL --connect-timeout 5 -m 10 --speed-time 5 --speed-limit 1 --retry 2 -o /dev/null -w %%{http_code} -H 'Accept-Language: en' -H 'Content-Type: application/json' -H 'User-Agent: %s' '%s'", UA, url))
-	if httpcode then
-		if tonumber(httpcode) == 200 then
-			status = 2
-			region = "NOT CN"
-		else
-			region = "CN"
-			status = 1
-		end
-		return region
 	end
 end
 
