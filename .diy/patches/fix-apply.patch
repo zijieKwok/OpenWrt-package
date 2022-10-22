@@ -41,3 +41,13 @@
 +service_triggers() {
 +	procd_add_reload_trigger "transmission"
 +}
+
+--- a/ddnsgo/file/ddnsgo.init
++++ b/ddnsgo/file/ddnsgo.init
+@@ -50,5 +50,5 @@ start_service() {
+ }
+ 
+ service_triggers() {
+-      procd_add_reload_trigger "ddns-go"
++      procd_add_reload_trigger "ddnsgo"
+ }
