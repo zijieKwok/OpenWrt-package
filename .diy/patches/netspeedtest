@@ -1,0 +1,24 @@
+--- a/luci-app-netspeedtest/root/etc/init.d/netspeedtest
++++ b/luci-app-netspeedtest/root/etc/init.d/netspeedtest
+@@ -84,6 +84,6 @@ start_service() {
+ }
+ 
+ service_triggers() {
+-      procd_add_reload_trigger "speedtest-web"
++      procd_add_reload_trigger "netspeedtest"
+ }
+ 
+
+From eb1e43b1fe94ffecc7871f000e53e3ff492d7e14 Mon Sep 17 00:00:00 2001
+From: kiddin9 <48883331+kiddin9@users.noreply.github.com>
+Date: Sat, 22 Oct 2022 13:59:08 +0800
+Subject: [PATCH 2/2] update
+
+---
+ luci-app-netspeedtest/root/etc/init.d/netspeedtest | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ mode change 100644 => 100755 luci-app-netspeedtest/root/etc/init.d/netspeedtest
+
+diff --git a/luci-app-netspeedtest/root/etc/init.d/netspeedtest b/luci-app-netspeedtest/root/etc/init.d/netspeedtest
+old mode 100644
+new mode 100755
