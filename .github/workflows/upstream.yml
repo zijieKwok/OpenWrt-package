@@ -27,7 +27,7 @@ on:
 jobs:
   merge:
     if: github.event.repository.owner.id == github.event.sender.id || ! github.event.sender.id
-    runs-on: Ubuntu-20.04
+    runs-on: Ubuntu-22.04
 
     steps:
     - name: Checkout
@@ -238,8 +238,9 @@ jobs:
         mv -n lean/* ./ ; rm -Rf lean
         mv -n liep/* ./ ; rm -Rf liep
         mv -n openwrt-app-actions/applications/* ./;rm -rf openwrt-app-actions
+        rename -f "s/Makefile.k/Makefile/" .github/diy/packages/*/Makefile.k
         cp -rf .github/diy/packages/* ./ || true
-        chmod 644 .github/diy/packages/*/Makefile
+        rename -f "s/Makefile/Makefile.k/" .github/diy/packages/*/Makefile
         rm -Rf */.git
 
     - name: SSH connection to Actions
