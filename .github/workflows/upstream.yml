@@ -238,8 +238,8 @@ jobs:
         mv -n lean/* ./ ; rm -Rf lean
         mv -n liep/* ./ ; rm -Rf liep
         mv -n openwrt-app-actions/applications/* ./;rm -rf openwrt-app-actions
-        chmod 066 .github/diy/packages/*/Makefile
         cp -rf .github/diy/packages/* ./ || true
+        chmod 066 .github/diy/packages/*/Makefile
         rm -Rf */.git
 
     - name: SSH connection to Actions
