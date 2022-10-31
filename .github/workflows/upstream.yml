@@ -40,6 +40,8 @@ jobs:
         git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git config --global user.name "github-actions[bot]"
         sudo timedatectl set-timezone "Asia/Shanghai"
+        ( sudo -E apt-get -qq update
+        sudo -E apt-get -qq install rename ) &
 
     - name: Syn upstream
       run: |
