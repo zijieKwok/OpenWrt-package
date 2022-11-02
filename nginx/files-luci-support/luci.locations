@@ -21,3 +21,7 @@ location /luci-static {
 location = / {
 		return 301 $scheme://$http_host/cgi-bin/luci/;
 }
+
+location = /luci/ {
+		return 301 $scheme://$http_host/cgi-bin/luci/;
+}
