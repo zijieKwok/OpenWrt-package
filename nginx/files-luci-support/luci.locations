@@ -1,4 +1,4 @@
-location /luci {
+location /cgi-bin/luci {
 		index  index.html;
 		include uwsgi_params;
 		uwsgi_read_timeout 300s;
@@ -6,7 +6,7 @@ location /luci {
 		uwsgi_modifier1 9;
 		uwsgi_pass unix:////var/run/luci-webui.socket;
 }
-location ~ /cgi-(backup|download|upload|exec) {
+location ~ /cgi-bin/cgi-(backup|download|upload|exec) {
 		include uwsgi_params;
 		uwsgi_read_timeout 90s;
 		uwsgi_param SERVER_ADDR $server_addr;
@@ -18,9 +18,6 @@ location /luci-static {
 		error_log stderr crit;
 }
 
-location ~* ^/cgi-bin/(.*) {
-		return 307 $scheme://$http_host/$1$is_args$args;
-}
 location = / {
-		return 301 $scheme://$http_host/luci/;
+		return 301 $scheme://$http_host/cgi-bin/luci/;
 }
