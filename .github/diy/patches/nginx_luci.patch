@@ -1,6 +1,6 @@
 --- a/nginx/files-luci-support/luci.locations
 +++ b/nginx/files-luci-support/luci.locations
-@@ -1,12 +1,14 @@
+@@ -1,12 +1,18 @@
  location /cgi-bin/luci {
  		index  index.html;
  		include uwsgi_params;
@@ -20,7 +20,11 @@
  		error_log stderr crit;
  }
 +
-+location ~* ^/($|luci$|luci/$) {
++location = / {
++		return 301 $scheme://$http_host/cgi-bin/luci/;
++}
++
++location = /luci/ {
 +		return 301 $scheme://$http_host/cgi-bin/luci/;
 +}
 
