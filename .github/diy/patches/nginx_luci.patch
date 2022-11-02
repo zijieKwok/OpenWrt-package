@@ -1,6 +1,6 @@
 --- a/nginx/files-luci-support/luci.locations
 +++ b/nginx/files-luci-support/luci.locations
-@@ -1,12 +1,18 @@
+@@ -1,12 +1,22 @@
  location /cgi-bin/luci {
  		index  index.html;
  		include uwsgi_params;
