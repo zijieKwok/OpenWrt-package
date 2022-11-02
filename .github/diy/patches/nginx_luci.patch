@@ -1,5 +1,5 @@
---- a/net/nginx/files-luci-support/luci.locations
-+++ b/net/nginx/files-luci-support/luci.locations
+--- a/nginx/files-luci-support/luci.locations
++++ b/nginx/files-luci-support/luci.locations
 @@ -1,12 +1,14 @@
  location /cgi-bin/luci {
  		index  index.html;
