@@ -180,7 +180,6 @@ jobs:
         ) &
         (
         git_clone https://github.com/immortalwrt/homeproxy
-        git_clone https://github.com/sbilly/netmaker-openwrt && mv -n netmaker-openwrt/netmaker ./ ;rm -rf netmaker-openwrt
         ) &
         (
         svn export https://github.com/Ysurac/openmptcprouter-feeds/trunk/luci-app-iperf
