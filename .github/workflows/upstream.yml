@@ -112,7 +112,7 @@ jobs:
         git_clone https://github.com/brvphoenix/luci-app-wrtbwmon wrtbwmon1 && mvdir wrtbwmon1
         git_clone https://github.com/brvphoenix/wrtbwmon wrtbwmon2 && mvdir wrtbwmon2
         git_clone https://github.com/LGA1150/openwrt-sysuh3c && mvdir openwrt-sysuh3c
-        git_clone https://github.com/gdck/luci-app-cupsd cupsd1 && mv -n cupsd1/luci-app-cupsd cupsd1/cups/cups ./ ; rm -rf cupsd1
+        git_clone https://github.com/gdck/luci-app-cupsd cupsd1 && mv -n cupsd1/luci-app-cupsd ./ ; rm -rf cupsd1
         git_clone https://github.com/QiuSimons/openwrt-mos && mv -n openwrt-mos/{*mosdns,v2ray-geodata} ./ ; rm -rf openwrt-mos
         ) &
         (
@@ -210,7 +210,7 @@ jobs:
         net/sub-web net/dnsproxy net/haproxy net/v2raya net/cdnspeedtest \
         net/subconverter net/ngrokc net/oscam net/njitclient net/scutclient net/gost net/gowebdav net/xfrpc \
         admin/bpytop libs/jpcre2 libs/wxbase libs/rapidjson libs/libcron libs/quickjspp libs/toml11 \
-        utils/cpulimit utils/filebrowser net/udp2raw
+        utils/cpulimit utils/filebrowser utils/cups net/udp2raw
         git_sparse_clone master "https://github.com/xiaoqingfengATGH/feeds-xiaoqingfeng" "xiaoqingfeng" homeredirect luci-app-homeredirect
         ) &
         (
@@ -268,7 +268,7 @@ jobs:
              -H "Authorization: Bearer ${{ secrets.REPO_TOKEN }}" \
              -X POST -d '{ "query": "query {repository(owner: \"'"$1"'\", name: \"'"$2"'\"){latestRelease{tagName tagCommit{oid}}refs(refPrefix:\"refs/tags/\",last:1,orderBy:{field:TAG_COMMIT_DATE,direction:ASC}){edges{node{name target{oid}}}}defaultBranchRef{target{...on Commit {oid}}}}}"}' https://api.github.com/graphql)
         }
-        for pkg in $(ls !(luci-*|rblibtorrent|shadowsocksr-libev|mmdvm-host|libwxwidgets|ysf-clients|3proxy|containerd|oscam|netmaker|n2n_v2|naiveproxy|miniupnpd-nft|upx|netdata|mosdns|r8168|coremark|mbedtls|rtl8821cu|rtl8188eu|rtl8812au-ac|rtl88x2bu|quickjspp|libcups)/Makefile); do
+        for pkg in $(ls !(luci-*|rblibtorrent|shadowsocksr-libev|mmdvm-host|libwxwidgets|ysf-clients|3proxy|containerd|oscam|netmaker|n2n_v2|naiveproxy|miniupnpd-nft|upx|netdata|mosdns|r8168|coremark|mbedtls|rtl8821cu|rtl8188eu|rtl8812au-ac|rtl88x2bu|quickjspp)/Makefile); do
           repo="$(grep PKG_SOURCE_URL $pkg | grep github | cut -f 4-5 -d '/' | sed -e 's/.git//' | grep -E '[0-9a-zA-Z_-]+$')" || true
           if [ "$repo" ]; then
             owner="$(echo $repo | cut -f 1 -d '/')"
