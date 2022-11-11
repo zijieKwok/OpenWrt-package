@@ -267,3 +267,14 @@
 -LUCI_DEPENDS:=+miniupnpd
  
  include $(TOPDIR)/feeds/luci/luci.mk
+
+--- a/luci-app-openclash/Makefile
++++ b/luci-app-openclash/Makefile
+@@ -32,7 +32,7 @@ define Package/$(PKG_NAME)
+ 	TITLE:=LuCI support for clash
+ 	PKGARCH:=all
+ 	DEPENDS:=+dnsmasq-full +coreutils +coreutils-nohup +bash +curl +ca-bundle +ipset +ip-full \
+-	+libcap +libcap-bin +libcap-bin +ruby +ruby-yaml +kmod-tun +unzip
++	+libcap +libcap-bin +libcap-bin +ruby +ruby-yaml +kmod-tun +unzip +iptables-mod-extra +kmod-inet-diag +kmod-ipt-nat +iptables-mod-tproxy +iptables-mod-extra
+ 	MAINTAINER:=vernesong
+ endef
