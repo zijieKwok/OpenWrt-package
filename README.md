@@ -6,7 +6,7 @@
 | CPU架构           | 下载地址                                             | 适用设备    | 软件源    | 更新频率    |
 |----------------|-----------------------------------------------------|--------------------------------------|-----------|-----------|
 | X86_64         | [📥](https://op.supes.top/packages/x86_64/)         |          64位PC软路由    | src/gz openwrt_kiddin9 https://op.supes.top/packages/x86_64 | 日更  |
-| X86_32         | [📥](https://op.supes.top/packages/i386_pentium4/)      |      32位PC软路由    | src/gz openwrt_kiddin9 https://op.supes.top/packages/i386_pentium4 | 日更  |
+| i386_pentium4  | [📥](https://op.supes.top/packages/i386_pentium4/)      |      32位PC软路由    | src/gz openwrt_kiddin9 https://op.supes.top/packages/i386_pentium4 | 日更  |
 | aarch64_generic    | [📥](https://op.supes.top/packages/aarch64_generic/)     |   R2S/R4S等        |  src/gz openwrt_kiddin9 https://op.supes.top/packages/aarch64_generic | 日更  |
 | aarch64_cortex-a72    | [📥](https://op.supes.top/packages/aarch64_cortex-a72/)     |  树莓派4B等   |  src/gz openwrt_kiddin9 https://op.supes.top/packages/aarch64_cortex-a72  |  日更 |
 | mipsel_24kc    | [📥](https://op.supes.top/packages/mipsel_24kc/)     |  k2p,ac2100等 | src/gz openwrt_kiddin9 https://op.supes.top/packages/mipsel_24kc   | 日更  |
