@@ -116,7 +116,7 @@ jobs:
         git_clone https://github.com/QiuSimons/openwrt-mos && mv -n openwrt-mos/{*mosdns,v2ray-geodata} ./ ; rm -rf openwrt-mos
         ) &
         (
-        git_clone https://github.com/esirplayground/LingTiGameAcc
+        git_clone https://github.com/esirplayground/LingTiGameAccforked-daapd
         git_clone https://github.com/esirplayground/luci-app-LingTiGameAcc
         git_clone https://github.com/zxlhhyccc/luci-app-v2raya
         git_clone https://github.com/jerrykuku/luci-app-go-aliyundrive-webdav
@@ -190,7 +190,7 @@ jobs:
         git_sparse_clone master "https://github.com/coolsnowwolf/packages" "leanpkg" net/miniupnpd net/mwan3 multimedia/UnblockNeteaseMusic-Go \
         multimedia/UnblockNeteaseMusic net/amule net/baidupcs-web net/frp multimedia/gmediarender net/go-aliyundrive-webdav \
         net/qBittorrent-static net/qBittorrent net/transmission net/phtunnel libs/qtbase libs/qttools libs/rblibtorrent \
-        net/uugamebooster net/verysync net/vlmcsd net/dnsforwarder net/nps net/tcpping net/redsocks2 net/netatalk net/pgyvpn sound/forked-daapd
+        net/uugamebooster net/verysync net/vlmcsd net/dnsforwarder net/nps net/tcpping net/redsocks2 net/netatalk net/pgyvpn
         mv -f miniupnpd miniupnpd-iptables
         ) &
         (
