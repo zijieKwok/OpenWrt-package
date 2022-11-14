@@ -180,6 +180,8 @@ jobs:
         ) &
         (
         git_clone https://github.com/immortalwrt/homeproxy
+        git_clone https://github.com/mchome/openwrt-dogcom
+        git_clone https://github.com/mchome/luci-app-dogcom
         ) &
         (
         svn export https://github.com/Ysurac/openmptcprouter-feeds/trunk/luci-app-iperf
@@ -192,6 +194,9 @@ jobs:
         net/qBittorrent-static net/qBittorrent net/transmission net/phtunnel libs/qtbase libs/qttools libs/rblibtorrent \
         net/uugamebooster net/verysync net/vlmcsd net/dnsforwarder net/nps net/tcpping net/redsocks2 net/netatalk net/pgyvpn
         mv -f miniupnpd miniupnpd-iptables
+        git_sparse_clone openwrt-22.03 "https://github.com/openwrt/packages" "oppackages" \
+        utils/cgroupfs-mount utils/coremark utils/watchcat utils/dockerd net/nginx net/uwsgi net/ddns-scripts net/smartdns \
+        net/ariang admin/netdata net/transmission-web-control
         ) &
         (
         git_sparse_clone openwrt-22.03 "https://github.com/openwrt/openwrt" "openwrt" \
@@ -216,11 +221,6 @@ jobs:
         git_sparse_clone master "https://github.com/immortalwrt/immortalwrt" "immortal" package/kernel/rtl88x2bu \
         package/kernel/r8168 package/kernel/rtl8821cu package/emortal/autocore  package/emortal/automount package/network/utils/fullconenat \
         package/network/utils/nftables package/utils/mhz package/libs/libnftnl package/firmware/wireless-regdb
-        ) &
-        (
-        git_sparse_clone openwrt-22.03 "https://github.com/openwrt/packages" "oppackages" \
-        utils/cgroupfs-mount utils/coremark utils/watchcat utils/dockerd net/nginx net/uwsgi net/ddns-scripts net/smartdns \
-        net/ariang admin/netdata net/transmission-web-control
         ) &
 
         git_sparse_clone master "https://github.com/coolsnowwolf/luci" "leluci" applications libs/luci-lib-fs
