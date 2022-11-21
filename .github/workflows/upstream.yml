@@ -35,6 +35,10 @@ jobs:
       with:
         fetch-depth: 0
 
+    - uses: de-vri-es/setup-git-credentials@v2
+      with:
+        credentials: https://kiddin9:${{ secrets.REPO_TOKEN }}@github.com/
+    
     - name: Set git identity
       run : |
         git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -45,21 +49,32 @@ jobs:
     - name: Syn upstream
       run: |
         shopt -s extglob
+        set +e
         git rm -r --cache * >/dev/null 2>&1 &
         rm -rf `find ./* -maxdepth 0 -type d ! -name ".github/diy"` >/dev/null 2>&1
-        function git_clone() (
-          git clone --depth 1 $1 $2 || true
-        )
-        function git_sparse_clone() (
+        function git_clone() {
+          git clone --depth 1 $1 $2
+          if [ "$?" != 0 ]; then
+            echo "error on $1"
+            pid="$( ps -q $$ )"
+            kill $pid
+          fi
+        }
+        function git_sparse_clone() {
           branch="$1" rurl="$2" localdir="$3" && shift 3
           git clone -b $branch --depth 1 --filter=blob:none --sparse $rurl $localdir
+          if [ "$?" != 0 ]; then
+            echo "error on $rurl"
+            pid="$( ps -q $$ )"
+            kill $pid
+          fi
           cd $localdir
           git sparse-checkout init --cone
           git sparse-checkout set $@
           mv -n $@ ../ || true
           cd ..
           rm -rf $localdir
-          )
+          }
         function mvdir() {
         mv -n `find $1/* -maxdepth 0 -type d` ./
         rm -rf $1
@@ -116,7 +131,7 @@ jobs:
         git_clone https://github.com/QiuSimons/openwrt-mos && mv -n openwrt-mos/{*mosdns,v2ray-geodata} ./ ; rm -rf openwrt-mos
         ) &
         (
-        git_clone https://github.com/esirplayground/LingTiGameAccforked-daapd
+        git_clone https://github.com/esirplayground/LingTiGameAcc
         git_clone https://github.com/esirplayground/luci-app-LingTiGameAcc
         git_clone https://github.com/zxlhhyccc/luci-app-v2raya
         git_clone https://github.com/jerrykuku/luci-app-go-aliyundrive-webdav
@@ -158,10 +173,7 @@ jobs:
         git_clone https://github.com/ZeaKyX/speedtest-web
         git_clone https://github.com/ZeaKyX/luci-app-speedtest-web
         git_clone https://github.com/Zxilly/UA2F
-        git_clone https://github.com/koshev-msk/luci-app-mmconfig
-        git_clone https://github.com/koshev-msk/xmm-modem
         git_clone https://github.com/jhonathanc/ps3netsrv-openwrt && mv -n ps3netsrv-openwrt/* ./;rm -rf ps3netsrv-openwrt
-        git_clone https://github.com/koshev-msk/modemfeed && mv -n modemfeed/*/*/* ./ && rm -rf modemfeed
         ) &
         (
         git_clone https://github.com/honwen/luci-app-aliddns
@@ -181,8 +193,9 @@ jobs:
         git_clone https://github.com/immortalwrt/homeproxy
         git_clone https://github.com/mchome/openwrt-dogcom
         git_clone https://github.com/mchome/luci-app-dogcom
-        git_clone https://github.com/linkease/openwrt-app-actions
+        git_clone https://github.com/koshev-msk/modemfeed && mv -n modemfeed/*/*/* ./ && rm -rf modemfeed
         ) &
+        git_clone https://github.com/linkease/openwrt-app-actions &
         (
         svn export https://github.com/Ysurac/openmptcprouter-feeds/trunk/luci-app-iperf
         svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/luci-app-irqbalance
