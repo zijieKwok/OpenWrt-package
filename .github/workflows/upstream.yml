@@ -334,6 +334,7 @@ jobs:
         ) &
 
         (
+        rm -rf luci-app-partexp/po/zh_Hans
         bash .github/diy/create_acl_for_luci.sh -a >/dev/null 2>&1 || true
         bash .github/diy/convert_translation.sh -a >/dev/null 2>&1 || true
         
