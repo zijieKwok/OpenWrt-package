@@ -3129,12 +3129,6 @@ var UIMenu = baseclass.singleton(/** @lends LuCI.ui.menu.prototype */ {
 
 				for (var i = 0; root != null && i < path.length; i++)
 					root = L.isObject(root.children) ? root.children[path[i]] : null;
-
-				if (root)
-					subnode = Object.assign({}, subnode, {
-						children: root.children,
-						action: root.action
-					});
 			}
 
 			children.push(subnode);
