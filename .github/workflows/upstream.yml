@@ -196,6 +196,7 @@ jobs:
         git_clone https://github.com/koshev-msk/modemfeed && mv -n modemfeed/*/*/* ./ && rm -rf modemfeed
         git_clone https://github.com/zzsj0928/luci-app-pushbot
         git_clone https://github.com/shanglanxin/luci-app-homebridge
+        git_clone https://github.com/ykxVK8yL5L/luci-app-synology synology && mv -n synology/luci-app-synology && rm -rf synology
         ) &
         git_clone https://github.com/linkease/openwrt-app-actions &
         (
