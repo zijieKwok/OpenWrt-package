@@ -218,7 +218,7 @@ jobs:
         git_sparse_clone master "https://github.com/openwrt/packages" "oppackages1" \
         net/basicstation net/bpfcountd net/gsocket net/openappid net/telnet-bsd net/wifi-presence net/xfrpc
         git_sparse_clone master "https://github.com/openwrt/luci" "opluci1" \
-        applications/luci-app-apinger applications/luci-app-keepalived applications/luci-app-lorawan-basicstation applications/luci-app-natmap
+        applications/luci-app-natmap
         ) &
         (
         git_sparse_clone openwrt-22.03 "https://github.com/openwrt/openwrt" "openwrt" \
