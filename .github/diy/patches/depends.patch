@@ -84,17 +84,6 @@
    PROVIDES:=uci-firewall
  endef
 
---- a/luci-app-passwall/Makefile
-+++ b/luci-app-passwall/Makefile
-@@ -34,6 +34,7 @@ PKG_CONFIG_DEPENDS:= \
- LUCI_TITLE:=LuCI support for PassWall
- LUCI_PKGARCH:=all
- LUCI_DEPENDS:=+coreutils +coreutils-base64 +coreutils-nohup +curl \
-+	+ipset +ipt2socks +iptables-mod-conntrack-extra +iptables-mod-iprange +iptables-mod-socket +iptables-mod-tproxy +kmod-ipt-nat \
- 	+dns2socks +dns2tcp +ip-full +libuci-lua +lua +luci-compat +luci-lib-jsonc \
- 	+microsocks +resolveip +tcping +unzip \
- 	+v2ray-geoip +v2ray-geosite \
-
 --- a/luci-app-passwall2/Makefile
 +++ b/luci-app-passwall2/Makefile
 @@ -29,7 +29,7 @@ LUCI_PKGARCH:=all

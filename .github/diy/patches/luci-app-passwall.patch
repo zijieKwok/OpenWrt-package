@@ -1,0 +1,261 @@
+From 7913d382e75cc5b9745f9a88be8cdf52cfa2b175 Mon Sep 17 00:00:00 2001
+From: kiddin9 <48883331+kiddin9@users.noreply.github.com>
+Date: Sat, 17 Dec 2022 09:13:35 +0800
+Subject: [PATCH] update
+
+---
+ luci-app-passwall/Makefile                    |   7 +-
+ .../luasrc/controller/passwall.lua            |  29 ++++
+ .../model/cbi/passwall/client/global.lua      |   4 +-
+ .../view/passwall/global/status_bottom.htm    | 124 ++++++++++++++++++
+ .../root/usr/share/passwall/rules/proxy_host  |   1 +
+ 5 files changed, 160 insertions(+), 5 deletions(-)
+ create mode 100644 luci-app-passwall/luasrc/view/passwall/global/status_bottom.htm
+
+diff --git a/luci-app-passwall/Makefile b/luci-app-passwall/Makefile
+index ed9770f070..1fea4ee29b 100644
+--- a/luci-app-passwall/Makefile
++++ b/luci-app-passwall/Makefile
+@@ -35,6 +35,7 @@ PKG_CONFIG_DEPENDS:= \
+ LUCI_TITLE:=LuCI support for PassWall
+ LUCI_PKGARCH:=all
+ LUCI_DEPENDS:=+coreutils +coreutils-base64 +coreutils-nohup +curl \
++	+lua-maxminddb +ipset +ipt2socks +iptables-mod-conntrack-extra +iptables-mod-iprange +iptables-mod-socket +iptables-mod-tproxy +kmod-ipt-nat \
+ 	+dns2socks +dns2tcp +ip-full +libuci-lua +lua +luci-compat +luci-lib-jsonc \
+ 	+microsocks +resolveip +tcping +unzip \
+ 	+PACKAGE_$(PKG_NAME)_INCLUDE_Brook:brook \
+@@ -95,7 +96,7 @@ config PACKAGE_$(PKG_NAME)_INCLUDE_Brook
+ config PACKAGE_$(PKG_NAME)_INCLUDE_ChinaDNS_NG
+ 	bool "Include ChinaDNS-NG"
+ 	select PACKAGE_ipset
+-	default n
++	default y
+ 
+ config PACKAGE_$(PKG_NAME)_INCLUDE_Haproxy
+ 	bool "Include Haproxy"
+@@ -150,7 +151,7 @@ config PACKAGE_$(PKG_NAME)_INCLUDE_Trojan_Plus
+ 
+ config PACKAGE_$(PKG_NAME)_INCLUDE_V2ray
+ 	bool "Include V2ray"
+-	default y if aarch64||arm||i386||x86_64
++	default n
+ 
+ config PACKAGE_$(PKG_NAME)_INCLUDE_V2ray_Geodata
+ 	bool "Include V2ray_Geodata"
+@@ -162,7 +163,7 @@ config PACKAGE_$(PKG_NAME)_INCLUDE_V2ray_Plugin
+ 
+ config PACKAGE_$(PKG_NAME)_INCLUDE_Xray
+ 	bool "Include Xray"
+-	default y if aarch64||arm||i386||x86_64
++	default y
+ 
+ config PACKAGE_$(PKG_NAME)_INCLUDE_Xray_Plugin
+ 	bool "Include Xray-Plugin (Shadowsocks Plugin)"
+diff --git a/luci-app-passwall/luasrc/controller/passwall.lua b/luci-app-passwall/luasrc/controller/passwall.lua
+index e9c49d031c..077211d9d8 100644
+--- a/luci-app-passwall/luasrc/controller/passwall.lua
++++ b/luci-app-passwall/luasrc/controller/passwall.lua
+@@ -20,6 +20,7 @@ function index()
+ 	entry({"admin", "services", appname, "reset_config"}, call("reset_config")).leaf = true
+ 	entry({"admin", "services", appname, "show"}, call("show_menu")).leaf = true
+ 	entry({"admin", "services", appname, "hide"}, call("hide_menu")).leaf = true
++	entry({"admin", "services", appname, "ip"}, call('check_ip')).leaf = true
+ 	if not nixio.fs.access("/etc/config/passwall") then return end
+ 	if nixio.fs.access("/etc/config/passwall_show") then
+ 		e = entry({"admin", "services", appname}, alias("admin", "services", appname, "settings"), _("Pass Wall"), -1)
+@@ -194,6 +195,34 @@ function status()
+ 	luci.http.write_json(e)
+ end
+ 
++-- 获取当前代理状态 与节点ip
++function check_ip()
++    local e = {}
++    local d = {}
++    local port = 80
++    local ip = luci.sys.exec('curl --retry 3 -m 10 -LfsA "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36" http://api.ipify.org/')
++    d.flag = 'un'
++    d.country = 'Unknown'
++    if (ip ~= '') then
++        local status, code = pcall(get_iso, ip)
++        if (status) then
++            d.flag = code
++        end
++        local status1, country = pcall(get_cname, ip)
++        if (status1) then
++            d.country = country
++        end
++    end
++    e.outboard = ip
++    e.outboardip = d
++    e.baidu = check_site('www.baidu.com', port)
++    e.taobao = check_site('www.taobao.com', port)
++    e.google = check_site('www.google.com', port)
++    e.youtube = check_site('www.youtube.com', port)
++    luci.http.prepare_content('application/json')
++    luci.http.write_json(e)
++end
++
+ function haproxy_status()
+ 	local e = luci.sys.call(string.format("top -bn1 | grep -v grep | grep '%s/bin/' | grep haproxy >/dev/null", appname)) == 0
+ 	luci.http.prepare_content("application/json")
+diff --git a/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua b/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua
+index 0c33ccd90f..258da6a551 100644
+--- a/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua
++++ b/luci-app-passwall/luasrc/model/cbi/passwall/client/global.lua
+@@ -280,7 +280,7 @@ o.rmempty = false
+ 
+ if has_chnlist and api.is_finded("chinadns-ng") then
+     o = s:taboption("DNS", Flag, "chinadns_ng", translate("ChinaDNS-NG"), translate("The effect is better, but will increase the memory."))
+-    o.default = "0"
++    o.default = "1"
+     if api.is_finded("smartdns") then
+         o:depends({dns_shunt = "dnsmasq", dns_mode = "dns2socks"})
+         o:depends({dns_shunt = "dnsmasq", dns_mode = "dns2tcp"})
+@@ -452,7 +452,7 @@ for k, v in pairs(nodes_table) do
+         socks_node:value(v.id, v["remark"])
+     end
+ end
+-
++m:append(Template(appname .. "/global/status_bottom"))
+ m:append(Template(appname .. "/global/footer"))
+ 
+ return m
+diff --git a/luci-app-passwall/luasrc/view/passwall/global/status_bottom.htm b/luci-app-passwall/luasrc/view/passwall/global/status_bottom.htm
+new file mode 100644
+index 0000000000..29de71618a
+--- /dev/null
++++ b/luci-app-passwall/luasrc/view/passwall/global/status_bottom.htm
+@@ -0,0 +1,124 @@
++<style>
++.pure-img {
++    max-height: 100%;
++    width: auto;
++}
++.flag .pure-img {
++    max-height: none;
++    margin-top: -0.34rem;
++}
++.status-bar {
++    position: fixed;
++    bottom: 0;
++    right: 0;
++    box-shadow: 0 0 2rem 0 rgba(136, 152, 170, .3);
++    color: #525f7f;
++    background: #fff;
++    z-index: 5;
++    box-sizing: border-box;
++}
++
++.status-bar .inner {
++    margin: 0.5em;
++}
++
++.status-bar .inner .flag {
++    height: 2.6em;
++    display: block;
++    float: left;
++    margin-right: 1em;
++}
++
++.status-bar .inner .status-info {
++    font-weight: bold;
++}
++
++.status-bar .icon-con {
++    height: 2.6em;
++    text-align: right;
++}
++
++footer{
++display:block !important;
++}
++    
++@media screen and (max-width: 700px) {
++.status-bar .icon-con {
++    height: 2.5em;
++}
++}
++</style>
++<script src="<%=media%>/js/jquery.min.js"></script>
++<script>
++if(typeof jQuery == 'undefined'){
++document.write('<script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"><\/script>');
++}
++</script>
++<div class="status-bar">
++    <div class="inner">
++        <div class="pure-g">
++            <div class="pure-u-1-2">
++                <span class="flag"><img src="/luci-static/passwall/flags/loading.svg" class="pure-img"></span> <span
++                    class="status-info">获取中...</span>
++            </div>
++            <div class="pure-u-1-2">
++                <div class="icon-con">
++                    <img src="/luci-static/passwall/img/site_icon1_01.png" class="pure-img i1">
++                    <img src="/luci-static/passwall/img/site_icon1_02.png" class="pure-img i2">
++                    <img src="/luci-static/passwall/img/site_icon1_03.png" class="pure-img i3">
++                    <img src="/luci-static/passwall/img/site_icon1_04.png" class="pure-img i4">
++                </div>
++            </div>
++        </div>
++    </div>
++</div>
++
++
++<script>
++const _ASSETS = '/luci-static/passwall/';
++const CHECK_IP_URL = '<%=url([[admin]], [[services]], [[passwall]], [[ip]])%>';
++
++    var wW = $(window).width();
++
++    function resize() {
++        wW = $(window).width();
++        lw = $(".main-left").width()
++        $(".status-bar").width(wW - lw);
++        $(".status-bar .flag").width($(".status-bar .flag").height() / 3 * 4);
++
++        $(".flag-icon").each(function (index, el) {
++            if ($(el).height < 60) {
++                $(el).parent.height(60);
++                $(el).width(60)
++            } else {
++                $(el).width($(el).height());
++            }
++        });
++    }
++
++    function wirte_status(data) {
++        if (data.outboard) {
++            json = data.outboardip;
++            $(".flag img").attr("src", _ASSETS + "flags/" + json.flag + ".svg");
++            $(".status-info").html(data.outboard + "<br>" + json.country);
++        }
++        data.baidu ? $(".i1").attr("src", _ASSETS + "img/site_icon_01.png") : $(".i1").attr("src", _ASSETS + "img/site_icon1_01.png");
++        data.taobao ? $(".i2").attr("src", _ASSETS + "img/site_icon_02.png") : $(".i2").attr("src", _ASSETS + "img/site_icon1_02.png");
++        data.google ? $(".i3").attr("src", _ASSETS + "img/site_icon_03.png") : $(".i3").attr("src", _ASSETS + "img/site_icon1_03.png");
++        data.youtube ? $(".i4").attr("src", _ASSETS + "img/site_icon_04.png") : $(".i4").attr("src", _ASSETS + "img/site_icon1_04.png");
++        setTimeout(function () { $("body").trigger("iploaded", [true]); }, 200);
++    }
++    XHR.poll(5, CHECK_IP_URL, null,
++        function (x, data) {
++            wirte_status(data);
++        }
++    );
++
++    $(document).ready(function () {
++        resize();
++        $.getJSON(CHECK_IP_URL, wirte_status);
++    });
++
++    $(window).resize(resize);
++
++</script>
+diff --git a/luci-app-passwall/root/usr/share/passwall/rules/proxy_host b/luci-app-passwall/root/usr/share/passwall/rules/proxy_host
+index fc64a1a0f7..419fd53653 100644
+--- a/luci-app-passwall/root/usr/share/passwall/rules/proxy_host
++++ b/luci-app-passwall/root/usr/share/passwall/rules/proxy_host
+@@ -1,3 +1,4 @@
++api.ipify.org
+ bing.com
+ sspanel.net
+ v2ex.com
