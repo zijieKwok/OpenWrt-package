@@ -1,6 +1,6 @@
-From 4e5bbf032b832f7520b49ccf97999eabb98d74a1 Mon Sep 17 00:00:00 2001
+From 84d3116655bf3ed833a789f7e095790fb22afeb3 Mon Sep 17 00:00:00 2001
 From: kiddin9 <48883331+kiddin9@users.noreply.github.com>
-Date: Sat, 17 Dec 2022 10:14:31 +0800
+Date: Sat, 17 Dec 2022 10:27:49 +0800
 Subject: [PATCH] update
 
 ---
@@ -8,8 +8,8 @@ Subject: [PATCH] update
  .../luasrc/controller/passwall.lua            |  53 ++++++++
  .../model/cbi/passwall/client/global.lua      |   4 +-
  .../view/passwall/global/status_bottom.htm    | 124 ++++++++++++++++++
- .../root/usr/share/passwall/rules/proxy_host  |   1 +
- 5 files changed, 184 insertions(+), 5 deletions(-)
+ .../root/etc/uci-defaults/luci-passwall       |   2 +
+ 5 files changed, 185 insertions(+), 5 deletions(-)
  create mode 100644 luci-app-passwall/luasrc/view/passwall/global/status_bottom.htm
 
 diff --git a/luci-app-passwall/Makefile b/luci-app-passwall/Makefile
@@ -274,12 +274,16 @@ index 0000000000..29de71618a
 +    $(window).resize(resize);
 +
 +</script>
-diff --git a/luci-app-passwall/root/usr/share/passwall/rules/proxy_host b/luci-app-passwall/root/usr/share/passwall/rules/proxy_host
-index fc64a1a0f7..419fd53653 100644
---- a/luci-app-passwall/root/usr/share/passwall/rules/proxy_host
-+++ b/luci-app-passwall/root/usr/share/passwall/rules/proxy_host
-@@ -1,3 +1,4 @@
-+api.ipify.org
- bing.com
- sspanel.net
- v2ex.com
+diff --git a/luci-app-passwall/root/etc/uci-defaults/luci-passwall b/luci-app-passwall/root/etc/uci-defaults/luci-passwall
+index cc39c00a21..079c9723b3 100755
+--- a/luci-app-passwall/root/etc/uci-defaults/luci-passwall
++++ b/luci-app-passwall/root/etc/uci-defaults/luci-passwall
+@@ -27,6 +27,8 @@ uci -q batch <<-EOF >/dev/null
+ 	commit uhttpd
+ EOF
+ 
++grep -q api.ipify.org /usr/share/passwall/rules/proxy_host ||
++	sed -i '$a api.ipify.org' /usr/share/passwall/rules/proxy_host
+ [ ! -s "/etc/config/passwall" ] && cp -f /usr/share/passwall/0_default_config /etc/config/passwall
+ touch /etc/config/passwall_show >/dev/null 2>&1
+ rm -f /tmp/luci-indexcache
