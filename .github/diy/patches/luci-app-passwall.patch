@@ -1,15 +1,15 @@
-From 7913d382e75cc5b9745f9a88be8cdf52cfa2b175 Mon Sep 17 00:00:00 2001
+From 4e5bbf032b832f7520b49ccf97999eabb98d74a1 Mon Sep 17 00:00:00 2001
 From: kiddin9 <48883331+kiddin9@users.noreply.github.com>
-Date: Sat, 17 Dec 2022 09:13:35 +0800
+Date: Sat, 17 Dec 2022 10:14:31 +0800
 Subject: [PATCH] update
 
 ---
  luci-app-passwall/Makefile                    |   7 +-
- .../luasrc/controller/passwall.lua            |  29 ++++
+ .../luasrc/controller/passwall.lua            |  53 ++++++++
  .../model/cbi/passwall/client/global.lua      |   4 +-
  .../view/passwall/global/status_bottom.htm    | 124 ++++++++++++++++++
  .../root/usr/share/passwall/rules/proxy_host  |   1 +
- 5 files changed, 160 insertions(+), 5 deletions(-)
+ 5 files changed, 184 insertions(+), 5 deletions(-)
  create mode 100644 luci-app-passwall/luasrc/view/passwall/global/status_bottom.htm
 
 diff --git a/luci-app-passwall/Makefile b/luci-app-passwall/Makefile
@@ -52,7 +52,7 @@ index ed9770f070..1fea4ee29b 100644
  config PACKAGE_$(PKG_NAME)_INCLUDE_Xray_Plugin
  	bool "Include Xray-Plugin (Shadowsocks Plugin)"
 diff --git a/luci-app-passwall/luasrc/controller/passwall.lua b/luci-app-passwall/luasrc/controller/passwall.lua
-index e9c49d031c..077211d9d8 100644
+index e9c49d031c..c4ba6e1c70 100644
 --- a/luci-app-passwall/luasrc/controller/passwall.lua
 +++ b/luci-app-passwall/luasrc/controller/passwall.lua
 @@ -20,6 +20,7 @@ function index()
@@ -63,10 +63,34 @@ index e9c49d031c..077211d9d8 100644
  	if not nixio.fs.access("/etc/config/passwall") then return end
  	if nixio.fs.access("/etc/config/passwall_show") then
  		e = entry({"admin", "services", appname}, alias("admin", "services", appname, "settings"), _("Pass Wall"), -1)
-@@ -194,6 +195,34 @@ function status()
+@@ -194,6 +195,58 @@ function status()
  	luci.http.write_json(e)
  end
  
++function get_iso(ip)
++    local mm = require 'maxminddb'
++    local db = mm.open('/usr/share/passwall/GeoLite2-Country.mmdb')
++    local res = db:lookup(ip)
++    return string.lower(res:get('country', 'iso_code'))
++end
++
++function get_cname(ip)
++    local mm = require 'maxminddb'
++    local db = mm.open('/usr/share/passwall/GeoLite2-Country.mmdb')
++    local res = db:lookup(ip)
++    return string.lower(res:get('country', 'names', 'zh-CN'))
++end
++
++function check_site(host, port)
++    local nixio = require "nixio"
++    local socket = nixio.socket("inet", "stream")
++    socket:setopt("socket", "rcvtimeo", 2)
++    socket:setopt("socket", "sndtimeo", 2)
++    local ret = socket:connect(host, port)
++    socket:close()
++    return ret
++end
++
 +-- 获取当前代理状态 与节点ip
 +function check_ip()
 +    local e = {}
