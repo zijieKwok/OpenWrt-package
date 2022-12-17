@@ -195,6 +195,30 @@ function status()
 	luci.http.write_json(e)
 end
 
+function get_iso(ip)
+    local mm = require 'maxminddb'
+    local db = mm.open('/usr/share/passwall/GeoLite2-Country.mmdb')
+    local res = db:lookup(ip)
+    return string.lower(res:get('country', 'iso_code'))
+end
+
+function get_cname(ip)
+    local mm = require 'maxminddb'
+    local db = mm.open('/usr/share/passwall/GeoLite2-Country.mmdb')
+    local res = db:lookup(ip)
+    return string.lower(res:get('country', 'names', 'zh-CN'))
+end
+
+function check_site(host, port)
+    local nixio = require "nixio"
+    local socket = nixio.socket("inet", "stream")
+    socket:setopt("socket", "rcvtimeo", 2)
+    socket:setopt("socket", "sndtimeo", 2)
+    local ret = socket:connect(host, port)
+    socket:close()
+    return ret
+end
+
 -- 获取当前代理状态 与节点ip
 function check_ip()
     local e = {}
