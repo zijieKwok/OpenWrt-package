@@ -1,2 +1,0 @@
-# scst
-scst openwrt package
