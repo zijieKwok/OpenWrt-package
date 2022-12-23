@@ -198,6 +198,8 @@ jobs:
         git_clone https://github.com/shanglanxin/luci-app-homebridge
         git_clone https://github.com/ykxVK8yL5L/luci-app-synology synology && mv -n synology/luci-app-synology ./ && rm -rf synology
         git_clone https://github.com/htynkn/openwrt-switch-lan-play && mv -n openwrt-switch-lan-play/package/* ./ && rm -rf openwrt-switch-lan-play
+        git_clone https://github.com/RomanGlova/scst
+        git_clone https://github.com/RomanGlova/luci-app-scst
         ) &
         git_clone https://github.com/linkease/openwrt-app-actions &
         (
