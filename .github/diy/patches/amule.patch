@@ -1,5 +1,5 @@
---- a/net/amule/Makefile
-+++ b/net/amule/Makefile
+--- a/amule/Makefile
++++ b/amule/Makefile
 @@ -31,6 +31,19 @@ define Package/amule
  	+libupnp +libbfd +libcryptopp
  endef
