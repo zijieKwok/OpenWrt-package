@@ -1,0 +1,31 @@
+--- a/net/amule/Makefile
++++ b/net/amule/Makefile
+@@ -31,6 +31,19 @@ define Package/amule
+ 	+libupnp +libbfd +libcryptopp
+ endef
+ 
++define Download/AmuleWebUI
++  URL:=https://github.com/MatteoRagni/AmuleWebUI-Reloaded/archive
++  URL_FILE:=master.zip
++  FILE:=AmuleWebUI.zip
++  HASH:=skip
++endef
++
++define Build/Prepare
++	$(call Build/Prepare/Default)
++	unzip $(DL_DIR)/AmuleWebUI.zip -d $(PKG_BUILD_DIR)
++	
++endef
++
+ CONFIGURE_ARGS+= \
+ 	--disable-nls \
+ 	--disable-static \
+@@ -78,6 +91,8 @@ define Package/amule/install
+ 
+ 	$(INSTALL_DIR) $(1)/usr/share
+ 	$(CP) $(PKG_INSTALL_DIR)/usr/share/amule $(1)/usr/share/
++	$(CP) $(PKG_BUILD_DIR)/AmuleWebUI-Reloaded-master $(1)/usr/share/amule/webserver/AmuleWebUI-Reloaded
+ endef
+ 
++$(eval $(call Download,AmuleWebUI))
+ $(eval $(call BuildPackage,amule))
