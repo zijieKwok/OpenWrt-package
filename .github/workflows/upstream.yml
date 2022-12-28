@@ -89,7 +89,6 @@ jobs:
         git_clone https://github.com/kiddin9/autoshare && mvdir autoshare
         git_clone https://github.com/kiddin9/luci-app-xlnetacc
         git_clone https://github.com/kiddin9/qBittorrent-Enhanced-Edition
-        git_clone https://github.com/kiddin9/openwrt-amule-dlp && mvdir openwrt-amule-dlp
         git_clone https://github.com/kiddin9/luci-app-wizard
         git_clone https://github.com/kiddin9/openwrt-adguardhome && mvdir openwrt-adguardhome
         git_clone https://github.com/kiddin9/openwrt-cloudreve && mvdir openwrt-cloudreve
@@ -207,7 +206,7 @@ jobs:
         ) &
         (
         git_sparse_clone master "https://github.com/coolsnowwolf/packages" "leanpkg" net/miniupnpd net/mwan3 multimedia/UnblockNeteaseMusic-Go \
-        multimedia/UnblockNeteaseMusic net/amule net/baidupcs-web net/frp multimedia/gmediarender net/go-aliyundrive-webdav \
+        multimedia/UnblockNeteaseMusic net/amule net/antileech net/baidupcs-web net/frp multimedia/gmediarender net/go-aliyundrive-webdav \
         net/qBittorrent-static net/qBittorrent net/transmission net/phtunnel libs/qtbase libs/qttools libs/rblibtorrent \
         net/uugamebooster net/verysync net/vlmcsd net/dnsforwarder net/nps net/tcpping net/netatalk net/pgyvpn
         mv -f miniupnpd miniupnpd-iptables
