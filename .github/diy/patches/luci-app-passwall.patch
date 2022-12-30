@@ -149,7 +149,7 @@ new file mode 100644
 index 0000000000..29de71618a
 --- /dev/null
 +++ b/luci-app-passwall/luasrc/view/passwall/global/status_bottom.htm
-@@ -0,0 +1,124 @@
+@@ -0,0 +1,128 @@
 +<style>
 +.pure-img {
 +    max-height: 100%;
@@ -188,6 +188,10 @@ index 0000000000..29de71618a
 +.status-bar .icon-con {
 +    height: 2.6em;
 +    text-align: right;
++}
++
++#cbi-passwall+.cbi-page-actions.control-group.fixed {
++    bottom: 3.3rem;
 +}
 +
 +footer{
