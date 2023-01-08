@@ -172,7 +172,7 @@ udp_node:value("tcp", translate("Same as the tcp node"))
 s:tab("DNS", translate("DNS"))
 
 o = s:taboption("DNS", Flag, "filter_proxy_ipv6", translate("Filter Proxy Host IPv6"), translate("Experimental feature."))
-o.default = "0"
+o.default = "1"
 
 ---- DNS Forward Mode
 dns_mode = s:taboption("DNS", ListValue, "dns_mode", translate("Filter Mode"))
