@@ -77,6 +77,7 @@ config global_subscribe
 
 config auto_switch
 	option enable '1'
+	option restore_switch '1'
 	option testing_time '1'
 	option connect_timeout '3'
 	option retry_num '3'
