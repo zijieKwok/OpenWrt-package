@@ -284,7 +284,7 @@ index cc39c00a21..079c9723b3 100755
 
 --- a/luci-app-passwall/root/usr/share/passwall/0_default_config
 +++ b/luci-app-passwall/root/usr/share/passwall/0_default_config
-@@ -6,7 +6,9 @@ config global
+@@ -6,7 +6,8 @@ config global
  	option udp_node 'nil'
  	option dns_mode 'dns2tcp'
  	option remote_dns '1.1.1.1'
@@ -303,7 +303,7 @@ index cc39c00a21..079c9723b3 100755
  	option chnlist_update '1'
  	option chnroute_update '1'
  	option chnroute6_update '1'
-@@ -75,7 +76,7 @@ config global_subscribe
+@@ -75,7 +76,8 @@ config global_subscribe
  	list filter_discard_list '官网'
  
  config auto_switch
