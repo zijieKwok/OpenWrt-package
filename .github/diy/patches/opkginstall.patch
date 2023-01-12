@@ -187,7 +187,7 @@
  						opkg="$opkg $1"
  						shift
  					;;
-@@ -33,10 +33,55 @@ case "$action" in
+@@ -33,10 +33,51 @@ case "$action" in
  			done
  
  			if flock -x 200; then
@@ -233,10 +233,6 @@
 +						fi
 +					;;
 +				esac
-+				grep -q "wget returned 8" /tmp/opkg.err && {
-+						opkg update </dev/null >/tmp/opkg.out 2>/tmp/opkg.err
-+						$opkg $action "$@" </dev/null >>/tmp/opkg.out 2>>/tmp/opkg.err
-+					}
  				stderr=$(cat /tmp/opkg.err)
 +				[ -n "$stderr" ] || {
 +					echo "🎉 已完成, 请关闭本窗口~" >>/tmp/opkg.out
