@@ -44,7 +44,6 @@ jobs:
         git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git config --global user.name "github-actions[bot]"
         sudo timedatectl set-timezone "Asia/Shanghai"
-        ( sudo -E apt-get -qq install rename ) &
 
     - name: Syn upstream
       run: |
@@ -269,10 +268,15 @@ jobs:
         mv -n lean/* ./ ; rm -Rf lean
         mv -n liep/* ./ ; rm -Rf liep
         mv -n openwrt-app-actions/applications/* ./;rm -rf openwrt-app-actions
-        rename -f "s/Makefile.k/Makefile/" .github/diy/packages/*/Makefile.k
-        cp -rf .github/diy/packages/* ./ || true
-        rename -f "s/Makefile/Makefile.k/" .github/diy/packages/*/Makefile
         rm -Rf */.git
+        for pkg in $(ls -d .github/diy/packages/*); do
+          mv -f $pkg/Makefile.k $pkg/Makefile >/dev/null 2>&1 || true
+        done
+        cp -rf .github/diy/packages/* ./ || true
+        for pkg in $(ls -d .github/diy/packages/*); do
+          mv -f $pkg/Makefile $pkg/Makefile.k >/dev/null 2>&1 || true
+        done
+
 
     - name: SSH connection to Actions
       uses: kiddin9/debugger-action@master
