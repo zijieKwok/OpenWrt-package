@@ -8,8 +8,8 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=lucky
-PKG_VERSION:=1.7.13
-PKG_RELEASE:=9
+PKG_VERSION:=1.7.17
+PKG_RELEASE:=10
 PKGARCH:=all 
 
 ifeq ($(ARCH),mipsel)
