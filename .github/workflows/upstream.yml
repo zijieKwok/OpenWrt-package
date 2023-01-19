@@ -208,7 +208,7 @@ jobs:
         ) &
         (
         git_sparse_clone master "https://github.com/coolsnowwolf/packages" "leanpkg" net/miniupnpd net/mwan3 multimedia/UnblockNeteaseMusic-Go \
-        multimedia/UnblockNeteaseMusic net/amule net/antileech net/baidupcs-web net/frp multimedia/gmediarender net/go-aliyundrive-webdav \
+        multimedia/UnblockNeteaseMusic net/amule net/antileech net/baidupcs-web multimedia/gmediarender net/go-aliyundrive-webdav \
         net/qBittorrent-static net/qBittorrent net/transmission net/phtunnel libs/qtbase libs/qttools libs/rblibtorrent \
         net/uugamebooster net/verysync net/vlmcsd net/dnsforwarder net/nps net/tcpping net/netatalk net/pgyvpn
         mv -f miniupnpd miniupnpd-iptables
@@ -218,7 +218,7 @@ jobs:
         ) &
         (
         git_sparse_clone master "https://github.com/openwrt/packages" "oppackages1" \
-        net/basicstation net/bpfcountd net/gsocket net/openappid net/telnet-bsd net/wifi-presence net/xfrpc
+        net/basicstation net/bpfcountd net/gsocket net/openappid net/telnet-bsd net/wifi-presence net/frp net/xfrpc
         git_sparse_clone master "https://github.com/openwrt/luci" "opluci1" \
         applications/luci-app-natmap
         ) &
@@ -387,6 +387,7 @@ jobs:
         mkdir -p luci-app-passwall/root/www/luci-static/passwall
         cp -rf luci-app-bypass/root/www/luci-static/bypass/* luci-app-passwall/root/www/luci-static/passwall/
         cp -rf luci-app-bypass/root/usr/share/bypass/GeoLite2-Country.mmdb luci-app-passwall/root/usr/share/passwall/
+        rm -rf frp/files
         
         sed -i \
           -e 's?include \.\./\.\./\(lang\|devel\)?include $(TOPDIR)/feeds/packages/\1?' \
