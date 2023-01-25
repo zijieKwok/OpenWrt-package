@@ -8,8 +8,8 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=tailscale
-PKG_VERSION:=1.34.2
-PKG_RELEASE:=5
+PKG_VERSION:=1.36.0
+PKG_RELEASE:=6
 
 PKG_SOURCE:=tailscale-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/tailscale/tailscale/tar.gz/v$(PKG_VERSION)?
