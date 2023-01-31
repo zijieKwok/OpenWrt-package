@@ -7,14 +7,14 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=n2n
 PKG_VERSION:=3.0
-PKG_RELEASE:=5
+PKG_RELEASE:=6
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/ntop/n2n/tar.gz/$(PKG_VERSION)?
 PKG_HASH:=skip
 
 PKG_LICENSE:=GPL-3.0
-PKG_LICENSE_FILE:=LICENSE
+PKG_LICENSE_FILES:=LICENSE
 PKG_MAINTAINER:=Emanuele Faranda <faranda@ntop.org>
 
 include $(INCLUDE_DIR)/package.mk
