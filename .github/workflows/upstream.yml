@@ -153,7 +153,6 @@ jobs:
         git_clone https://github.com/AlexZhuo/luci-app-bandwidthd
         ) &
         (
-        git_clone https://github.com/fullcone-nat-nftables/nft-fullcone
         git_clone https://github.com/KyleRicardo/MentoHUST-OpenWrt-ipk
         git_clone https://github.com/frainzy1477/luci-app-clash
         git_clone https://github.com/yichya/openwrt-cloudflared
