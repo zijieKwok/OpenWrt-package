@@ -6,11 +6,11 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=gowebdav
 PKG_VERSION:=0.0.5
-PKG_RELEASE:=32
+PKG_RELEASE:=33
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/1715173329/gowebdav/tar.gz/v$(PKG_VERSION)?
-PKG_HASH:=skip
+PKG_HASH:=ee0ac5a52a3b7a1e1c687b850c3f7b55e10bbdc88da0b6b1dd8b790fc53d10c6
 
 PKG_MAINTAINER:=Tianling Shen <cnsztl@immortalwrt.org>
 
@@ -21,7 +21,7 @@ PKG_USE_MIPS16:=0
 GO_PKG:=github.com/1715173329/gowebdav
 
 include $(INCLUDE_DIR)/package.mk
-include $(TOPDIR)/feeds/packages/lang/golang/golang-package.mk
+include ../../lang/golang/golang-package.mk
 
 define Package/gowebdav
   SECTION:=net
