@@ -4377,6 +4377,10 @@ WifiNetwork = baseclass.extend(/** @lends LuCI.network.WifiNetwork.prototype */ 
 	}
 });
 
-setTimeout("document.getElementsByClassName('cbi-button-apply')[0].children[3].children[0].value='1'",1000)
+function(){
+try{
+  document.getElementsByClassName('cbi-button-apply')[0].children[3].children[0].value='1'
+}catch(err) {
+}},1000)
 
 return Network;
