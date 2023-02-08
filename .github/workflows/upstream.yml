@@ -78,10 +78,10 @@ function git_sparse_clone2() (
           commitid="$1" rurl="$2" localdir="$3" && shift 3
           git clone --filter=blob:none --sparse $rurl $localdir
           cd $localdir
-		  git checkout $commitid
+          git checkout $commitid
           git sparse-checkout init --cone
           git sparse-checkout set $@
-mv -n $@ ../ || true
+          mv -n $@ ../ || true
           cd ..
           rm -rf $localdir
           )
