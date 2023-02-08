@@ -11,6 +11,7 @@ LUCI_DEPENDS:=+luci-base +libiwinfo +libiwinfo-lua
 
 PKG_BUILD_DEPENDS:=iwinfo
 PKG_LICENSE:=Apache-2.0
+PKG_FLAGS:=nonshared
 
 include $(TOPDIR)/feeds/luci/luci.mk
 
