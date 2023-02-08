@@ -1,14 +1,3 @@
---- a/luci-base/Makefile
-+++ b/luci-base/Makefile
-@@ -7,6 +7,7 @@
- include $(TOPDIR)/rules.mk
- 
- PKG_NAME:=luci-base
-+PKG_FLAGS:=nonshared
- 
- LUCI_TYPE:=mod
- LUCI_BASENAME:=base
-
 --- a/luci-base/root/www/index.html
 +++ b/luci-base/root/www/index.html
 @@ -15,6 +15,5 @@
