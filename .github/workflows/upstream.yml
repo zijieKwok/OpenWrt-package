@@ -74,7 +74,7 @@ jobs:
           cd ..
           rm -rf $localdir
           }
-function git_sparse_clone2() (
+        function git_sparse_clone2() {
           commitid="$1" rurl="$2" localdir="$3" && shift 3
           git clone --filter=blob:none --sparse $rurl $localdir
           cd $localdir
@@ -84,7 +84,7 @@ function git_sparse_clone2() (
           mv -n $@ ../ || true
           cd ..
           rm -rf $localdir
-          )
+          }
         function mvdir() {
         mv -n `find $1/* -maxdepth 0 -type d` ./
         rm -rf $1
