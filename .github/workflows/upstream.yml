@@ -238,11 +238,13 @@ jobs:
         package/network/services/dnsmasq package/libs/openssl
         git_sparse_clone openwrt-22.03 "https://github.com/openwrt/luci" "opluci" applications/luci-app-attendedsysupgrade applications/luci-app-aria2 \
         applications/luci-app-ddns applications/luci-app-acme applications/luci-app-opkg applications/luci-app-firewall \
-        applications/luci-app-ksmbd applications/luci-app-samba4 applications/luci-app-watchcat applications/luci-app-upnp \
+        applications/luci-app-ksmbd applications/luci-app-samba4 applications/luci-app-watchcat applications/luci-app-upnp
         ) &
-(git_sparse_clone2 396f4048bd1f4cae7cb6f085d360081d81ad2d9a "https://github.com/openwrt/luci" "opluci" \
+        (
+        git_sparse_clone2 396f4048bd1f4cae7cb6f085d360081d81ad2d9a "https://github.com/openwrt/luci" "opluci" \
         modules/luci-base modules/luci-mod-network \
-        modules/luci-mod-status modules/luci-mod-system) &
+        modules/luci-mod-status modules/luci-mod-system
+        ) &
 
         (
         git_sparse_clone master "https://github.com/immortalwrt/packages" "immpkgs" net/mwol net/n2n \
