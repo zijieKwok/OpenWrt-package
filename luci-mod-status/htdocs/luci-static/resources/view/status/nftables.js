@@ -4,6 +4,7 @@
 'require fs';
 'require ui';
 'require dom';
+'require tools.firewall as fwtool';
 
 var expr_translations = {
 	'meta.iifname': _('Ingress device name', 'nft meta iifname'),

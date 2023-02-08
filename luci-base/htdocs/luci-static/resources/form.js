@@ -3211,17 +3211,8 @@ var CBITableSection = CBITypedSection.extend(/** @lends LuCI.form.TableSection.p
 		return (stackedMap ? activeMap.save(null, true) : Promise.resolve()).then(L.bind(function() {
 			section_id = sref['.name'];
 
-			var m;
-
-			if (parent instanceof CBIJSONMap) {
-				m = new CBIJSONMap(null, null, null);
-				m.data = parent.data;
-			}
-			else {
-				m = new CBIMap(parent.config, null, null);
-			}
-
-			var s = m.section(CBINamedSection, section_id, this.sectiontype);
+			var m = new CBIMap(parent.config, null, null),
+			    s = m.section(CBINamedSection, section_id, this.sectiontype);
 
 			m.parent = parent;
 			m.section = section_id;
