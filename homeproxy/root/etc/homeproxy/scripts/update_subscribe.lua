@@ -46,8 +46,8 @@ string.trim = luci.util.trim
 
 -- Kanged from https://gist.github.com/yi/01e3ab762838d567e65d
 function string.fromhex(str)
-	return (str:gsub('..', function (cc)
-		return string.char(tonumber(cc, 16))
+	return (str:gsub('..', function (c)
+		return string.char(tonumber(c, 16))
 	end))
 end
 
@@ -500,6 +500,8 @@ local function main()
 			if not node_result[cfg.grouphash] or not node_result[cfg.grouphash][cfg[".name"]] then
 				uci:delete(uciconfig, cfg[".name"])
 				removed = removed + 1
+
+				log(translatef("Removing node: %s.", cfg.label or cfg[".name"]))
 			else
 				uci:tset(uciconfig, cfg[".name"], node_result[cfg.grouphash][cfg[".name"]])
 				setmetatable(node_result[cfg.grouphash][cfg[".name"]], { __index = {isExisting = true} })
@@ -511,6 +513,8 @@ local function main()
 			if not node.isExisting then
 				uci:section(uciconfig, ucinode, node.nameHash, node)
 				added = added + 1
+
+				log(translatef("Adding node: %s.", node.label or node.nameHash))
 			end
 		end
 	end
