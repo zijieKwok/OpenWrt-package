@@ -12,7 +12,8 @@
 'require uci';
 'require validation';
 'require view';
-'require tools.homeproxy as hp';
+
+'require homeproxy as hp';
 'require tools.widgets as widgets';
 
 var callServiceList = rpc.declare({
@@ -670,6 +671,10 @@ return view.extend({
 			_('Match process name.'));
 		so.modalonly = true;
 
+		so = ss.option(form.DynamicList, 'process_path', _('Process path'),
+			_('Match process path.'));
+		so.modalonly = true;
+
 		so = ss.option(form.DynamicList, 'user', _('User'),
 			_('Match user name.'));
 		so.modalonly = true;
@@ -928,6 +933,10 @@ return view.extend({
 
 		so = ss.option(form.DynamicList, 'process_name', _('Process name'),
 			_('Match process name.'));
+		so.modalonly = true;
+
+		so = ss.option(form.DynamicList, 'process_path', _('Process path'),
+			_('Match process path.'));
 		so.modalonly = true;
 
 		so = ss.option(form.DynamicList, 'user', _('User'),
