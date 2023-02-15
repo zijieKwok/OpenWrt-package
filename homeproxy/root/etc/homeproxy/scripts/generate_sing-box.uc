@@ -159,7 +159,7 @@ function generate_outbound(node) {
 		version: (node.type === 'shadowtls') ? strToInt(node.shadowtls_version) : ((node.type === 'socks') ? node.socks_version : null),
 		/* VLESS / VMess */
 		uuid: node.uuid,
-		alter_id: node.vmess_alterid,
+		alter_id: strToInt(node.vmess_alterid),
 		security: node.vmess_encrypt,
 		global_padding: node.vmess_global_padding ? (node.vmess_global_padding === '1') : null,
 		authenticated_length: node.vmess_authenticated_length ? (node.vmess_authenticated_length === '1') : null,
@@ -221,7 +221,7 @@ function get_outbound(cfg) {
 	if (isEmpty(cfg))
 		return null;
 
-	if (cfg in ['direct-out', 'black-out'])
+	if (cfg in ['direct-out', 'block-out'])
 		return cfg;
 	else {
 		const node = uci.get(uciconfig, cfg, 'node');
