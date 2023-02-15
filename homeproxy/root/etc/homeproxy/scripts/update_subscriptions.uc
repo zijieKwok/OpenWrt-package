@@ -55,7 +55,8 @@ function filter_check(name) {
 		const patten = regexp(i);
 		if (match(name, patten))
 			ret = true;
-	} if (filter_mode === 'whitelist')
+	}
+	if (filter_mode === 'whitelist')
 		ret = !ret;
 
 	return ret
@@ -85,6 +86,7 @@ function parse_uri(uri) {
 
 	if (type(uri) === 'object') {
 		if (uri.nodetype === 'sip008') {
+			/* https://shadowsocks.org/guide/sip008.html */
 			config = {
 				label: uri.remarks,
 				type: 'shadowsocks',
@@ -106,7 +108,7 @@ function parse_uri(uri) {
 			      hysteria_params = hysteria_url.searchParams;
 
 			if (!sing_features.with_quic || (hysteria_params.protocol && hysteria_params.protocol !== 'udp')) {
-				log(sprintf('Skipping unsupportedd %s node: %s.', 'hysteria', urldecode(hysteria_url.hash) || hysteria_url.hostname));
+				log(sprintf('Skipping unsupported %s node: %s.', 'hysteria', urldecode(hysteria_url.hash) || hysteria_url.hostname));
 				if (!sing_features.with_quic)
 					log(sprintf('Please rebuild sing-box with %s support!', 'QUIC'));
 
@@ -389,6 +391,8 @@ function main() {
 		let nodes;
 		try {
 			nodes = json(res).servers || json(res);
+
+			/* Shadowsocks SIP008 format */
 			if (nodes[0].server && nodes[0].method)
 				map(nodes, (_, i) => nodes[i].nodetype = 'sip008');
 		} catch(e) {
