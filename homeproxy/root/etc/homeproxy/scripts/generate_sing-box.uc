@@ -10,7 +10,7 @@
 import { readfile, writefile } from 'fs';
 import { cursor } from 'uci';
 
-import { executeCommand, isEmpty, strToInt, removeBlankAttrs, validateHostname } from 'homeproxy';
+import { executeCommand, isEmpty, strToInt, removeBlankAttrs, validateHostname, validation } from 'homeproxy';
 import { HP_DIR, RUN_DIR } from 'homeproxy';
 
 /* UCI config start */
@@ -317,7 +317,7 @@ if (!isEmpty(main_node)) {
 	if (dns_server !== wan_dns) {
 		push(config.dns.servers, {
 			tag: 'main-dns',
-			address: dns_server,
+			address: 'tcp://' + ((validation('ip6addr', dns_server) === 0) ? `[${dns_server}]` : dns_server),
 			strategy: (ipv6_support !== '1') ? 'ipv4_only' : null,
 			detour: 'main-out'
 		});
@@ -569,12 +569,12 @@ if (!isEmpty(main_node) || !isEmpty(default_outbound))
 		geoip: {
 			path: HP_DIR + '/resources/geoip.db',
 			download_url: 'https://github.com/1715173329/sing-geoip/releases/latest/download/geoip.db',
-			download_detour: get_outbound(default_outbound) || (routing_mode !== 'proxy_mainland_china' && !isEmpty(main_node)) ? 'main-out' : 'direct-out'
+			download_detour: get_outbound(default_outbound) || ((routing_mode !== 'proxy_mainland_china' && !isEmpty(main_node)) ? 'main-out' : 'direct-out')
 		},
 		geosite: {
 			path: HP_DIR + '/resources/geosite.db',
 			download_url: 'https://github.com/1715173329/sing-geosite/releases/latest/download/geosite.db',
-			download_detour: get_outbound(default_outbound) || (routing_mode !== 'proxy_mainland_china' && !isEmpty(main_node)) ? 'main-out' : 'direct-out'
+			download_detour: get_outbound(default_outbound) || ((routing_mode !== 'proxy_mainland_china' && !isEmpty(main_node)) ? 'main-out' : 'direct-out')
 		},
 		rules: [
 			{
