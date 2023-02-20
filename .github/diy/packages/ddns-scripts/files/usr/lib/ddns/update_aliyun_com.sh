@@ -1,14 +1,14 @@
 #!/bin/sh
 
 # author: starsunyzl
-# see https://github.com/starsunyzl/ddns-scripts-dnspod for more details
+# see https://github.com/starsunyzl/ddns-scripts-alibabacloud for more details
 
 . /usr/share/libubox/jshn.sh
 
-[ -z "$CURL" ] && [ -z "$CURL_SSL" ] && write_log 14 "DNSPod communication require cURL with SSL support. Please install"
+[ -z "$CURL" ] && [ -z "$CURL_SSL" ] && write_log 14 "AlibabaCloud communication require cURL with SSL support. Please install"
 [ -z "$domain" ] && write_log 14 "Service section not configured correctly! Missing 'domain'"
-[ -z "$username" ] && write_log 14 "Service section not configured correctly! Missing SecretId as 'username'"
-[ -z "$password" ] && write_log 14 "Service section not configured correctly! Missing SecretKey as 'password'"
+[ -z "$username" ] && write_log 14 "Service section not configured correctly! Missing AccessKey ID as 'username'"
+[ -z "$password" ] && write_log 14 "Service section not configured correctly! Missing AccessKey Secret as 'password'"
 [ $use_https -eq 0 ] && use_https=1  # force HTTPS
 
 # split __HOST __DOMAIN from $domain
@@ -29,71 +29,30 @@ local __RECORD_ID="$param_enc"
 local __RECORD_TYPE="A"
 [ $use_ipv6 -eq 1 ] && __RECORD_TYPE="AAAA"
 
-sha256() {
-  local __MSG="$1"
-  printf "$__MSG" | openssl sha256 | sed "s/^.* //"
+url_encode() {
+	local __ENCODED
+	__ENCODED="$(awk -v str="$1" 'BEGIN{ORS="";for(i=32;i<=127;i++)lookup[sprintf("%c",i)]=i
+		for(k=1;k<=length(str);++k){enc=substr(str,k,1);if(enc!~"[-_.~a-zA-Z0-9]")enc=sprintf("%%%02X", lookup[enc]);print enc}}')"
+  printf %s "$__ENCODED"
 }
 
-hmac_sha256_plainkey() {
-  local __KEY="$1"
-  local __MSG="$2"
-  printf "$__MSG" | openssl sha256 -hmac "$__KEY" | sed "s/^.* //"
+percent_encode() {
+  local __ENCODED="$(url_encode $1)"
+  __ENCODED="${__ENCODED//+/%20}"
+  __ENCODED="${__ENCODED//\*/%2A}"
+  __ENCODED="${__ENCODED//%7E/\~}"
+  printf %s "$__ENCODED"
 }
 
-hmac_sha256_hexkey() {
-  local __KEY="$1"
-  local __MSG="$2"
-  printf "$__MSG" | openssl sha256 -mac hmac -macopt "hexkey:$__KEY" | sed "s/^.* //"
+sign() {
+  local __KEY="$1"  # AccessKey Secret
+  local __MSG="$2"  # Canonicalized Query String
+
+  local __STRING_TO_SIGN="POST&%2F&$(percent_encode $__MSG)"
+  printf %s "$__STRING_TO_SIGN" | openssl sha1 -hmac "$__KEY&" -binary | openssl base64
 }
 
-build_request_param() {
-  # API function name and JSON parameters
-  local __REQUEST_ACTION="$1"
-  local __REQUEST_BODY="$2"
-
-  # __REQUEST_HOST and __REQUEST_CONTENT_TYPE must be lowercase
-  # Generally all APIs under the same __REQUEST_SERVICE have the same __REQUEST_VERSION,
-  # if they are different, you need to put __REQUEST_VERSION in the parameter of this function
-  local __REQUEST_HOST="dnspod.tencentcloudapi.com"
-  local __REQUEST_SERVICE="dnspod"
-  local __REQUEST_VERSION="2021-03-23"
-  local __REQUEST_CONTENT_TYPE="application/json"  # ; charset=utf-8
-  local __REQUEST_DATE="$(date -u +%Y-%m-%d)"
-  local __REQUEST_TIMESTAMP="$(date -u +%s)"
-
-  local __HASHED_REQUEST_PAYLOAD="$(sha256 "$__REQUEST_BODY")"
-  local __CANONICAL_REQUEST="$(cat <<EOF
-POST
-/
-
-content-type:$__REQUEST_CONTENT_TYPE
-host:$__REQUEST_HOST
-
-content-type;host
-$__HASHED_REQUEST_PAYLOAD
-EOF
-)"
-  local __HASHED_CANONICAL_REQUEST="$(sha256 "$__CANONICAL_REQUEST")"
-  local __STRING_TO_SIGN="$(cat <<EOF
-TC3-HMAC-SHA256
-$__REQUEST_TIMESTAMP
-$__REQUEST_DATE/$__REQUEST_SERVICE/tc3_request
-$__HASHED_CANONICAL_REQUEST
-EOF
-)"
-
-  local __SECRET_DATE="$(hmac_sha256_plainkey "TC3$__SECRET_KEY" "$__REQUEST_DATE")"
-  local __SECRET_SERVICE="$(hmac_sha256_hexkey "$__SECRET_DATE" "$__REQUEST_SERVICE")"
-  local __SECRET_SIGNING="$(hmac_sha256_hexkey "$__SECRET_SERVICE" "tc3_request")"
-  local __SIGNATURE="$(hmac_sha256_hexkey "$__SECRET_SIGNING" "$__STRING_TO_SIGN")"
-
-  local __AUTHORIZATION="TC3-HMAC-SHA256 Credential=$__SECRET_ID/$__REQUEST_DATE/$__REQUEST_SERVICE/tc3_request, SignedHeaders=content-type;host, Signature=$__SIGNATURE"
-
-  local __REQUEST_PARAM="-H 'Authorization: $__AUTHORIZATION' -H 'Content-Type: $__REQUEST_CONTENT_TYPE' -H 'Host: $__REQUEST_HOST' -H 'X-TC-Action: $__REQUEST_ACTION' -H 'X-TC-Version: $__REQUEST_VERSION' -H 'X-TC-Timestamp: $__REQUEST_TIMESTAMP' -d '$__REQUEST_BODY'"
-  printf %s "$__REQUEST_PARAM"
-}
-
-dnspod_transfer() {
+alibabacloud_transfer() {
   local __URL="$1"
   local __PARAM="$2"
   local __ERR=0
@@ -172,29 +131,34 @@ dnspod_transfer() {
     PID_SLEEP=0
   done
   # we should never come here there must be a programming error
-  write_log 12 "Error in 'dnspod_transfer()' - program coding error"
+  write_log 12 "Error in 'alibabacloud_transfer()' - program coding error"
 }
 
-local __REQUEST_URL="https://dnspod.tencentcloudapi.com"
-local __REQUEST_BODY="{\"Domain\": \"$__DOMAIN\", \"Subdomain\": \"$__HOST\", \"RecordType\": \"$__RECORD_TYPE\"}"
-local __REQUEST_PARAM="$(build_request_param "DescribeRecordList" "$__REQUEST_BODY")"
+local __REQUEST_URL="https://alidns.aliyuncs.com"
+local __REQUEST_TIMESTAMP=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+local __UUID="$(cat /proc/sys/kernel/random/uuid)"
+# All plaintext parameters are pre-sorted and pre-encoded, we only use two APIs, no need to sort in the shell script...Well, actually I'm too lazy to do it
+local __REQUEST_BODY_FMT="AccessKeyId=%s&Action=DescribeSubDomainRecords&DomainName=%s&Format=JSON&SignatureMethod=HMAC-SHA1&SignatureNonce=%s&SignatureVersion=1.0&SubDomain=%s&Timestamp=%s&Type=%s&Version=2015-01-09"
+local __CANONICALIZED_QUERY_STRING="$(printf "$__REQUEST_BODY_FMT" "$(percent_encode "$__SECRET_ID")" "$(percent_encode "$__DOMAIN")" "$(percent_encode "$__UUID")" "$(percent_encode "$__HOST.$__DOMAIN")" "$(percent_encode "$__REQUEST_TIMESTAMP")" "$(percent_encode "$__RECORD_TYPE")")"
+local __SIGNATURE="$(sign "$__SECRET_KEY" "$__CANONICALIZED_QUERY_STRING")"
+local __REQUEST_BODY="$(printf "$__REQUEST_BODY_FMT&Signature=%s" "$(url_encode "$__SECRET_ID")" "$(url_encode "$__DOMAIN")" "$(url_encode "$__UUID")" "$(url_encode "$__HOST.$__DOMAIN")" "$(url_encode "$__REQUEST_TIMESTAMP")" "$(url_encode "$__RECORD_TYPE")" "$(url_encode "$__SIGNATURE")")"
 
-dnspod_transfer "$__REQUEST_URL" "$__REQUEST_PARAM" || return 1
+alibabacloud_transfer "$__REQUEST_URL" "-d '$__REQUEST_BODY'" || return 1
 
-write_log 7 "DescribeRecordList answered:\n$(cat $DATFILE)"
+write_log 7 "DescribeSubDomainRecords answered:\n$(cat $DATFILE)"
 
 json_init
 json_load_file $DATFILE
 
-local __ERROR
-json_select Response
-json_get_var __ERROR Error
-[ -n "$__ERROR" ] && return 1
+local __CODE
+json_get_var __CODE Code
+[ -n "$__CODE" ] && return 1
 
 local __LIST_IDX=1
-local __RECORD_ID_TMP __RECORD_VALUE __RECORD_LINE_ID
-if json_is_a RecordList array; then
-  json_select RecordList
+local __RECORD_ID_TMP __RECORD_VALUE
+json_select DomainRecords
+if json_is_a Record array; then
+  json_select Record
   while json_is_a $__LIST_IDX object; do
     json_select $__LIST_IDX
     json_get_var __RECORD_ID_TMP RecordId
@@ -203,9 +167,6 @@ if json_is_a RecordList array; then
     json_get_var __RECORD_VALUE Value
     write_log 7 "RecordValue: $__RECORD_VALUE"
 
-    json_get_var __RECORD_LINE_ID LineId
-    write_log 7 "RecordLineId: $__RECORD_LINE_ID"
-
     json_select ..
     __LIST_IDX=$(( __LIST_IDX + 1 ))
 
@@ -213,8 +174,8 @@ if json_is_a RecordList array; then
   done
 fi
 
-[ -z "$__RECORD_ID_TMP" -o -z "$__RECORD_LINE_ID" ] && {
-  write_log 3 "Failed to get RecordId or RecordLineId"
+[ -z "$__RECORD_ID_TMP" ] && {
+  write_log 3 "Failed to get RecordId"
   return 1
 }
 
@@ -234,22 +195,22 @@ fi
   return 0
 }
 
-# RecordLineId is a string type
-__REQUEST_BODY="{\"Domain\": \"$__DOMAIN\", \"SubDomain\": \"$__HOST\", \"RecordLine\": \"unused\", \"RecordLineId\": \"$__RECORD_LINE_ID\", \"RecordId\": $__RECORD_ID, \"RecordType\": \"$__RECORD_TYPE\", \"Value\": \"$__IP\"}"
-__REQUEST_PARAM="$(build_request_param "ModifyRecord" "$__REQUEST_BODY")"
+__REQUEST_TIMESTAMP=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+__UUID="$(cat /proc/sys/kernel/random/uuid)"
+__REQUEST_BODY_FMT="AccessKeyId=%s&Action=UpdateDomainRecord&Format=JSON&RR=%s&RecordId=%s&SignatureMethod=HMAC-SHA1&SignatureNonce=%s&SignatureVersion=1.0&Timestamp=%s&Type=%s&Value=%s&Version=2015-01-09"
+__CANONICALIZED_QUERY_STRING="$(printf "$__REQUEST_BODY_FMT" "$(percent_encode "$__SECRET_ID")" "$(percent_encode "$__HOST")" "$(percent_encode "$__RECORD_ID")" "$(percent_encode "$__UUID")" "$(percent_encode "$__REQUEST_TIMESTAMP")" "$(percent_encode "$__RECORD_TYPE")" "$(percent_encode "$__IP")")"
+__SIGNATURE="$(sign "$__SECRET_KEY" "$__CANONICALIZED_QUERY_STRING")"
+__REQUEST_BODY="$(printf "$__REQUEST_BODY_FMT&Signature=%s" "$(url_encode "$__SECRET_ID")" "$(url_encode "$__HOST")" "$(url_encode "$__RECORD_ID")" "$(url_encode "$__UUID")" "$(url_encode "$__REQUEST_TIMESTAMP")" "$(url_encode "$__RECORD_TYPE")" "$(url_encode "$__IP")" "$(url_encode "$__SIGNATURE")")"
 
->$DATFILE
->$ERRFILE
-dnspod_transfer "$__REQUEST_URL" "$__REQUEST_PARAM" || return 1
+alibabacloud_transfer "$__REQUEST_URL" "-d '$__REQUEST_BODY'" || return 1
 
-write_log 7 "ModifyRecord answered:\n$(cat $DATFILE)"
+write_log 7 "UpdateDomainRecord answered:\n$(cat $DATFILE)"
 
 json_init
 json_load_file $DATFILE
 
-json_select Response
-json_get_var __ERROR Error
-[ -n "$__ERROR" ] && return 1
+json_get_var __CODE Code
+[ -n "$__CODE" ] && return 1
 
 json_get_var __RECORD_ID_TMP RecordId
 [ -n "$__RECORD_ID_TMP" ] && return 0 || return 1

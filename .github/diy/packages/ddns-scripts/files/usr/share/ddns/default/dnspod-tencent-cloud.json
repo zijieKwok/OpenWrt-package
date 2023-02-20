@@ -1,5 +1,5 @@
 {
-	"name": "dnspod.cn",
+	"name": "dnspod-腾讯云API",
 	"ipv4": {
 		"url": "update_dnspod_cn.sh"
 	},
