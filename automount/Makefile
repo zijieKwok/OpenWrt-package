@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=automount
 PKG_FLAGS:=nonshared
-PKG_RELEASE:=31
+PKG_RELEASE:=32
 
 PKG_CONFIG_DEPENDS:= \
 	CONFIG_LINUX_5_10 \
@@ -60,4 +60,3 @@ define Package/ntfs3-mount/install
 endef
 
 $(eval $(call BuildPackage,automount))
-$(eval $(call BuildPackage,ntfs3-mount))
