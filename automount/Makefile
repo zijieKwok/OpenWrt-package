@@ -21,6 +21,8 @@ define Package/automount
   TITLE:=Mount autoconfig hotplug script.
   MAINTAINER:=Lean
   DEPENDS:= \
+    +kmod-usb3 \
+    +kmod-usb2 \
     +block-mount \
     +kmod-usb-storage \
     +kmod-usb-storage-extras \
