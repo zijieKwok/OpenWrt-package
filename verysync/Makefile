@@ -28,8 +28,8 @@ else ifeq ($(ARCH),x86_64)
 endif
 
 PKG_NAME:=verysync
-PKG_VERSION:=2.14.0
-PKG_RELEASE:=19
+PKG_VERSION:=2.16.0
+PKG_RELEASE:=20
 
 PKG_SOURCE:=$(PKG_NAME)-linux-$(PKG_ARCH_VERYSYNC)-v$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://dl.verysync.com/releases/v$(PKG_VERSION)/ \
