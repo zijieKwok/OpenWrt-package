@@ -24,6 +24,15 @@ index ed9770f070..1fea4ee29b 100644
  	+dns2socks +dns2tcp +ip-full +libuci-lua +lua +luci-compat +luci-lib-jsonc \
  	+microsocks +resolveip +tcping +unzip \
  	+PACKAGE_$(PKG_NAME)_INCLUDE_Brook:brook \
+@@ -55,7 +56,7 @@ LUCI_DEPENDS:=+coreutils +coreutils-base64 +coreutils-nohup +curl \
+ 	+PACKAGE_$(PKG_NAME)_INCLUDE_Trojan_Plus:trojan-plus \
+ 	+PACKAGE_$(PKG_NAME)_INCLUDE_V2ray:v2ray-core \
+ 	+PACKAGE_$(PKG_NAME)_INCLUDE_V2ray_Geodata:v2ray-geoip \
+-	+PACKAGE_$(PKG_NAME)_INCLUDE_V2ray_Geodata:v2ray-geosite \
++	+v2ray-geosite \
+ 	+PACKAGE_$(PKG_NAME)_INCLUDE_V2ray_Plugin:v2ray-plugin \
+ 	+PACKAGE_$(PKG_NAME)_INCLUDE_Xray:xray-core \
+ 	+PACKAGE_$(PKG_NAME)_INCLUDE_Xray_Plugin:xray-plugin
 @@ -95,7 +96,7 @@ config PACKAGE_$(PKG_NAME)_INCLUDE_Brook
  config PACKAGE_$(PKG_NAME)_INCLUDE_ChinaDNS_NG
  	bool "Include ChinaDNS-NG"
@@ -33,7 +42,7 @@ index ed9770f070..1fea4ee29b 100644
  
  config PACKAGE_$(PKG_NAME)_INCLUDE_Haproxy
  	bool "Include Haproxy"
-@@ -150,7 +151,7 @@ config PACKAGE_$(PKG_NAME)_INCLUDE_Trojan_Plus
+@@ -150,11 +151,11 @@ config PACKAGE_$(PKG_NAME)_INCLUDE_Trojan_Plus
  
  config PACKAGE_$(PKG_NAME)_INCLUDE_V2ray
  	bool "Include V2ray"
@@ -42,6 +51,11 @@ index ed9770f070..1fea4ee29b 100644
  
  config PACKAGE_$(PKG_NAME)_INCLUDE_V2ray_Geodata
  	bool "Include V2ray_Geodata"
+-	default n
++	default y if aarch64||i386||x86_64
+ 
+ config PACKAGE_$(PKG_NAME)_INCLUDE_V2ray_Plugin
+ 	bool "Include V2ray-Plugin (Shadowsocks Plugin)"
 @@ -162,7 +163,7 @@ config PACKAGE_$(PKG_NAME)_INCLUDE_V2ray_Plugin
  
  config PACKAGE_$(PKG_NAME)_INCLUDE_Xray
