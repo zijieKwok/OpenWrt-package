@@ -9,8 +9,7 @@
      +block-mount \
      +kmod-usb-storage \
      +kmod-usb-storage-extras \
-
-@@ -63,4 +63,3 @@ define Package/ntfs3-mount/install
+@@ -58,4 +60,3 @@ define Package/ntfs3-mount/install
  endef
  
  $(eval $(call BuildPackage,automount))
