@@ -231,12 +231,6 @@ jobs:
         net/ariang admin/netdata net/transmission-web-control net/rp-pppoe net/tailscale
         ) &
         (
-        git_sparse_clone master "https://github.com/openwrt/packages" "oppackages1" \
-        net/basicstation net/bpfcountd net/gsocket net/openappid net/telnet-bsd net/wifi-presence net/xfrpc
-        git_sparse_clone master "https://github.com/openwrt/luci" "opluci1" \
-        applications/luci-app-natmap
-        ) &
-        (
         git_sparse_clone openwrt-22.03 "https://github.com/openwrt/openwrt" "openwrt" \
         package/base-files package/network/config/firewall4 package/network/config/firewall package/system/opkg package/network/services/ppp \
         package/network/services/dnsmasq package/libs/openssl
