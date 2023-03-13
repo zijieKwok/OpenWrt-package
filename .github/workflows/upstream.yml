@@ -273,7 +273,7 @@ jobs:
         	fi
         done
 
-        git_sparse_clone master "https://github.com/coolsnowwolf/lede" "leanlede" package/lean package/network/services/shellsync
+        git_sparse_clone master "https://github.com/coolsnowwolf/lede" "leanlede" package/lean package/wwan package/network/services/shellsync
 
     - name: Delete duplicated packages
       run: |
@@ -281,6 +281,7 @@ jobs:
         mv -n luciapp/!(luci-app-noddos|luci-app-cshark|luci-app-dnscrypt-proxy|luci-app-https-dns-proxy|luci-app-ssr-mudb-server|luci-app-ledtrig-*) ./ ; rm -Rf luciapp
         mv -n lean/* ./ ; rm -Rf lean
         mv -n liep/* ./ ; rm -Rf liep
+        mv -n wwan/*/* ./; rm -rf wwan
         mv -n openwrt-app-actions/applications/* ./;rm -rf openwrt-app-actions
         rm -Rf */.git
         for pkg in $(ls -d .github/diy/packages/*); do
