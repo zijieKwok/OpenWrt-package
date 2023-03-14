@@ -193,7 +193,6 @@ jobs:
         git_clone https://github.com/CHN-beta/rkp-ipid
         git_clone https://github.com/Erope/openwrt_nezha nezha && mvdir nezha
         # git_clone https://github.com/wiwizcom/WiFiPortal && mvdir WiFiPortal
-        # git_clone https://github.com/lazywalker/mmdvm-openwrt && mvdir mmdvm-openwrt
         ) &
         (
         git_clone https://github.com/immortalwrt/homeproxy
@@ -215,6 +214,11 @@ jobs:
         git_clone https://github.com/sbwml/package_kernel_r8125 r8125
         git_clone https://github.com/derisamedia/luci-theme-alpha
         git_clone https://github.com/lazywalker/mmdvm-openwrt && mvdir mmdvm-openwrt
+        ) &
+        (
+        git_clone https://github.com/pexcn/openwrt-chinadns-ng chinadns-ng
+        git_clone https://github.com/izilzty/luci-app-chinadns-ng
+        git_clone https://github.com/pexcn/openwrt-dns2tcp dns2tcp
         ) &
         (
         svn export https://github.com/Ysurac/openmptcprouter-feeds/trunk/luci-app-iperf
