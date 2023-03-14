@@ -216,9 +216,9 @@ jobs:
         git_clone https://github.com/lazywalker/mmdvm-openwrt && mvdir mmdvm-openwrt
         ) &
         (
+        git_clone https://github.com/pexcn/openwrt-dns2tcp dns2tcp
         git_clone https://github.com/pexcn/openwrt-chinadns-ng chinadns-ng
         git_clone https://github.com/izilzty/luci-app-chinadns-ng
-        git_clone https://github.com/pexcn/openwrt-dns2tcp dns2tcp
         ) &
         (
         svn export https://github.com/Ysurac/openmptcprouter-feeds/trunk/luci-app-iperf
@@ -254,7 +254,7 @@ jobs:
         git_sparse_clone master "https://github.com/immortalwrt/packages" "immpkgs" net/mwol net/n2n \
         net/sub-web net/dnsproxy net/haproxy net/v2raya net/cdnspeedtest net/keepalived net/microsocks \
         net/subconverter net/ngrokc net/oscam net/njitclient net/scutclient net/gost net/gowebdav net/qBittorrent-Enhanced-Edition \
-        admin/bpytop libs/jpcre2 libs/wxbase libs/rapidjson libs/libcron libs/quickjspp libs/toml11 libs/libtorrent-rasterbar libs/libdouble-conversion libs/qt6base \
+        admin/btop libs/jpcre2 libs/wxbase libs/rapidjson libs/libcron libs/quickjspp libs/toml11 libs/libtorrent-rasterbar libs/libdouble-conversion libs/qt6base \
         utils/qt6tools utils/cpulimit utils/filebrowser utils/cups net/udp2raw net/msd_lite
         git_sparse_clone master "https://github.com/xiaoqingfengATGH/feeds-xiaoqingfeng" "xiaoqingfeng" homeredirect luci-app-homeredirect
         ) &
