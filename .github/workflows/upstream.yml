@@ -233,7 +233,7 @@ jobs:
         net/uugamebooster net/verysync net/vlmcsd net/dnsforwarder net/nps net/tcpping net/netatalk net/pgyvpn
         mv -f miniupnpd miniupnpd-iptables
         git_sparse_clone openwrt-22.03 "https://github.com/openwrt/packages" "oppackages" \
-        utils/cgroupfs-mount utils/coremark utils/watchcat utils/dockerd net/nginx net/uwsgi net/ddns-scripts net/smartdns \
+        utils/coremark utils/watchcat utils/dockerd net/nginx net/uwsgi net/ddns-scripts net/smartdns \
         net/ariang admin/netdata net/transmission-web-control net/rp-pppoe net/tailscale
         ) &
         (
