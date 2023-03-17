@@ -8,15 +8,13 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ps3netsrv
 PKG_VERSION:=20220813
-PKG_RELEASE:=17
+PKG_GIT_COMMIT:=c1e401e84665d8788e8cccb04f3c0106f0231602
+PKG_RELEASE:=18
 
-PKG_SOURCE_URL:=https://github.com/jhonathanc/ps3netsrv.git
-PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=c1e401e84665d8788e8cccb04f3c0106f0231602
-PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_GIT_COMMIT).tar.gz
+PKG_SOURCE_URL:=https://github.com/jhonathanc/ps3netsrv/releases/download/$(PKG_VERSION)
+PKG_HASH:=skip
 PKG_INSTALL:=1
-
-PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 
 PKG_MAINTAINER:=JCorrea
 PKG_LICENSE:=GPLv3
@@ -38,9 +36,8 @@ ps3netsrv allows you to stream games and ISOs over the network to your CFW PlayS
 This may be useful if you have a modified PS3, and your router has storage options.
 endef
 
-define Build/Prepare
-  mkdir -p $(PKG_BUILD_DIR)
-  $(CP) ./src/* $(PKG_BUILD_DIR)/
+define Build/Install
+	# Do nothing
 endef
 
 define Package/ps3netsrv/install
