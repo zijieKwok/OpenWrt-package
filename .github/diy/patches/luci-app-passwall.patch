@@ -308,7 +308,7 @@ index cc39c00a21..079c9723b3 100755
  	option when_chnroute_default_dns 'direct'
  	option tcp_proxy_mode 'chnroute'
  	option udp_proxy_mode 'chnroute'
-@@ -45,7 +46,7 @@ config global_other
+@@ -45,12 +46,12 @@ config global_other
  	option nodes_ping 'auto_ping tcping'
  
  config global_rules
@@ -317,6 +317,12 @@ index cc39c00a21..079c9723b3 100755
  	option chnlist_update '1'
  	option chnroute_update '1'
  	option chnroute6_update '1'
+ 	option gfwlist_update '1'
+-	option geosite_update '0'
++	option geosite_update '1'
+ 	option geoip_update '0'
+ 	list gfwlist_url 'https://fastly.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/gfw.txt'
+ 	list chnroute_url 'https://ispip.clang.cn/all_cn.txt'
 @@ -77,7 +78,8 @@ config global_subscribe
  	list filter_discard_list '官网'
  
