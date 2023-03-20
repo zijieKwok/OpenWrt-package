@@ -103,8 +103,8 @@ jobs:
         git_clone https://github.com/kiddin9/openwrt-cloudreve && mvdir openwrt-cloudreve
         ) &
         (
-        git_clone https://github.com/xiaorouji/openwrt-passwall && mvdir openwrt-passwall
         git_clone https://github.com/pexcn/openwrt-chinadns-ng chinadns-ng
+        git_clone https://github.com/xiaorouji/openwrt-passwall && mvdir openwrt-passwall
         git_clone https://github.com/fw876/helloworld && mvdir helloworld
         git_clone https://github.com/Lienol/openwrt-package liep
         git clone https://github.com/AutoCONFIG/minieap-openwrt -b default
