@@ -213,7 +213,7 @@ jobs:
         git clone https://github.com/gngpp/luci-theme-design -b js --depth 1
         git_clone https://github.com/sbwml/package_kernel_r8125 r8125
         git_clone https://github.com/derisamedia/luci-theme-alpha
-        git_clone https://github.com/lazywalker/mmdvm-openwrt && mvdir mmdvm-openwrt
+        git_clone https://github.com/lazywalker/mmdvm-openwrt; rm -rf mmdvm-openwrt/misc; mvdir mmdvm-openwrt
         ) &
         (
         git_clone https://github.com/pexcn/openwrt-dns2tcp dns2tcp
