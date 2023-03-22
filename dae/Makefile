@@ -5,13 +5,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=dae
-PKG_VERSION:=0.1.1
-PKG_RELEASE:=5
+PKG_VERSION:=0.1.2
+PKG_RELEASE:=6
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/daeuniverse/dae.git
 PKG_SOURCE_DATE:=2023-03-17
-PKG_SOURCE_VERSION:=e060c95091d3e001859b9468a82956d0db8b6e8d
+PKG_SOURCE_VERSION:=7adbb2fbb9b7c215fe10a1d703fff18b6c880e41
 PKG_MIRROR_HASH:=skip
 
 PKG_LICENSE:=AGPL-3.0-only
@@ -70,7 +70,7 @@ define Build/Compile
 		$(GO_PKG_BUILD_CONFIG_VARS) \
 		$(GO_PKG_BUILD_VARS) \
 		BPF_CLANG="$(CLANG)" \
-		BPF_STRIP="$(LLVM_STRIP)" \
+		BPF_STRIP_FLAG="-strip=$(LLVM_STRIP)" \
 		BPF_CFLAGS="$(DAE_CFLAGS)" \
 		BPF_TARGET="bpfel,bpfeb" \
 		go generate $(PKG_BUILD_DIR)/control/control.go ; \
