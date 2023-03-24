@@ -5,14 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=dae
-PKG_VERSION:=0.1.2
-PKG_RELEASE:=8
+PKG_VERSION:=0.1.3
+PKG_RELEASE:=9
 
-PKG_SOURCE_PROTO:=git
-PKG_SOURCE_URL:=https://github.com/daeuniverse/dae.git
-PKG_SOURCE_DATE:=2023-03-17
-PKG_SOURCE_VERSION:=a3bf4e1ebd4046d1b0c6d9d8bd4eaea2e3ed33d3
-PKG_MIRROR_HASH:=skip
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).zip
+PKG_SOURCE_URL:=https://github.com/daeuniverse/dae/releases/download/v$(PKG_VERSION)/dae-full-src.zip?
+PKG_HASH:=skip
 
 PKG_LICENSE:=AGPL-3.0-only
 PKG_LICENSE_FILE:=LICENSE
@@ -30,6 +28,8 @@ GO_PKG_LDFLAGS_X:= \
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/bpf.mk
 include $(TOPDIR)/feeds/packages/lang/golang/golang-package.mk
+
+UNZIP_CMD:=unzip -q -d $(PKG_BUILD_DIR) $(DL_DIR)/$(PKG_SOURCE)
 
 define Package/dae
   SECTION:=net
@@ -79,10 +79,7 @@ define Build/Compile
 endef
 
 define Package/dae/install
-	$(call GoPackage/Package/Install/Bin,$(PKG_INSTALL_DIR))
-
-	$(INSTALL_DIR) $(1)/usr/bin/
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/dae $(1)/usr/bin/
+	$(call GoPackage/Package/Install/Bin,$(1))
 
 	$(INSTALL_DIR) $(1)/etc/dae/
 	$(INSTALL_CONF) $(PKG_BUILD_DIR)/example.dae $(1)/etc/dae/config.dae
