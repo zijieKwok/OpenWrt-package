@@ -47,7 +47,8 @@ define Package/dockerd
     +kmod-veth \
     +libnetwork \
     +tini \
-    +uci-firewall
+    +uci-firewall \
+    +fuse-overlayfs
   USERID:=docker:docker
   MENU:=1
 endef
