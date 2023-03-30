@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=dockerd
 PKG_VERSION:=20.10.22
-PKG_RELEASE:=10
+PKG_RELEASE:=12
 PKG_LICENSE:=Apache-2.0
 PKG_LICENSE_FILES:=LICENSE
 
@@ -48,7 +48,7 @@ define Package/dockerd
     +libnetwork \
     +tini \
     +uci-firewall \
-    +fuse-overlayfs
+    +fuse-overlayfs +cgroupfs-mount
   USERID:=docker:docker
   MENU:=1
 endef

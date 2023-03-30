@@ -6,7 +6,7 @@ LUCI_DEPENDS:=@(aarch64||arm||x86_64) \
 	+luci-lib-docker \
 	+luci-lib-ip \
 	+docker \
-	+dockerd +cgroupfs-mount +fuse-overlayfs \
+	+dockerd \
 	+ttyd
 LUCI_PKGARCH:=all
 
@@ -15,7 +15,7 @@ PKG_MAINTAINER:=lisaac <lisaac.cn@gmail.com> \
 		Florian Eckert <fe@dev.tdt.de>
 
 PKG_VERSION:=v0.5.25
-PKG_RELEASE:=135
+PKG_RELEASE:=136
 
 include $(TOPDIR)/feeds/luci/luci.mk
 
