@@ -252,3 +252,16 @@
 +	+libcap +libcap-bin +ruby +ruby-yaml +kmod-tun +unzip +libcap-bin +iptables-mod-extra +kmod-inet-diag +kmod-ipt-nat +iptables-mod-tproxy +iptables-mod-extra
  	MAINTAINER:=vernesong
  endef
+
+--- a/dockerd/Makefile
++++ b/dockerd/Makefile
+@@ -47,7 +47,8 @@ define Package/dockerd
+     +kmod-veth \
+     +libnetwork \
+     +tini \
+-    +uci-firewall
++    +uci-firewall \
++    +fuse-overlayfs +cgroupfs-mount
+   USERID:=docker:docker
+   MENU:=1
+ endef
