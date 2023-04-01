@@ -266,7 +266,7 @@ jobs:
         git_sparse_clone master "https://github.com/immortalwrt/immortalwrt" "immortal" package/kernel/rtl88x2bu \
         package/kernel/r8168 package/kernel/rtl8821cu package/kernel/rtl8189es package/emortal/autocore package/emortal/automount \
         package/network/utils/fullconenat package/network/utils/fullconenat-nft \
-        package/network/utils/nftables package/utils/mhz package/libs/mbedtls package/libs/libnftnl package/firmware/wireless-regdb
+        package/network/utils/nftables package/utils/mhz package/libs/libnftnl package/firmware/wireless-regdb
         ) &
 
         git_sparse_clone master "https://github.com/coolsnowwolf/luci" "leluci" applications libs/luci-lib-fs
