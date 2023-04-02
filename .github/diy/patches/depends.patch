@@ -249,9 +249,10 @@
  	PKGARCH:=all
  	DEPENDS:=+dnsmasq-full +coreutils +coreutils-nohup +bash +curl +ca-certificates +ipset +ip-full \
 -	+libcap +libcap-bin +ruby +ruby-yaml +kmod-tun +unzip
-+	+libcap +libcap-bin +ruby +ruby-yaml +kmod-tun +unzip +libcap-bin +iptables-mod-extra +kmod-inet-diag +kmod-ipt-nat +iptables-mod-tproxy +iptables-mod-extra
++	+libcap +libcap-bin +ruby +ruby-yaml +kmod-tun +unzip +kmod-inet-diag +kmod-ipt-nat +iptables-mod-tproxy +iptables-mod-extra
  	MAINTAINER:=vernesong
  endef
+ 
 
 --- a/dockerd/Makefile
 +++ b/dockerd/Makefile
