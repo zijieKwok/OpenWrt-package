@@ -26,17 +26,7 @@
  				'click': handleInstall
  			}, _('Upgrade…'));
  		}
-@@ -276,6 +277,9 @@ function display(pattern)
- 			}, _('Remove…'));
- 		}
- 		else {
-+			if (pkg.name.includes('luci-i18n'))
-+			   continue;
-+
- 			var inst = packages.installed.pkgs[name];
- 
- 			ver = truncateVersion(pkg.version || '-');
-@@ -284,12 +288,14 @@ function display(pattern)
+@@ -284,12 +285,14 @@ function display(pattern)
  				btn = E('div', {
  					'class': 'btn cbi-button-action',
  					'data-package': name,
@@ -52,7 +42,7 @@
  					'click': handleInstall
  				}, _('Upgrade…'));
  			else
-@@ -392,6 +398,12 @@ function handleMode(ev)
+@@ -392,6 +395,12 @@ function handleMode(ev)
  
  	currentDisplayMode = tab.getAttribute('data-mode');
  
@@ -65,7 +55,7 @@
  	display(document.querySelector('input[name="filter"]').value);
  
  	ev.target.blur();
-@@ -660,6 +672,7 @@ function handleReset(ev)
+@@ -660,6 +669,7 @@ function handleReset(ev)
  function handleInstall(ev)
  {
  	var name = ev.target.getAttribute('data-package'),
@@ -73,7 +63,7 @@
  	    pkg = packages.available.pkgs[name],
  	    depcache = {},
  	    size;
-@@ -785,7 +798,8 @@ function handleInstall(ev)
+@@ -785,7 +795,8 @@ function handleInstall(ev)
  						'id': 'overwrite-cb',
  						'type': 'checkbox',
  						'name': 'overwrite',
@@ -83,7 +73,7 @@
  					}), ' ',
  					E('label', { 'for': 'overwrite-cb' }), ' ',
  					_('Allow overwriting conflicting package files')
-@@ -799,7 +813,7 @@ function handleInstall(ev)
+@@ -799,7 +810,7 @@ function handleInstall(ev)
  			}, _('Cancel')),
  			' ',
  			E('div', {
@@ -92,7 +82,7 @@
  				'data-package': name,
  				'class': 'btn cbi-button-action',
  				'click': handleOpkg,
-@@ -985,6 +999,10 @@ function handleOpkg(ev)
+@@ -985,6 +996,10 @@ function handleOpkg(ev)
  
  		var argv = [ cmd, '--force-removal-of-dependent-packages' ];
  
@@ -103,7 +93,7 @@
  		if (rem && rem.checked)
  			argv.push('--autoremove');
  
-@@ -1090,8 +1108,8 @@ function updateLists(data)
+@@ -1090,8 +1105,8 @@ function updateLists(data)
  		    mount = L.toArray(data[0].filter(function(m) { return m.mount == '/' || m.mount == '/overlay' }))
  		    	.sort(function(a, b) { return a.mount > b.mount })[0] || { size: 0, free: 0 };
  
@@ -114,7 +104,7 @@
  
  		parseList(data[1], packages.available);
  		parseList(data[2], packages.installed);
-@@ -1130,14 +1148,14 @@ return view.extend({
+@@ -1130,14 +1145,14 @@ return view.extend({
  
  			E('div', { 'class': 'controls' }, [
  				E('div', {}, [
@@ -131,7 +121,7 @@
  						E('button', { 'class': 'btn cbi-button', 'click': handleReset }, [ _('Clear') ])
  					])
  				]),
-@@ -1154,6 +1172,7 @@ return view.extend({
+@@ -1154,6 +1169,7 @@ return view.extend({
  					E('label', {}, _('Actions') + ':'), ' ',
  					E('span', { 'class': 'control-group' }, [
  						E('button', { 'class': 'btn cbi-button-positive', 'data-command': 'update', 'click': handleOpkg, 'disabled': isReadonlyView }, [ _('Update lists…') ]), ' ',
