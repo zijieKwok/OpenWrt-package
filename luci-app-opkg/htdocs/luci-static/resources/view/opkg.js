@@ -277,9 +277,6 @@ function display(pattern)
 			}, _('Remove…'));
 		}
 		else {
-			if (pkg.name.includes('luci-i18n'))
-			   continue;
-
 			var inst = packages.installed.pkgs[name];
 
 			ver = truncateVersion(pkg.version || '-');
