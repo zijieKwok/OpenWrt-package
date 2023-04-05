@@ -1,4 +1,4 @@
-# Copyright (C) 2019  sirpdboy <https://github.com/sirpdboy/luci-app-advanced/> 
+# Copyright (C) 2019  sirpdboy <https://github.com/sirpdboy/luci-app-advanced/>
 # 
 #
 #
@@ -10,7 +10,7 @@ include $(INCLUDE_DIR)/package.mk
 
 PKG_NAME:=luci-app-advanced
 PKG_VERSION:=1.20
-PKG_RELEASE:=17
+PKG_RELEASE:=19
 define Package/$(PKG_NAME)
   SECTION:=luci
   CATEGORY:=LuCI
