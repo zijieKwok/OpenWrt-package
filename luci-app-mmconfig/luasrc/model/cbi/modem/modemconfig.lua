@@ -56,7 +56,7 @@ m = Map("modemconfig", translate("Configure modem bands"),
 s = m:section(TypedSection, "modem", "<p>&nbsp;</p>" .. translate("Choose bands cellular modem"))
 s.anonymous = true
 
-dev = s:option(ListValue, "device", translate("Device"), translate("Select device"))
+dev = s:option(ListValue, "device", translate("Modem"), translate("Select modem"))
 if mm ~= nil then
 	for dev in t:lines() do
 		table.insert(mm, m)
@@ -67,8 +67,11 @@ if mm ~= nil then
 		if type(g) ~= "table" then
 			n = io.popen("mmcli -J -m "..g.." | jsonfilter -e '@[\"modem\"].*[\"model\"]'", "r")
 			local model = n:read("*l")
-			dev:value(g,model)
 			n:close()
+			x = io.popen("mmcli -J -m "..g.." | jsonfilter -e '@[\"modem\"].*[\"device\"]'", "r")
+			local bus = x:read("*l")
+			x:close()
+			dev:value(bus,model)
 		end
 	end
 end
