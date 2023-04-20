@@ -24,7 +24,6 @@ function index()
 end
 
 function networkguide_index()
-	entry({"admin", "nas"}, firstchild(), _("NAS") , 45).dependent = false
     luci.http.redirect(luci.dispatcher.build_url("admin", "network_guide", "pages", "network"))
 end
 
