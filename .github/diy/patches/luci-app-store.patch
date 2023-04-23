@@ -1,5 +1,5 @@
---- a/luci/luci-app-store/luasrc/controller/store.lua
-+++ b/luci/luci-app-store/luasrc/controller/store.lua
+--- a/luci-app-store/luasrc/controller/store.lua
++++ b/luci-app-store/luasrc/controller/store.lua
 @@ -2,7 +2,7 @@ module("luci.controller.store", package.seeall)
  
  local myopkg = "is-opkg"
