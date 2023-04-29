@@ -10,10 +10,10 @@ LUCI_DEPENDS:=+iputils-arping +curl +jq
 
 define Package/$(PKG_NAME)/conffiles
 /etc/config/serverchan
-/usr/bin/serverchan/api/diy.json
-/usr/bin/serverchan/api/logo.jpg
-/usr/bin/serverchan/api/ipv4.list
-/usr/bin/serverchan/api/ipv6.list
+/usr/share/serverchan/api/diy.json
+/usr/share/serverchan/api/logo.jpg
+/usr/share/serverchan/api/ipv4.list
+/usr/share/serverchan/api/ipv6.list
 endef
 
 include $(TOPDIR)/feeds/luci/luci.mk
