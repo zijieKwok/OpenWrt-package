@@ -244,7 +244,7 @@ jobs:
         applications/luci-app-ksmbd applications/luci-app-samba4 applications/luci-app-watchcat applications/luci-app-upnp
         ) &
         (
-        git_sparse_clone2 ce20b4a6e0c86313c0c6e9c89eedf8f033f5e637 "https://github.com/openwrt/luci" "opluci2" \
+        git_sparse_clone2 0b38d70fbd47b0c702d5001de623213eb301a6fe "https://github.com/openwrt/luci" "opluci2" \
         modules/luci-base modules/luci-mod-network \
         modules/luci-mod-status modules/luci-mod-system
         git_sparse_clone master "https://github.com/xiaoqingfengATGH/feeds-xiaoqingfeng" "xiaoqingfeng" homeredirect luci-app-homeredirect
