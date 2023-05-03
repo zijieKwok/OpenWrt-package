@@ -22,7 +22,7 @@ index ae6c171..02b8587 100644
  DESTDIR = /usr/local/bin
  
 -EVCFLAGS = -w -O2
-+EVCFLAGS = -w -O3
++EVCFLAGS = -O3 -fno-strict-aliasing
  EVSRCFILE = libev/ev.c
  EVOBJFILE = ev.o
  
