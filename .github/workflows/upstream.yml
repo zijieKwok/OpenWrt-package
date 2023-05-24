@@ -223,6 +223,7 @@ jobs:
         svn export https://github.com/Ysurac/openmptcprouter-feeds/trunk/luci-app-iperf
         svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/luci-app-irqbalance
         svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-control-speedlimit
+        svn export https://github.com/openwrt/packages/branches/openwrt-22.03/net/nginx
         #svn export https://github.com/xiaoxifu64/immortalwrt/trunk/package/rooter/ext-rooter-basic
         ) &
         (
@@ -232,7 +233,7 @@ jobs:
         net/uugamebooster net/verysync net/vlmcsd net/dnsforwarder net/nps net/tcpping net/netatalk net/pgyvpn
         mv -f miniupnpd miniupnpd-iptables
         git_sparse_clone openwrt-23.05 "https://github.com/openwrt/packages" "oppackages" \
-        utils/coremark utils/watchcat utils/dockerd net/nginx net/uwsgi net/ddns-scripts net/smartdns net/curl \
+        utils/coremark utils/watchcat utils/dockerd net/uwsgi net/ddns-scripts net/smartdns net/curl \
         net/ariang admin/netdata net/transmission-web-control net/rp-pppoe net/tailscale
         ) &
         (
