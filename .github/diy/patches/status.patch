@@ -1,15 +1,3 @@
---- a/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json
-+++ b/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json
-@@ -3,7 +3,7 @@
- 		"description": "Grant access to system configuration",
- 		"read": {
- 			"ubus": {
--				"luci": [ "getInitList", "getLEDs", "getTimezones", "getUSBDevices" ],
-+				"luci": [ "getInitList", "getLEDs", "getTimezones", "getUSBDevices", "getCPUInfo", "getETHInfo", "getTempInfo", "getCPUBench", "getCPUUsage", "getOnlineUsers" ],
- 				"system": [ "info" ]
- 			},
- 			"uci": [ "luci", "system" ]
-
 --- a/luci-mod-status/htdocs/luci-static/resources/view/status/include/20_memory.js
 +++ b/luci-mod-status/htdocs/luci-static/resources/view/status/include/20_memory.js
 @@ -32,8 +32,7 @@ return baseclass.extend({
@@ -46,17 +34,17 @@
  					'class': 'btn cbi-button',
  					'click': function() { location.href = 'nftables/iptables' }
 
---- a/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json
-+++ b/luci-mod-system/root/usr/share/rpcd/acl.d/luci-mod-system.json
+--- a/luci-mod-status/root/usr/share/rpcd/acl.d/luci-mod-status.json
++++ b/luci-mod-status/root/usr/share/rpcd/acl.d/luci-mod-status.json
 @@ -3,7 +3,7 @@
- 		"description": "Grant access to system configuration",
+ 		"description": "Grant access to realtime statistics",
  		"read": {
  			"ubus": {
--				"luci": [ "getInitList", "getLEDs", "getTimezones", "getUSBDevices" ],
-+				"luci": [ "getInitList", "getLEDs", "getTimezones", "getUSBDevices", "getCPUInfo", "getETHInfo", "getTempInfo", "getCPUBench", "getCPUUsage", "getOnlineUsers" ],
- 				"system": [ "info" ]
- 			},
- 			"uci": [ "luci", "system" ]
+-				"luci": [ "getConntrackList", "getRealtimeStats" ],
++				"luci": [ "getConntrackList", "getRealtimeStats", "getCPUBench", "getCPUUsage", "getOnlineUsers" ],
+ 				"network.rrdns": [ "lookup" ]
+ 			}
+ 		}
 
 --- a/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
 +++ b/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
