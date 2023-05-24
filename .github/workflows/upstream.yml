@@ -231,23 +231,19 @@ jobs:
         net/qBittorrent-static net/transmission net/phtunnel \
         net/uugamebooster net/verysync net/vlmcsd net/dnsforwarder net/nps net/tcpping net/netatalk net/pgyvpn
         mv -f miniupnpd miniupnpd-iptables
-        git_sparse_clone openwrt-22.03 "https://github.com/openwrt/packages" "oppackages" \
+        git_sparse_clone openwrt-22.05 "https://github.com/openwrt/packages" "oppackages" \
         utils/coremark utils/watchcat utils/dockerd net/nginx net/uwsgi net/ddns-scripts net/smartdns net/curl \
         net/ariang admin/netdata net/transmission-web-control net/rp-pppoe net/tailscale
         ) &
         (
-        git_sparse_clone openwrt-22.03 "https://github.com/openwrt/openwrt" "openwrt" \
+        git_sparse_clone openwrt-22.05 "https://github.com/openwrt/openwrt" "openwrt" \
         package/base-files package/network/config/firewall4 package/network/config/firewall package/system/opkg package/network/services/ppp \
         package/network/services/dnsmasq package/libs/openssl
-        git_sparse_clone openwrt-22.03 "https://github.com/openwrt/luci" "opluci" applications/luci-app-attendedsysupgrade applications/luci-app-aria2 \
+        git_sparse_clone openwrt-22.05 "https://github.com/openwrt/luci" "opluci" applications/luci-app-attendedsysupgrade applications/luci-app-aria2 \
         applications/luci-app-ddns applications/luci-app-acme applications/luci-app-opkg applications/luci-app-firewall \
-        applications/luci-app-ksmbd applications/luci-app-samba4 applications/luci-app-watchcat applications/luci-app-upnp
-        ) &
-        (
-        git_sparse_clone2 0b38d70fbd47b0c702d5001de623213eb301a6fe "https://github.com/openwrt/luci" "opluci2" \
+        applications/luci-app-ksmbd applications/luci-app-samba4 applications/luci-app-watchcat applications/luci-app-upnp \
         modules/luci-base modules/luci-mod-network \
         modules/luci-mod-status modules/luci-mod-system
-        git_sparse_clone master "https://github.com/xiaoqingfengATGH/feeds-xiaoqingfeng" "xiaoqingfeng" homeredirect luci-app-homeredirect
         ) &
 
         (
@@ -263,6 +259,7 @@ jobs:
         (
         git_sparse_clone develop "https://github.com/Ysurac/openmptcprouter-feeds" "openmptcp" luci-app-snmpd \
         luci-app-packet-capture luci-app-mail msmtp
+        git_sparse_clone master "https://github.com/xiaoqingfengATGH/feeds-xiaoqingfeng" "xiaoqingfeng" homeredirect luci-app-homeredirect
         git_sparse_clone master "https://github.com/immortalwrt/immortalwrt" "immortal" package/kernel/rtl88x2bu \
         package/kernel/r8168 package/kernel/rtl8821cu package/kernel/rtl8189es package/emortal/autocore package/emortal/automount \
         package/network/utils/fullconenat package/network/utils/fullconenat-nft \
