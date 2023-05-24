@@ -22,11 +22,10 @@
  
  	if [ "$mode" -gt 0 ] ; then
  		ifdashname="${ifname//./-}"
-@@ -931,6 +946,8 @@ dnsmasq_start()
+@@ -931,6 +946,7 @@ dnsmasq_start()
  	append_bool "$cfg" noping "--no-ping"
  	append_bool "$cfg" rapidcommit "--dhcp-rapid-commit"
  	append_bool "$cfg" scriptarp "--script-arp"
-+	append_bool "$cfg" filter_aaaa "--filter-aaaa"
 +	append_parm "$cfg" mini_ttl "--min-ttl"
  
  	append_parm "$cfg" logfacility "--log-facility"
