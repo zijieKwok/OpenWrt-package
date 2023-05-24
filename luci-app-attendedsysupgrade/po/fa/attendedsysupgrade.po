@@ -271,3 +271,6 @@ msgstr "اشتباه در checksum"
 #: applications/luci-app-attendedsysupgrade/htdocs/luci-static/resources/view/attendedsysupgrade/overview.js:366
 msgid "[installed] %s"
 msgstr "نصب شده %s"
+
+#~ msgid "attended sysupgrade via rpcd and luci"
+#~ msgstr "در sysupgrade از طریق rpcd و luci ثبت شد"

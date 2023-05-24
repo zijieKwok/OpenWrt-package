@@ -251,8 +251,8 @@ msgstr "На пристрої встановлена остання версія
 msgid ""
 "This is done by building a new firmware on demand via an online service."
 msgstr ""
-"Це відбувається шляхом створення нової прошивки за запитом через онлайн-"
-"сервіс."
+"Це відбувається шляхом створення нової прошивки за запитом через "
+"онлайн-сервіс."
 
 #: applications/luci-app-attendedsysupgrade/htdocs/luci-static/resources/view/attendedsysupgrade/overview.js:253
 msgid "Uploading firmware from browser to device"
@@ -273,3 +273,9 @@ msgstr "Неправильна контрольна сума"
 #: applications/luci-app-attendedsysupgrade/htdocs/luci-static/resources/view/attendedsysupgrade/overview.js:366
 msgid "[installed] %s"
 msgstr "[встановлено] %s"
+
+#~ msgid "Building the sysupgrade image"
+#~ msgstr "Створення іміджу оновлення"
+
+#~ msgid "attended sysupgrade via rpcd and luci"
+#~ msgstr "виконайте sysupgrade через rpcd та luci"

@@ -86,8 +86,7 @@ msgstr "Nastavení"
 
 #: applications/luci-app-attendedsysupgrade/htdocs/luci-static/resources/view/attendedsysupgrade/overview.js:306
 msgid "Could not reach API at \"%s\". Please try again later."
-msgstr ""
-"Nepodařilo se připojit k API na \"%s\". Prosím zkuste to znovu později."
+msgstr "Nepodařilo se připojit k API na \"%s\". Prosím zkuste to znovu později."
 
 #: applications/luci-app-attendedsysupgrade/htdocs/luci-static/resources/view/attendedsysupgrade/overview.js:381
 #: applications/luci-app-attendedsysupgrade/htdocs/luci-static/resources/view/attendedsysupgrade/overview.js:440

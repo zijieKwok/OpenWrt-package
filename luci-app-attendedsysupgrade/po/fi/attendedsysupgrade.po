@@ -267,3 +267,6 @@ msgstr "Väärä tarkistussumma"
 #: applications/luci-app-attendedsysupgrade/htdocs/luci-static/resources/view/attendedsysupgrade/overview.js:366
 msgid "[installed] %s"
 msgstr ""
+
+#~ msgid "attended sysupgrade via rpcd and luci"
+#~ msgstr "järjestelmän valvottu päivitys rcpd:n ja luci:n kautta"

@@ -267,3 +267,6 @@ msgstr ""
 #: applications/luci-app-attendedsysupgrade/htdocs/luci-static/resources/view/attendedsysupgrade/overview.js:366
 msgid "[installed] %s"
 msgstr ""
+
+#~ msgid "attended sysupgrade via rpcd and luci"
+#~ msgstr "rpcd व luci मार्गे sysupgrade ला हजेरी लावली"

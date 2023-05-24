@@ -267,3 +267,7 @@ msgstr ""
 #: applications/luci-app-attendedsysupgrade/htdocs/luci-static/resources/view/attendedsysupgrade/overview.js:366
 msgid "[installed] %s"
 msgstr ""
+
+#, fuzzy
+#~ msgid "attended sysupgrade via rpcd and luci"
+#~ msgstr "bivånet systemoppgraderingn via rpcd og LuCI"

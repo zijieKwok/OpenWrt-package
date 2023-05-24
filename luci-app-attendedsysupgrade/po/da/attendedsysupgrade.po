@@ -270,3 +270,30 @@ msgstr "Forkert kontrolsum"
 #: applications/luci-app-attendedsysupgrade/htdocs/luci-static/resources/view/attendedsysupgrade/overview.js:366
 msgid "[installed] %s"
 msgstr "[installeret] %s"
+
+#~ msgid "Building firmware sysupgrade image"
+#~ msgstr "Opbygning af firmware sysupgrade image"
+
+#~ msgid "Error building the sysupgrade"
+#~ msgstr "Fejl ved opbygning af sysupgrade"
+
+#~ msgid "File"
+#~ msgstr "Fil"
+
+#~ msgid "Install Sysupgrade"
+#~ msgstr "Installer Sysupgrade"
+
+#~ msgid "New upgrade available"
+#~ msgstr "Ny opgradering tilgængelig"
+
+#~ msgid "Request Sysupgrade"
+#~ msgstr "Anmodning om opgradering af systemet"
+
+#~ msgid "Request to server:"
+#~ msgstr "Anmodning til serveren:"
+
+#~ msgid "Search for sysupgrade"
+#~ msgstr "Søg efter sysupgrade"
+
+#~ msgid "Successfully created sysupgrade image"
+#~ msgstr "Det lykkedes at oprette et sysupgrade image"
