@@ -225,13 +225,15 @@
 
 --- a/luci-app-upnp/Makefile
 +++ b/luci-app-upnp/Makefile
-@@ -7,7 +7,6 @@
+@@ -7,7 +7,7 @@
  include $(TOPDIR)/rules.mk
  
  LUCI_TITLE:=Universal Plug & Play configuration module
--LUCI_DEPENDS:=+miniupnpd
+-LUCI_DEPENDS:=+miniupnpd +rpcd-mod-ucode
++LUCI_DEPENDS:=+rpcd-mod-ucode
  
- include $(TOPDIR)/feeds/luci/luci.mk
+ include ../../luci.mk
+ 
 
 --- a/luci-app-openclash/Makefile
 +++ b/luci-app-openclash/Makefile
@@ -247,13 +249,11 @@
 
 --- a/dockerd/Makefile
 +++ b/dockerd/Makefile
-@@ -47,7 +47,8 @@ define Package/dockerd
+@@ -47,6 +47,7 @@ define Package/dockerd
      +kmod-veth \
-     +libnetwork \
      +tini \
--    +uci-firewall
-+    +uci-firewall \
-+    +fuse-overlayfs +cgroupfs-mount
+     +uci-firewall \
++    +fuse-overlayfs +cgroupfs-mount \
+     @!(mips||mipsel)
    USERID:=docker:docker
    MENU:=1
- endef
