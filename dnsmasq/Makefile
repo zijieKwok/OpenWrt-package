@@ -113,9 +113,6 @@ define Package/dnsmasq-full/config
 	config PACKAGE_dnsmasq_full_ipset
 		bool "Build with IPset support."
 		default n
-	config PACKAGE_dnsmasq_full_nftset
-		bool "Build with Nftset support."
-		default n
 	config PACKAGE_dnsmasq_full_conntrack
 		bool "Build with Conntrack support."
 		default y
