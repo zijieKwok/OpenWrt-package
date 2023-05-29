@@ -1,15 +1,3 @@
---- a/dnsmasq/Makefile
-+++ b/dnsmasq/Makefile
-@@ -115,7 +115,7 @@ define Package/dnsmasq-full/config
- 		default n
- 	config PACKAGE_dnsmasq_full_nftset
- 		bool "Build with Nftset support."
--		default y
-+		default n
- 	config PACKAGE_dnsmasq_full_conntrack
- 		bool "Build with Conntrack support."
- 		default y
-
 --- a/dnsmasq/files/dnsmasq.init
 +++ b/dnsmasq/files/dnsmasq.init
 @@ -411,6 +411,21 @@ dhcp_this_host_add() {
