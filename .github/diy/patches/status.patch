@@ -76,8 +76,8 @@
 -		    luciversion = data[2];
 +		    cpubench    = data[2],
 +		    cpuinfo     = data[3],
-+		    tempinfo    = data[5],
-+		    luciversion = data[6];
++		    tempinfo    = data[4],
++		    luciversion = data[5];
  
  		luciversion = luciversion.branch + ' ' + luciversion.revision;
  
