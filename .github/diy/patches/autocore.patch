@@ -34,7 +34,7 @@
  				br2684ctl:  access('/usr/sbin/br2684ctl') == true,
  				swconfig:   access('/sbin/swconfig') == true,
  				odhcpd:     access('/usr/sbin/odhcpd') == true,
-@@ -538,6 +540,105 @@ const methods = {
+@@ -538,6 +540,96 @@ const methods = {
  		call: function() {
  			return { result: process_list() };
  		}
@@ -54,8 +54,6 @@
 +			const fd = popen('/sbin/cpuinfo');
 +			if (fd) {
 +				let cpuinfo = fd.read('all');
-+				if (!cpuinfo)
-+					cpuinfo = '?';
 +				fd.close();
 +
 +				return { cpuinfo: cpuinfo };
@@ -70,8 +68,6 @@
 +			const fd = popen('top -n1 | awk \'/^CPU/ {printf("%d%", 100 - $8)}\'');
 +			if (fd) {
 +				let cpuusage = fd.read('all');
-+				if (!cpuusage)
-+					cpuusage = '?';
 +				fd.close();
 +
 +				return { cpuusage: cpuusage };
@@ -109,8 +105,6 @@
 +			const fd = popen('/sbin/tempinfo');
 +			if (fd) {
 +				let tempinfo = fd.read('all');
-+				if (!tempinfo)
-+					tempinfo = '?';
 +				fd.close();
 +
 +				return { tempinfo: tempinfo };
