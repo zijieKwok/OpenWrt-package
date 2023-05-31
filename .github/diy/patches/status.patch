@@ -37,7 +37,7 @@
 
 --- a/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
 +++ b/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
-@@ -18,6 +18,26 @@ var callSystemInfo = rpc.declare({
+@@ -18,6 +18,21 @@ var callSystemInfo = rpc.declare({
  	method: 'info'
  });
  
@@ -51,11 +51,6 @@
 +	method: 'getCPUInfo'
 +});
 +
-+var callCPUUsage = rpc.declare({
-+	object: 'luci',
-+	method: 'getCPUUsage'
-+});
-+
 +var callTempInfo = rpc.declare({
 +	object: 'luci',
 +	method: 'getTempInfo'
@@ -64,25 +59,23 @@
  return baseclass.extend({
  	title: _('System'),
  
-@@ -25,6 +45,10 @@ return baseclass.extend({
+@@ -25,6 +45,9 @@ return baseclass.extend({
  		return Promise.all([
  			L.resolveDefault(callSystemBoard(), {}),
  			L.resolveDefault(callSystemInfo(), {}),
 +			L.resolveDefault(callCPUBench(), {}),
 +			L.resolveDefault(callCPUInfo(), {}),
-+			L.resolveDefault(callCPUUsage(), {}),
 +			L.resolveDefault(callTempInfo(), {}),
  			L.resolveDefault(callLuciVersion(), { revision: _('unknown version'), branch: 'LuCI' })
  		]);
  	},
-@@ -32,7 +56,11 @@ return baseclass.extend({
+@@ -32,7 +56,10 @@ return baseclass.extend({
  	render: function(data) {
  		var boardinfo   = data[0],
  		    systeminfo  = data[1],
 -		    luciversion = data[2];
 +		    cpubench    = data[2],
 +		    cpuinfo     = data[3],
-+		    cpuusage    = data[4],
 +		    tempinfo    = data[5],
 +		    luciversion = data[6];
  
