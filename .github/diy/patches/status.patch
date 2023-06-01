@@ -115,25 +115,3 @@
  		var table = E('table', { 'class': 'table' });
  
  		for (var i = 0; i < fields.length; i += 2) {
-
---- a/luci-mod-status/htdocs/luci-static/resources/view/status/nftables.js
-+++ b/luci-mod-status/htdocs/luci-static/resources/view/status/nftables.js
-@@ -674,12 +674,13 @@ return view.extend({
- 
- 	checkLegacyRules: function(ipt4save, ipt6save) {
- 		if (ipt4save.match(/\n-A /) || ipt6save.match(/\n-A /)) {
--			ui.addNotification(_('Legacy rules detected'), [
--				E('button', {
--					'class': 'btn cbi-button',
--					'click': function() { location.href = 'nftables/iptables' }
--				}, _('Open iptables rules overview…'))
--			], 'warning');
-+			location.href = 'nftables/iptables'
-+		//	ui.addNotification(_('Legacy rules detected'), [
-+		//		E('button', {
-+		//			'class': 'btn cbi-button',
-+		//			'click': function() { location.href = 'nftables/iptables' }
-+		//		}, _('Open iptables rules overview…'))
-+		//	], 'warning');
- 		}
- 	},
