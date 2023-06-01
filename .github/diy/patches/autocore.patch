@@ -34,7 +34,7 @@
  				br2684ctl:  access('/usr/sbin/br2684ctl') == true,
  				swconfig:   access('/sbin/swconfig') == true,
  				odhcpd:     access('/usr/sbin/odhcpd') == true,
-@@ -538,6 +540,96 @@ const methods = {
+@@ -538,6 +540,99 @@ const methods = {
  		call: function() {
  			return { result: process_list() };
  		}
