@@ -160,7 +160,7 @@ local Xray = {
 				shortId = server.reality_shortid,
 				spiderX = server.reality_spiderx,
 				fingerprint = server.fingerprint,
-				serverName = tls_host
+				serverName = server.tls_host
 			} or nil,
 			tcpSettings = (server.transport == "tcp" and server.tcp_guise == "http") and {
 				-- tcp
