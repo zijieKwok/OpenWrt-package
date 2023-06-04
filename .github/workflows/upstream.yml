@@ -218,6 +218,7 @@ jobs:
         git_clone https://github.com/pexcn/openwrt-dns2tcp dns2tcp
         git_clone https://github.com/BoringCat/luci-app-minieap
         git_clone https://github.com/izilzty/luci-app-chinadns-ng
+        git_clone https://github.com/Diciya/luci-app-broadbandacc
         ) &
         (
         svn export https://github.com/Ysurac/openmptcprouter-feeds/trunk/luci-app-iperf
