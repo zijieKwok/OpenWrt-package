@@ -9,10 +9,3 @@
  </h2>
  <link rel="stylesheet" href="/luci-static/istore/style.css?v=<%=id.version%>">
  <div id="app">
-@@ -58,4 +60,4 @@ <h2 name="content"><%:iStore%>
- </script>
- 
- <script type="module" crossorigin src="/luci-static/istore/index.js?v=<%=id.version%>"></script>
--<%+footer%>
-\ No newline at end of file
-+<%+footer%>
