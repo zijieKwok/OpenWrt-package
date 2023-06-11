@@ -18,14 +18,14 @@
 
 --- a/nginx/files/nginx.init
 +++ b/nginx/files/nginx.init
-@@ -58,6 +58,10 @@ nginx_init() {
- 		nginx_check_luci_template
- 	fi
+@@ -54,6 +54,10 @@ nginx_init() {
+ 	rm -f "$(readlink "${UCI_CONF}")"
+ 	${NGINX_UTIL} init_lan
  
 +	if [ ! -h "${UCI_CONF}" ]; then
 +		ln -sf /var/lib/nginx/uci.conf ${UCI_CONF}
 +	fi
 +
- 	if [ -e "${UCI_CONF}" ]
- 	then CONF="${UCI_CONF}"
- 	else CONF="${NGINX_CONF}"
+ 	if [ -f $UCI_CONF_TEMPLATE ]; then
+ 		nginx_check_luci_template
+ 	fi
