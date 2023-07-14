@@ -9,11 +9,11 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=frp
 PKG_VERSION:=0.51.0
-PKG_RELEASE:=21
+PKG_RELEASE:=22
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/fatedier/frp/tar.gz/v${PKG_VERSION}?
-PKG_HASH:=d98ebf8638701cf8662604b9fe2fb355f91209f87edcb77f2830c7fa40ccbe37
+PKG_HASH:=skip
 
 PKG_LICENSE:=Apache-2.0
 PKG_LICENSE_FILES:=LICENSE
@@ -29,7 +29,7 @@ GO_PKG_BUILD_PKG:=github.com/fatedier/frp/cmd/...
 GO_PKG_LDFLAGS:=-s -w
 
 include $(INCLUDE_DIR)/package.mk
-include ../../lang/golang/golang-package.mk
+include $(TOPDIR)/feeds/packages/lang/golang/golang-package.mk
 
 define frp/templates
   define Package/$(1)
