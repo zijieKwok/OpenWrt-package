@@ -405,7 +405,7 @@ jobs:
         sed -i 's/procd_set_param stderr 1/procd_set_param stderr 0/' uwsgi/files/uwsgi.init
         sed -i 's/	ip.neighbors/	luci.ip.neighbors/' luci-app-wifidog/luasrc/model/cbi/wifidog/wifidog_cfg.lua
         sed -i 's/ if aarch64||arm||i386||x86_64//' luci-app-ssr-plus/Makefile
-        sed -i 's/transmission-web-control$/transmission-web-control +transmission-web-control/' luci-app-transmission
+        sed -i 's/transmission-daemon$/transmission-daemon +transmission-web-control/' luci-app-transmission
         mkdir -p luci-app-passwall/root/www/luci-static/passwall
         cp -rf luci-app-bypass/root/www/luci-static/bypass/* luci-app-passwall/root/www/luci-static/passwall/
         cp -rf luci-app-bypass/root/usr/share/bypass/GeoLite2-Country.mmdb luci-app-passwall/root/usr/share/passwall/
