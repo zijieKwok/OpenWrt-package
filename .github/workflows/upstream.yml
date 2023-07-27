@@ -231,12 +231,12 @@ jobs:
         (
         git_sparse_clone master "https://github.com/coolsnowwolf/packages" "leanpkg" net/miniupnpd net/mwan3 multimedia/UnblockNeteaseMusic-Go \
         multimedia/UnblockNeteaseMusic net/amule net/antileech net/baidupcs-web net/frp multimedia/gmediarender net/go-aliyundrive-webdav \
-        net/qBittorrent-static net/transmission net/phtunnel \
+        net/qBittorrent-static net/phtunnel \
         net/uugamebooster net/verysync net/vlmcsd net/dnsforwarder net/nps net/tcpping net/netatalk net/pgyvpn
         mv -f miniupnpd miniupnpd-iptables
         git_sparse_clone openwrt-23.05 "https://github.com/openwrt/packages" "oppackages" \
         utils/coremark utils/watchcat utils/dockerd net/uwsgi net/ddns-scripts net/smartdns net/curl \
-        net/ariang admin/netdata net/transmission-web-control net/rp-pppoe net/tailscale
+        net/ariang admin/netdata net/rp-pppoe net/tailscale
         ) &
         (
         git_sparse_clone openwrt-23.05 "https://github.com/openwrt/openwrt" "openwrt" \
@@ -245,7 +245,7 @@ jobs:
         git_sparse_clone openwrt-23.05 "https://github.com/openwrt/luci" "opluci" applications/luci-app-attendedsysupgrade applications/luci-app-aria2 \
         applications/luci-app-ddns applications/luci-app-acme applications/luci-app-opkg applications/luci-app-firewall \
         applications/luci-app-ksmbd applications/luci-app-samba4 applications/luci-app-watchcat applications/luci-app-upnp \
-        modules/luci-base modules/luci-mod-network \
+        applications/luci-app-transmission modules/luci-base modules/luci-mod-network \
         modules/luci-mod-status modules/luci-mod-system
         ) &
 
@@ -277,7 +277,7 @@ jobs:
         git_sparse_clone openwrt-23.05 "https://github.com/immortalwrt/luci" "immluci" applications protocols/luci-proto-minieap
         mv -n applications/* luciapp/; rm -rf applications
 
-        for ipk in $(ls -d luciapp/!(luci-app-rclone|luci-app-mwan3|luci-app-transmission)/); do
+        for ipk in $(ls -d luciapp/!(luci-app-rclone|luci-app-mwan3)/); do
         	if [[ $(ls $ipk/po | wc -l) -gt 3 ]]; then
             rm -rf $ipk
         	fi
@@ -405,7 +405,7 @@ jobs:
         sed -i 's/procd_set_param stderr 1/procd_set_param stderr 0/' uwsgi/files/uwsgi.init
         sed -i 's/	ip.neighbors/	luci.ip.neighbors/' luci-app-wifidog/luasrc/model/cbi/wifidog/wifidog_cfg.lua
         sed -i 's/ if aarch64||arm||i386||x86_64//' luci-app-ssr-plus/Makefile
-        sed -i 's/PKG_SOURCE_DATE:=2/PKG_SOURCE_DATE:=3/' transmission-web-control/Makefile
+        sed -i 's/transmission-web-control$/transmission-web-control +transmission-web-control/' luci-app-transmission
         mkdir -p luci-app-passwall/root/www/luci-static/passwall
         cp -rf luci-app-bypass/root/www/luci-static/bypass/* luci-app-passwall/root/www/luci-static/passwall/
         cp -rf luci-app-bypass/root/usr/share/bypass/GeoLite2-Country.mmdb luci-app-passwall/root/usr/share/passwall/
