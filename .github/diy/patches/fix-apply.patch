@@ -31,3 +31,17 @@
 +service_triggers() {
 +	procd_add_reload_trigger "dockerd"
 +}
+
+--- a/luci-app-nezha/root/etc/init.d/nezha-agent
++++ b/luci-app-nezha/root/etc/init.d/nezha-agent
+@@ -25,7 +25,11 @@ start_service() {
+         procd_close_instance
+ }
+ 
++service_triggers() {
++	procd_add_reload_trigger "nezha-agent"
++}
++
+ reload_service() {
+   stop
+   start
