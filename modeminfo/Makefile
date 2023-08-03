@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=modeminfo
 PKG_VERSION:=0.3.3
-PKG_RELEASE:=25
+PKG_RELEASE:=26
 PKG_MAINTAINER:=Konstantine Shevlakov <shevlakov@132lan.ru>
 
 include $(INCLUDE_DIR)/package.mk
@@ -79,7 +79,7 @@ define Package/$(PKG_NAME)-serial-gosun
   TITLE:= Gosuncnwelink GM510 serial addon for modeminfo
 endef
 
-define Package/$(PKGw_NAME)-serial-zte
+define Package/$(PKG_NAME)-serial-zte
   PKGARCH:=all
   SUBMENU:=Telephony
   DEPENDS:=+modeminfo +kmod-usb-serial-option +atinout
