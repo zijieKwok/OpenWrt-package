@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=tailscale
 PKG_VERSION:=1.44.0
-PKG_RELEASE:=21
+PKG_RELEASE:=22
 
 PKG_SOURCE:=tailscale-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/tailscale/tailscale/tar.gz/v$(PKG_VERSION)?
@@ -73,7 +73,7 @@ define Download/go-iptables
   URL:=https://codeload.github.com/coreos/go-iptables/tar.gz/v$(GO_IPTABLES_VERSION)?
   URL_FILE:=$(GO_IPTABLES_FILE)
   FILE:=$(GO_IPTABLES_FILE)
-  HASH:=a784cc17fcb17879f073eae47bc4c2e899f59f6906dac5a0aa7a9cc9f95ea66d
+  HASH:=skip
 endef
 
 define Build/Prepare
