@@ -106,7 +106,7 @@
  			),
 +			E('p', [_('更多个性化定制请使用网页版: '),E('a', {
 +				'class': '',
-+				'href': 'https://supes.top',
++				'href': 'https://openwrt.ai',
 +				'target': '_balank',
 +			}, _('在线定制网页版'))]),
 +			E('p', [_('非定制固件请在此更新: '),E('a', {
