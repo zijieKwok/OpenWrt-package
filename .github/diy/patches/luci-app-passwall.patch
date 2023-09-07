@@ -33,7 +33,7 @@ index ed9770f070..1fea4ee29b 100644
  	+PACKAGE_$(PKG_NAME)_INCLUDE_V2ray_Plugin:v2ray-plugin \
  	+PACKAGE_$(PKG_NAME)_INCLUDE_Xray:xray-core \
  	+PACKAGE_$(PKG_NAME)_INCLUDE_Xray_Plugin:xray-plugin
-@@ -150,11 +151,11 @@ config PACKAGE_$(PKG_NAME)_INCLUDE_Trojan_Plus
+@@ -150,7 +151,7 @@ config PACKAGE_$(PKG_NAME)_INCLUDE_Trojan_Plus
  
  config PACKAGE_$(PKG_NAME)_INCLUDE_V2ray
  	bool "Include V2ray"
