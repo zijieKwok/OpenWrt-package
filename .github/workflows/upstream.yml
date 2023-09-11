@@ -193,7 +193,6 @@ jobs:
         git_clone https://github.com/pymumu/luci-app-smartdns
         git_clone https://github.com/CHN-beta/rkp-ipid
         git_clone https://github.com/Erope/openwrt_nezha nezha && mvdir nezha
-        # git_clone https://github.com/wiwizcom/WiFiPortal && mvdir WiFiPortal
         ) &
         (
         git_clone https://github.com/mchome/openwrt-dogcom
@@ -209,7 +208,6 @@ jobs:
         git_clone https://github.com/honwen/luci-app-shadowsocks-rust
         git_clone https://github.com/Hyy2001X/AutoBuild-Packages && rm -rf AutoBuild-Packages/luci-app-adguardhome && mvdir AutoBuild-Packages
         git_clone https://github.com/Ausaci/luci-app-nat6-helper
-        # git_clone https://github.com/wiwizcom/WiFiPortal && mvdir WiFiPortal
         git clone https://github.com/gngpp/luci-theme-design -b js --depth 1
         git_clone https://github.com/sbwml/package_kernel_r8125 r8125
         git_clone https://github.com/derisamedia/luci-theme-alpha
@@ -220,6 +218,7 @@ jobs:
         git_clone https://github.com/BoringCat/luci-app-minieap
         git_clone https://github.com/izilzty/luci-app-chinadns-ng
         git_clone https://github.com/Diciya/luci-app-broadbandacc
+        git_clone https://github.com/wiwizcom/WiFiPortal && mvdir WiFiPortal
         ) &
         (
         svn export https://github.com/Ysurac/openmptcprouter-feeds/trunk/luci-app-iperf
