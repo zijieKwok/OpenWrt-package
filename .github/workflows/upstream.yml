@@ -16,7 +16,7 @@ on:
     - cron: 0 */12 * * *
   workflow_dispatch:
     inputs:
-      ssh:f
+      ssh:
         description: 'ssh'
         required: false
         default: 'true'
