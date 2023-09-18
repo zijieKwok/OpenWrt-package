@@ -1,19 +1,17 @@
-# Copyright (C) 2016 Openwrt.org
+#
+# Copyright (C) 2017 Dan Luedtke <mail@danrl.com>
 #
 # This is free software, licensed under the Apache License, Version 2.0 .
 #
 
 include $(TOPDIR)/rules.mk
 
-LUCI_TITLE:=LuCI support for OpenVPN Server
-LUCI_DEPENDS:=+openvpn-openssl +openvpn-easy-rsa
+LUCI_TITLE:=Cloudshark capture tool Web UI
+LUCI_DEPENDS:=+cshark
 LUCI_PKGARCH:=all
-PKG_NAME:=luci-app-openvpn-server
+
+PKG_MAINTAINER:=Luka Perkov <luka@openwrt.org>
 
 include $(TOPDIR)/feeds/luci/luci.mk
 
 # call BuildPackage - OpenWrt buildroot signature
-
-
-
-
