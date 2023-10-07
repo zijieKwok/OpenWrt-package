@@ -242,15 +242,14 @@
    URL:=http://www.wiwiz.com
    MENU:=1
 
---- a/net/rclone/Makefile
-+++ b/net/rclone/Makefile
-@@ -43,7 +43,7 @@ endef
+--- a/luci-app-rclone/Makefile
++++ b/luci-app-rclone/Makefile
+@@ -15,7 +15,7 @@ PKG_CONFIG_DEPENDS:= \
  
- define Package/rclone
-   $(call Package/rclone/Default)
--  DEPENDS:=$(GO_ARCH_DEPENDS) +ca-bundle +fuse-utils
-+  DEPENDS:=$(GO_ARCH_DEPENDS) +ca-bundle +fuse-utils +fuse-overlayfs
-   USERID:=rclone:rclone
- endef
+ LUCI_TITLE:=LuCI support for Rclone
+ LUCI_PKGARCH:=all
+-LUCI_DEPENDS:=+rclone-config \
++LUCI_DEPENDS:=+rclone-config +fuse-overlayfs \
+ 	+PACKAGE_$(PKG_NAME)_INCLUDE_rclone-webui:rclone-webui-react \
+ 	+PACKAGE_$(PKG_NAME)_INCLUDE_rclone-ng:rclone-ng
 
- 
