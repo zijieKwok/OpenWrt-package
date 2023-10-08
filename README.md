@@ -7,17 +7,17 @@
 
 | CPU架构           | 下载地址                                             | 适用设备    | 软件源    | 更新频率    |
 |----------------|-----------------------------------------------------|--------------------------------------|-----------|-----------|
-| X86_64         | [📥](https://dl.openwrt.ai/latest/packages/x86_64/)         |          64位PC软路由    | src/gz openwrt_kiddin9 https://dl.openwrt.ai/latest/packages/x86_64 | 日更  |
-| i386_pentium4  | [📥](https://dl.openwrt.ai/latest/packages/i386_pentium4/)      |      32位PC软路由    | src/gz openwrt_kiddin9 https://dl.openwrt.ai/latest/packages/i386_pentium4 | 日更  |
-| aarch64_generic    | [📥](https://dl.openwrt.ai/latest/packages/aarch64_generic/)     |   R2S/R4S等        |  src/gz openwrt_kiddin9 https://dl.openwrt.ai/latest/packages/aarch64_generic | 日更  |
-| aarch64_cortex-a72    | [📥](https://dl.openwrt.ai/latest/packages/aarch64_cortex-a72/)     |  树莓派4B等   |  src/gz openwrt_kiddin9 https://dl.openwrt.ai/latest/packages/aarch64_cortex-a72  |  日更 |
-| mipsel_24kc    | [📥](https://dl.openwrt.ai/latest/packages/mipsel_24kc/)     |  k2p,ac2100等 | src/gz openwrt_kiddin9 https://dl.openwrt.ai/latest/packages/mipsel_24kc   | 日更  |
-| mips_24kc    | [📥](https://dl.openwrt.ai/latest/packages/mips_24kc/)     |  GL-AR300M,NETGEAR WNDR4300等 | src/gz openwrt_kiddin9 https://dl.openwrt.ai/latest/packages/mips_24kc   | 日更  |
-| aarch64_cortex-a53    | [📥](https://dl.openwrt.ai/latest/packages/aarch64_cortex-a53/) |  N1,红米AX6,小米AX6S等 |  src/gz openwrt_kiddin9 https://dl.openwrt.ai/latest/packages/aarch64_cortex-a53 |   日更 |
-| arm_cortex-a9    | [📥](https://dl.openwrt.ai/latest/packages/arm_cortex-a9/) |  斐讯K3,华硕RT-AC68U,RT-AC88U等 |  src/gz openwrt_kiddin9 https://dl.openwrt.ai/latest/packages/arm_cortex-a9 |   日更 |
-| arm_cortex-a7_neon-vfpv4    | [📥](https://dl.openwrt.ai/latest/packages/arm_cortex-a7_neon-vfpv4/) |  华硕RT-ACRH17,RT-AC58U等 |  src/gz openwrt_kiddin9 https://dl.openwrt.ai/latest/packages/arm_cortex-a7_neon-vfpv4 |   日更 |
-| arm_cortex-a7    | [📥](https://dl.openwrt.ai/latest/packages/arm_cortex-a7/) |  GL-iNet AXT1800、AX1800等 |  src/gz openwrt_kiddin9 https://dl.openwrt.ai/latest/packages/arm_cortex-a7 |   日更 |
-| arm_cortex-a9_vfpv3-d16    | [📥](https://dl.openwrt.ai/latest/packages/arm_cortex-a9_vfpv3-d16/) |  Linksys WRT1900ACS等 |  src/gz openwrt_kiddin9 https://dl.openwrt.ai/latest/packages/arm_cortex-a9_vfpv3-d16 |   日更 |
-| arm_cortex-a5_vfpv4    | [📥](https://dl.openwrt.ai/latest/packages/arm_cortex-a5_vfpv4/) |  玩客云等 |  src/gz openwrt_kiddin9 https://dl.openwrt.ai/latest/packages/arm_cortex-a5_vfpv4 |   日更 |
-| arm_cortex-a15_neon-vfpv4    | [📥](https://dl.openwrt.ai/latest/packages/arm_cortex-a15_neon-vfpv4/) |  NETGEAR R7800等 |  src/gz openwrt_kiddin9 https://dl.openwrt.ai/latest/packages/arm_cortex-a15_neon-vfpv4 |   日更 |
-| arm_xscale    | [📥](https://dl.openwrt.ai/latest/packages/arm_xscale/) |  Linksys EA4500等 |  src/gz openwrt_kiddin9 https://dl.openwrt.ai/latest/packages/arm_xscale |   日更 |
+| X86_64         | [📥](https://dl.openwrt.ai/latest/packages/x86_64/kiddin9/)         |          64位PC软路由    | src/gz openwrt_kiddin9 https://dl.openwrt.ai/latest/packages/x86_64/kiddin9 | 日更  |
+| i386_pentium4  | [📥](https://dl.openwrt.ai/latest/packages/i386_pentium4/kiddin9/)      |      32位PC软路由    | src/gz openwrt_kiddin9 https://dl.openwrt.ai/latest/packages/i386_pentium4/kiddin9 | 日更  |
+| aarch64_generic    | [📥](https://dl.openwrt.ai/latest/packages/aarch64_generic/kiddin9/)     |   R2S/R4S等        |  src/gz openwrt_kiddin9 https://dl.openwrt.ai/latest/packages/aarch64_generic/kiddin9 | 日更  |
+| aarch64_cortex-a72    | [📥](https://dl.openwrt.ai/latest/packages/aarch64_cortex-a72/kiddin9/)     |  树莓派4B等   |  src/gz openwrt_kiddin9 https://dl.openwrt.ai/latest/packages/aarch64_cortex-a72/kiddin9  |  日更 |
+| mipsel_24kc    | [📥](https://dl.openwrt.ai/latest/packages/mipsel_24kc/kiddin9/)     |  k2p,ac2100等 | src/gz openwrt_kiddin9 https://dl.openwrt.ai/latest/packages/mipsel_24kc/kiddin9   | 日更  |
+| mips_24kc    | [📥](https://dl.openwrt.ai/latest/packages/mips_24kc/kiddin9/)     |  GL-AR300M,NETGEAR WNDR4300等 | src/gz openwrt_kiddin9 https://dl.openwrt.ai/latest/packages/mips_24kc/kiddin9   | 日更  |
+| aarch64_cortex-a53    | [📥](https://dl.openwrt.ai/latest/packages/aarch64_cortex-a53/kiddin9/) |  N1,红米AX6,小米AX6S等 |  src/gz openwrt_kiddin9 https://dl.openwrt.ai/latest/packages/aarch64_cortex-a53/kiddin9 |   日更 |
+| arm_cortex-a9    | [📥](https://dl.openwrt.ai/latest/packages/arm_cortex-a9/kiddin9/) |  斐讯K3,华硕RT-AC68U,RT-AC88U等 |  src/gz openwrt_kiddin9 https://dl.openwrt.ai/latest/packages/arm_cortex-a9/kiddin9 |   日更 |
+| arm_cortex-a7_neon-vfpv4    | [📥](https://dl.openwrt.ai/latest/packages/arm_cortex-a7_neon-vfpv4/kiddin9/) |  华硕RT-ACRH17,RT-AC58U等 |  src/gz openwrt_kiddin9 https://dl.openwrt.ai/latest/packages/arm_cortex-a7_neon-vfpv4/kiddin9 |   日更 |
+| arm_cortex-a7    | [📥](https://dl.openwrt.ai/latest/packages/arm_cortex-a7/kiddin9/) |  GL-iNet AXT1800、AX1800等 |  src/gz openwrt_kiddin9 https://dl.openwrt.ai/latest/packages/arm_cortex-a7/kiddin9 |   日更 |
+| arm_cortex-a9_vfpv3-d16    | [📥](https://dl.openwrt.ai/latest/packages/arm_cortex-a9_vfpv3-d16/kiddin9/) |  Linksys WRT1900ACS等 |  src/gz openwrt_kiddin9 https://dl.openwrt.ai/latest/packages/arm_cortex-a9_vfpv3-d16/kiddin9 |   日更 |
+| arm_cortex-a5_vfpv4    | [📥](https://dl.openwrt.ai/latest/packages/arm_cortex-a5_vfpv4/kiddin9/) |  玩客云等 |  src/gz openwrt_kiddin9 https://dl.openwrt.ai/latest/packages/arm_cortex-a5_vfpv4/kiddin9 |   日更 |
+| arm_cortex-a15_neon-vfpv4/kiddin9    | [📥](https://dl.openwrt.ai/latest/packages/arm_cortex-a15_neon-vfpv4/kiddin9/) |  NETGEAR R7800等 |  src/gz openwrt_kiddin9 https://dl.openwrt.ai/latest/packages/arm_cortex-a15_neon-vfpv4/kiddin9 |   日更 |
+| arm_xscale    | [📥](https://dl.openwrt.ai/latest/packages/arm_xscale/kiddin9/) |  Linksys EA4500等 |  src/gz openwrt_kiddin9 https://dl.openwrt.ai/latest/packages/arm_xscale/kiddin9 |   日更 |
