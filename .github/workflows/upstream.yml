@@ -179,7 +179,7 @@ jobs:
         git_clone https://github.com/4IceG/luci-app-modemband modemb  && mv -n modemb/* ./;rm -rf modemb
         git_clone https://github.com/ZeaKyX/speedtest-web
         git_clone https://github.com/ZeaKyX/luci-app-speedtest-web
-        git_clone https://github.com/Zxilly/UA2F
+        git_clone https://github.com/Zxilly/UA2F && mv UA2F/openwrt UA2F/UA2F
         git_clone https://github.com/jhonathanc/ps3netsrv-openwrt && mv -n ps3netsrv-openwrt/* ./;rm -rf ps3netsrv-openwrt
         ) &
         (
