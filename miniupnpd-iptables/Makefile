@@ -9,9 +9,9 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=miniupnpd-iptables
 PKG_VERSION:=3022-08-31
-PKG_RELEASE:=14
+PKG_RELEASE:=15
 
-PKG_SOURCE_URL:=https://miniupnp.tuxfamily.org/files
+PKG_SOURCE_URL:=http://miniupnp.free.fr/files
 PKG_SOURCE:=miniupnpd-2.0.20180503.tar.gz
 PKG_BUILD_DIR:=$(BUILD_DIR)/miniupnpd-2.0.20180503
 PKG_HASH:=skip
