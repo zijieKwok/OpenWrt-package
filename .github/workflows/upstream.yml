@@ -220,6 +220,7 @@ jobs:
         git_clone https://github.com/Diciya/luci-app-broadbandacc
         git_clone https://github.com/wiwizcom/WiFiPortal && mvdir WiFiPortal
         git_clone https://github.com/gSpotx2f/luci-app-internet-detector
+        git_clone https://github.com/vinewx/NanoHatOLED; mv NanoHatOLED/nanohatoled;rm -rf NanoHatOLED
         ) &
         (
         svn export https://github.com/Ysurac/openmptcprouter-feeds/trunk/luci-app-iperf
