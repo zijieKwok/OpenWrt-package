@@ -8,7 +8,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=tailscale
-PKG_VERSION:=1.50.0
+PKG_VERSION:=1.52.1
 PKG_RELEASE:=25
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
